@@ -12,6 +12,7 @@ const cargando = ref(false)
 const enviado = ref(false)
 const resetUrl = ref('')
 const error = ref('')
+const isDev = import.meta.env.DEV
 
 const submit = async () => {
   cargando.value = true
@@ -69,7 +70,7 @@ const copiarCodigo = () => {
             Si el correo existe, recibirás un enlace de recuperación.
           </div>
 
-          <template v-if="import.meta.env.DEV">
+          <template v-if="isDev">
             <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
               <p class="text-xs text-yellow-700 font-semibold mb-2">🔧 Modo desarrollo — Código generado:</p>
               <div class="flex items-center gap-2">
