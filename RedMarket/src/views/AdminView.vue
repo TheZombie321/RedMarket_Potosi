@@ -131,7 +131,7 @@ const onFileChange = (e: Event) => {
 const saveProducto = async () => {
   try {
     const fd = new FormData()
-    if (form.value.imagen) fd.append('imagen', form.value.imagen)
+    if (form.value.imagen) fd.append('imagen', form.value.imagen as Blob)
     fd.append('nombre', form.value.nombre)
     fd.append('descripcion', form.value.descripcion)
     fd.append('codigo_barras', form.value.codigo_barras)

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useToastStore } from '../stores/toast'
 import { apiFetch } from '../composables/useApi'
@@ -13,6 +13,12 @@ const enviado = ref(false)
 const resetUrl = ref('')
 const error = ref('')
 const isDev = import.meta.env.DEV
+
+const resetToken = computed(() => {
+  if (!resetUrl.value) return ''
+  const parts = resetUrl.value.split('?')
+  return new URLSearchParams(parts[1] || '').get('token') || ''
+})
 
 const submit = async () => {
   cargando.value = true
@@ -74,13 +80,13 @@ const copiarCodigo = () => {
             <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
               <p class="text-xs text-yellow-700 font-semibold mb-2">🔧 Modo desarrollo — Código generado:</p>
               <div class="flex items-center gap-2">
-                <code class="flex-1 text-lg font-bold text-center bg-yellow-100 rounded px-3 py-1">{{ new URLSearchParams(resetUrl.split('?')[1]).get('token') }}</code>
+                <code class="flex-1 text-lg font-bold text-center bg-yellow-100 rounded px-3 py-1">{{ resetToken }}</code>
                 <button @click="copiarCodigo" class="text-xs bg-yellow-200 hover:bg-yellow-300 px-2 py-1 rounded cursor-pointer border-none">📋</button>
               </div>
             </div>
           </template>
 
-          <RouterLink :to="{ name: 'reset-password', query: { token: new URLSearchParams(resetUrl.split('?')[1]).get('token'), email } }"
+          <RouterLink :to="{ name: 'reset-password', query: { token: resetToken, email } }"
             class="block w-full text-center bg-red-700 text-white py-2.5 rounded-lg font-semibold hover:bg-red-800 no-underline">
             Continuar
           </RouterLink>

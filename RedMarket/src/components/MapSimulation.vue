@@ -20,7 +20,7 @@ const store = useDeliveryStore()
 const { lat, lng } = storeToRefs(store)
 
 onMounted(() => {
-  store.startTracking()
+  store.startTracking(0)
 })
 
 onUnmounted(() => {

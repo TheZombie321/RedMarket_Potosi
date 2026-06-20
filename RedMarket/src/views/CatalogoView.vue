@@ -8,7 +8,7 @@ import { useToastStore } from '../stores/toast'
 const carrito = useCarritoStore()
 const search = useSearchStore()
 const toast = useToastStore()
-const productos = ref([])
+const productos = ref<any[]>([])
 const cargando = ref(true)
 const error = ref('')
 const mostrarTop = ref(false)
