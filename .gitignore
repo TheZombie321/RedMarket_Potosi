@@ -1,0 +1,17 @@
+# Ignorar carpetas ocultas de herramientas externas
+.impeccable/
+.opencode/
+
+# Ignorar archivos sueltos de documentación y notas en la raíz
+/*.md
+/AGENTS*
+/DESIGN*
+/PRODUCT*
+/PROYECTO_DETALLADO*
+/SYSTEM_SUMMARY*
+/Archivos leidos/
+/*.txt
+
+# Nota: Git entrará a 'RedMarket' y 'redmarket-backend' 
+# y respetará los .gitignore internos que ya tienen Laravel y Vue 
+# (evitando que se suban las carpetas pesadas 'node_modules' o 'vendor').
