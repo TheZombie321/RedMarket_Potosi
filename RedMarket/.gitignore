@@ -44,3 +44,4 @@ test-results/
 
 # Vite
 *.timestamp-*-*.mjs
+*.bak
