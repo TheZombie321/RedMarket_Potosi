@@ -279,6 +279,15 @@ watch([lat, lng], () => {
   }
 })
 
+watch(tab, (newTab, oldTab) => {
+  if (oldTab === 'disponibles' && newTab !== 'disponibles') {
+    destruirMapaDisponibles()
+  }
+  if (newTab === 'disponibles' && !pedidoActivo.value) {
+    nextTick(() => { setTimeout(initMapDisponibles, 200) })
+  }
+})
+
 // ─── Acciones ───
 
 const iniciarEntrega = async (pedido: any) => {
