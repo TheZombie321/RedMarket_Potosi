@@ -25,9 +25,13 @@ Route::apiResource('productos', ProductoController::class)->only(['index', 'show
 Route::get('/productos/{producto}/resenas', [ResenaController::class, 'index']);
 Route::get('/pedidos/{pedido}/ticket', [TicketController::class, 'ticket']);
 Route::get('/categorias', [CategoriaController::class, 'index'])->withoutMiddleware(['auth:sanctum']);
+Route::get('/resenas', [ResenaController::class, 'listAll'])->withoutMiddleware(['auth:sanctum']);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('productos', ProductoController::class)->except(['index', 'show']);
-    Route::apiResource('categorias', CategoriaController::class);
+    Route::post('/categorias', [CategoriaController::class, 'store']);
+    Route::get('/categorias/{categoria}', [CategoriaController::class, 'show']);
+    Route::put('/categorias/{categoria}', [CategoriaController::class, 'update']);
+    Route::delete('/categorias/{categoria}', [CategoriaController::class, 'destroy']);
     Route::apiResource('proveedores', ProveedorController::class);
     Route::apiResource('pedidos', PedidoController::class);
     Route::post('/logout', [AuthController::class, 'logout']);

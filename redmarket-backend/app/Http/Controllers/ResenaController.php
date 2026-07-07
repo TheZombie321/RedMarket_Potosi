@@ -8,6 +8,23 @@ use Illuminate\Http\Request;
 
 class ResenaController extends Controller
 {
+    public function listAll(Request $request)
+    {
+        $perPage = min((int) $request->input('per_page', 10), 50);
+
+        return Resena::with('user:id,name')
+            ->latest()
+            ->paginate($perPage)
+            ->through(fn($r) => [
+                'id' => $r->id,
+                'puntuacion' => $r->puntuacion,
+                'comentario' => $r->comentario,
+                'producto_nombre' => $r->producto?->nombre,
+                'user' => ['id' => $r->user->id, 'name' => $r->user->name],
+                'created_at' => $r->created_at,
+            ]);
+    }
+
     public function index(Producto $producto)
     {
         $resenas = $producto->resenas()
