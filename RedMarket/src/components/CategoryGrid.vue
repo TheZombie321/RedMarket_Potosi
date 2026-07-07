@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, onUnmounted } from 'vue'
 import { apiFetch } from '../composables/useApi'
 
 interface Categoria {
@@ -42,16 +42,27 @@ const iconMap: Record<string, { icono: string; gradiente: string }> = {
 interface CategoriaConImagen extends Categoria {
   icono: string
   gradiente: string
-  imagen_url?: string
+  imagenes: string[]
+  currentIdx: number
 }
 
 const categorias = ref<CategoriaConImagen[]>([])
 const expandida = ref(false)
 const VISIBLES = 5
+let timer: ReturnType<typeof setInterval> | null = null
 
 const categoriasVisibles = computed(() =>
   expandida.value ? categorias.value : categorias.value.slice(0, VISIBLES)
 )
+
+function avanzaRotacion() {
+  categorias.value = categorias.value.map(c => {
+    if (c.imagenes.length > 1) {
+      return { ...c, currentIdx: (c.currentIdx + 1) % c.imagenes.length }
+    }
+    return c
+  })
+}
 
 onMounted(async () => {
   try {
@@ -60,32 +71,40 @@ onMounted(async () => {
 
     const resultados = await Promise.allSettled(
       items.map(cat =>
-        apiFetch(`/productos?categoria=${cat.id}&per_page=1&random=1`, { skipAuth: true, silent: true })
+        apiFetch(`/productos?categoria=${cat.id}&per_page=5&random=1`, { skipAuth: true, silent: true })
           .then(r => {
             const prods: Producto[] = r.data ?? r
-            return { id: cat.id, imagen: prods[0]?.imagen_url }
+            return { id: cat.id, imagenes: prods.map(p => p.imagen_url).filter(Boolean) as string[] }
           })
-          .catch(() => ({ id: cat.id, imagen: undefined }))
+          .catch(() => ({ id: cat.id, imagenes: [] as string[] }))
       )
     )
 
-    const imagenMap: Record<number, string | undefined> = {}
+    const imagenMap: Record<number, string[]> = {}
     resultados.forEach(r => {
       if (r.status === 'fulfilled') {
-        imagenMap[r.value.id] = r.value.imagen
+        imagenMap[r.value.id] = r.value.imagenes
       }
     })
 
     categorias.value = items.map(c => ({
       ...c,
       ...(iconMap[c.nombre] ?? { icono: '📦', gradiente: 'from-gray-900/70 to-gray-700/30' }),
-      imagen_url: imagenMap[c.id],
+      imagenes: imagenMap[c.id] ?? [],
+      currentIdx: 0,
     }))
+
+    timer = setInterval(avanzaRotacion, 3500)
   } catch {
     categorias.value = Object.entries(iconMap).map(([nombre, val], i) => ({
       id: i + 1, nombre: nombre, ...val,
+      imagenes: [] as string[], currentIdx: 0,
     }))
   }
+})
+
+onUnmounted(() => {
+  if (timer) clearInterval(timer)
 })
 </script>
 
@@ -99,10 +118,14 @@ onMounted(async () => {
         class="relative flex flex-col items-center justify-end p-4 rounded-xl no-underline overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
         style="aspect-ratio: 4/3"
       >
-        <img
-          v-if="cat.imagen_url" :src="cat.imagen_url" :alt="cat.nombre"
-          class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-        />
+        <div class="absolute inset-0">
+          <img
+            v-for="(img, i) in cat.imagenes.slice(0, 5)" :key="i"
+            :src="img" :alt="cat.nombre"
+            class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
+            :class="i === cat.currentIdx ? 'opacity-100' : 'opacity-0'"
+          />
+        </div>
         <div class="absolute inset-0 bg-gradient-to-t transition-opacity duration-300" :class="cat.gradiente"></div>
         <span class="text-3xl relative z-10 mb-1 drop-shadow-sm">{{ cat.icono }}</span>
         <span class="font-semibold text-sm text-white text-center relative z-10 drop-shadow-sm">{{ cat.nombre }}</span>

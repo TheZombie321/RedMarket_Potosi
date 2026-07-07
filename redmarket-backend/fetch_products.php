@@ -246,9 +246,9 @@ if (strtolower($input) !== 's') {
 
 // ─── 5. GENERAR SEEDER ───
 
-// Orden alfabético de categorías
+// Orden alfabético case-insensitive de categorías
 $sortedCats = array_keys($usedCategories);
-sort($sortedCats);
+usort($sortedCats, 'strcasecmp');
 
 // Código de proveedores
 $provCode = "        \$proveedores = [\n";
