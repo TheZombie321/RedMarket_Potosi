@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { apiFetch } from '../composables/useApi'
 
 const props = withDefaults(defineProps<{
@@ -10,17 +10,26 @@ const props = withDefaults(defineProps<{
   color: 'from-red-800 to-red-600',
 })
 
-const bgUrl = ref('')
+const imagenes = ref<string[]>([])
+const currentIdx = ref(0)
 const enlace = ref(`/tienda?categoria=${props.categoriaId}`)
+let timer: ReturnType<typeof setInterval> | null = null
 
 onMounted(async () => {
   try {
-    const resp = await apiFetch(`/productos?categoria=${props.categoriaId}&per_page=1`, { skipAuth: true })
+    const resp = await apiFetch(`/productos?categoria=${props.categoriaId}&per_page=5&random=1`, { skipAuth: true })
     const items: any[] = resp.data ?? resp
-    if (items.length && items[0].imagen_url) {
-      bgUrl.value = items[0].imagen_url
+    imagenes.value = items.map((p: any) => p.imagen_url).filter(Boolean)
+    if (imagenes.value.length > 1) {
+      timer = setInterval(() => {
+        currentIdx.value = (currentIdx.value + 1) % imagenes.value.length
+      }, 4000)
     }
   } catch {}
+})
+
+onUnmounted(() => {
+  if (timer) clearInterval(timer)
 })
 </script>
 
@@ -28,8 +37,14 @@ onMounted(async () => {
   <RouterLink :to="enlace"
     class="relative block w-full overflow-hidden rounded-xl no-underline group"
     style="aspect-ratio: 3/1">
-    <img v-if="bgUrl" :src="bgUrl" :alt="titulo"
-      class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+    <div class="absolute inset-0">
+      <img
+        v-for="(img, i) in imagenes.slice(0, 5)" :key="i"
+        :src="img" :alt="titulo"
+        class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
+        :class="i === currentIdx ? 'opacity-100' : 'opacity-0'"
+      />
+    </div>
     <div class="absolute inset-0 bg-gradient-to-r opacity-80" :class="color"></div>
     <div class="absolute inset-0 flex items-center p-6 sm:p-10">
       <div>
