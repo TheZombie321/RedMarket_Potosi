@@ -4,6 +4,8 @@ import { useAuthStore } from '../stores/auth'
 import { useToastStore } from '../stores/toast'
 import { apiFetch } from '../composables/useApi'
 import Paginador from '../components/Paginador.vue'
+import ConfirmDialog from '../components/ConfirmDialog.vue'
+import { estadoBadge as utilsEstadoBadge } from '../utils/estados'
 
 const auth = useAuthStore()
 const toast = useToastStore()
@@ -168,12 +170,13 @@ const saveProducto = async () => {
 }
 
 const eliminarProducto = async (p: any) => {
-  if (!confirm(`¿Eliminar "${p.nombre}"?`)) return
-  try {
-    await apiFetch(`/productos/${p.id}`, { method: 'DELETE' })
-    await fetchProductos()
-    toast.add('Producto eliminado', 'success')
-  } catch (e: any) { toast.add('Error: ' + e.message, 'error') }
+  mostrarConfirm('Eliminar Producto', `¿Eliminar "${p.nombre}"?`, async () => {
+    try {
+      await apiFetch(`/productos/${p.id}`, { method: 'DELETE' })
+      await fetchProductos()
+      toast.add('Producto eliminado', 'success')
+    } catch (e: any) { toast.add('Error: ' + e.message, 'error') }
+  })
 }
 
 const toggleDescuento = async (p: any) => {
@@ -216,12 +219,13 @@ const saveCategoria = async () => {
 }
 
 const eliminarCategoria = async (c: any) => {
-  if (!confirm(`¿Eliminar categoría "${c.nombre}"?`)) return
-  try {
-    await apiFetch(`/categorias/${c.id}`, { method: 'DELETE' })
-    await fetchCategorias()
-    toast.add('Categoría eliminada', 'success')
-  } catch (e: any) { toast.add('Error: ' + e.message, 'error') }
+  mostrarConfirm('Eliminar Categoría', `¿Eliminar categoría "${c.nombre}"?`, async () => {
+    try {
+      await apiFetch(`/categorias/${c.id}`, { method: 'DELETE' })
+      await fetchCategorias()
+      toast.add('Categoría eliminada', 'success')
+    } catch (e: any) { toast.add('Error: ' + e.message, 'error') }
+  })
 }
 
 // ── Proveedores ─────────────────────────────────────────
@@ -254,12 +258,13 @@ const saveProveedor = async () => {
 }
 
 const eliminarProveedor = async (pv: any) => {
-  if (!confirm(`¿Eliminar proveedor "${pv.nombre}"?`)) return
-  try {
-    await apiFetch(`/proveedores/${pv.id}`, { method: 'DELETE' })
-    await fetchProveedores()
-    toast.add('Proveedor eliminado', 'success')
-  } catch (e: any) { toast.add('Error: ' + e.message, 'error') }
+  mostrarConfirm('Eliminar Proveedor', `¿Eliminar proveedor "${pv.nombre}"?`, async () => {
+    try {
+      await apiFetch(`/proveedores/${pv.id}`, { method: 'DELETE' })
+      await fetchProveedores()
+      toast.add('Proveedor eliminado', 'success')
+    } catch (e: any) { toast.add('Error: ' + e.message, 'error') }
+  })
 }
 
 const puedeCrear = computed(() => auth.user?.roles?.some((r: any) => ['Administrador', 'Encargado'].includes(r.name ?? r)))
@@ -326,11 +331,23 @@ const saveUser = async () => {
 }
 
 const eliminarUsuario = async (u: any) => {
-  if (!confirm(`¿Eliminar a "${u.name}"?`)) return
-  try {
-    await apiFetch(`/usuarios/${u.id}`, { method: 'DELETE' })
-    await fetchUsuarios()
-  } catch (e: any) { toast.add('Error: ' + e.message, 'error') }
+  mostrarConfirm('Eliminar Usuario', `¿Eliminar a "${u.name}"?`, async () => {
+    try {
+      await apiFetch(`/usuarios/${u.id}`, { method: 'DELETE' })
+      await fetchUsuarios()
+    } catch (e: any) { toast.add('Error: ' + e.message, 'error') }
+  })
+}
+
+// ── Confirm Dialog ─────────────────────────────────────
+const confirmState = ref({ open: false, title: '', message: '', onConfirm: null as (() => void) | null })
+const mostrarConfirm = (title: string, message: string, onConfirm: () => void) => {
+  confirmState.value = { open: true, title, message, onConfirm }
+}
+const cancelarConfirm = () => { confirmState.value.open = false }
+const ejecutarConfirm = () => {
+  confirmState.value.onConfirm?.()
+  confirmState.value.open = false
 }
 
 // ── Pedidos ──────────────────────────────────────────────
@@ -373,14 +390,7 @@ const cambiarEstado = async (pedido: any, nuevoEstado: string) => {
 
 const estados = ['pendiente', 'en_preparacion', 'listo_despacho', 'en_camino', 'entregado', 'cancelado']
 
-const estadoBadge = (e: string) => {
-  const colors: Record<string, string> = {
-    pendiente: 'bg-yellow-100 text-yellow-800', en_preparacion: 'bg-orange-100 text-orange-800',
-    listo_despacho: 'bg-blue-100 text-blue-800', en_camino: 'bg-purple-100 text-purple-800',
-    entregado: 'bg-green-100 text-green-800', cancelado: 'bg-red-100 text-red-800',
-  }
-  return colors[e] || 'bg-gray-100 text-gray-800'
-}
+const estadoBadge = (e: string) => utilsEstadoBadge(e)
 
 const paymentBadge = (s: string) => {
   const colors: Record<string, string> = {
@@ -932,6 +942,10 @@ onUnmounted(() => {
         </div>
       </Transition>
     </Teleport>
+
+    <!-- CONFIRM DIALOG -->
+    <ConfirmDialog :open="confirmState.open" :title="confirmState.title" :message="confirmState.message"
+      variant="danger" confirmText="Eliminar" @confirm="ejecutarConfirm" @cancel="cancelarConfirm" />
 
     <!-- MODAL PROVEEDOR -->
     <Teleport to="body">

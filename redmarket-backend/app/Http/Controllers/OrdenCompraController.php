@@ -8,6 +8,7 @@ use App\Traits\RecordsStockMovements;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class OrdenCompraController extends Controller
 {
@@ -65,7 +66,7 @@ class OrdenCompraController extends Controller
             }
 
             $orden = OrdenCompra::create([
-                'codigo' => 'OC-' . str_pad((OrdenCompra::max('id') ?? 0) + 1, 4, '0', STR_PAD_LEFT),
+                'codigo' => 'OC-' . strtoupper(Str::random(8)),
                 'proveedor_id' => $validated['proveedor_id'],
                 'user_id' => $user->id,
                 'estado' => 'pendiente',

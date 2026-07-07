@@ -9,8 +9,6 @@
         "php": "^8.3",
         "ext-pdo_pgsql": "*",
         "barryvdh/laravel-dompdf": "*",
-        "intervention/image": "*",
-        "intervention/image-laravel": "*",
         "laravel/framework": "^13.8",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^3.0",

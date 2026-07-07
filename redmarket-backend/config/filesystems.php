@@ -48,7 +48,7 @@ return [
 
         'root_images' => [
             'driver' => 'local',
-            'root' => base_path('IMGproductos'),
+            'root' => storage_path('app/public/img/productos'),
             'visibility' => 'public',
             'throw' => false,
         ],

@@ -8,8 +8,8 @@ import { storeToRefs } from 'pinia'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import { estadoBadge } from '../utils/estados'
+import { fetchRoute, haversineDistance } from '../composables/useOsrm'
 
-// Fix Leaflet default icon paths for Vite
 delete (L.Icon.Default.prototype as any)._getIconUrl
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
@@ -29,12 +29,29 @@ const misEntregas = ref<any[]>([])
 const pedidoActivo = ref<any>(null)
 const cargando = ref(true)
 const error = ref('')
+let fetchAbort: AbortController | null = null
+
+// Map for active delivery
 const mapContainer = ref<HTMLDivElement | null>(null)
 const mapError = ref('')
 let map: L.Map | null = null
 let marker: L.Marker | null = null
-let interval: ReturnType<typeof setInterval> | null = null
-let fetchAbort: AbortController | null = null
+let activeRoutePoly: L.Polyline | null = null
+let clientMarker: L.Marker | null = null
+let routeRefreshInterval: ReturnType<typeof setInterval> | null = null
+
+// Map for disponible previews
+const mapDisponibles = ref<HTMLDivElement | null>(null)
+let mapDisp: L.Map | null = null
+let dispMarkersLayer: L.LayerGroup | null = null
+let dispRoutePoly: L.Polyline | null = null
+let dispRepartidorMarker: L.Marker | null = null
+
+// Route info
+const routeInfo = ref<{ distance: number; duration: number } | null>(null)
+const calculandoRuta = ref(false)
+let lastRouteLat = lat.value
+let lastRouteLng = lng.value
 
 // Test panel
 const testLat = ref(-19.5836)
@@ -50,6 +67,14 @@ const misHistorial = computed(() =>
   misEntregas.value.filter((p: any) => !['en_camino', 'listo_despacho'].includes(p.estado))
 )
 
+function obtenerLatCliente(p: any): number | null {
+  return p.user?.latitud ?? p.latitud ?? null
+}
+
+function obtenerLngCliente(p: any): number | null {
+  return p.user?.longitud ?? p.longitud ?? null
+}
+
 const fetchPedidos = async () => {
   if (fetchAbort) fetchAbort.abort()
   fetchAbort = new AbortController()
@@ -63,26 +88,142 @@ const fetchPedidos = async () => {
       disponibles.value = data.data.filter((p: any) => p.estado === 'listo_despacho')
       misEntregas.value = data.data.filter((p: any) => p.repartidor_id === auth.user?.id)
     }
+    await nextTick()
+    setTimeout(() => initMapDisponibles(), 200)
   } catch (e: any) { if (e.name !== 'AbortError') error.value = e.message || 'Error al cargar pedidos' } finally { cargando.value = false }
 }
+
+// ─── Mapa de Disponibles ───
+
+function initMapDisponibles() {
+  if (pedidoActivo.value || !mapDisponibles.value || mapDisp) return
+  const rect = mapDisponibles.value.getBoundingClientRect()
+  if (rect.width === 0 || rect.height === 0) return
+  try {
+    mapDisp = L.map(mapDisponibles.value, { zoomControl: true }).setView([lat.value, lng.value], 14)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://openstreetmap.org/copyright">OSM</a>',
+    }).addTo(mapDisp)
+    const repIcon = L.divIcon({ html: '🏍️', className: '', iconSize: [32, 32], iconAnchor: [16, 16] })
+    dispRepartidorMarker = L.marker([lat.value, lng.value], { icon: repIcon }).addTo(mapDisp)
+    dispMarkersLayer = L.layerGroup().addTo(mapDisp)
+    actualizarMarcadoresDisponibles()
+    setTimeout(() => mapDisp?.invalidateSize(), 100)
+    setTimeout(() => mapDisp?.invalidateSize(), 500)
+  } catch (e) { console.error('Error init disponibles map:', e) }
+}
+
+function actualizarMarcadoresDisponibles() {
+  if (!dispMarkersLayer || !mapDisp) return
+  dispMarkersLayer.clearLayers()
+  const clientIcon = L.divIcon({ html: '📍', className: '', iconSize: [24, 24], iconAnchor: [12, 24] })
+
+  disponibles.value.forEach(p => {
+    const clat = obtenerLatCliente(p)
+    const clng = obtenerLngCliente(p)
+    if (!clat || !clng) return
+    const dist = haversineDistance(lat.value, lng.value, clat, clng)
+    const m = L.marker([clat, clng], { icon: clientIcon })
+    m.bindPopup(`
+      <div style="min-width:200px;font-family:sans-serif;font-size:13px">
+        <b>${p.codigo || '#' + p.id}</b><br/>
+        <span>${p.user?.name || 'Cliente'}</span><br/>
+        <span style="color:#666">📏 ${dist.toFixed(1)} km</span><br/>
+        <span style="color:#666">📍 ${p.direccion_texto?.slice(0, 60) || ''}</span><br/>
+        <button onclick="window.dispatchEvent(new CustomEvent('preview-route', {detail:{id:${p.id}}}))"
+          style="margin-top:6px;padding:4px 12px;background:#2563eb;color:white;border:none;border-radius:4px;cursor:pointer;font-size:12px">
+          Ver Ruta
+        </button>
+      </div>
+    `)
+    m.on('click', () => {
+      previewRoute(p, clat, clng)
+    })
+    dispMarkersLayer!.addLayer(m)
+  })
+}
+
+async function previewRoute(pedido: any, clat: number, clng: number) {
+  if (!mapDisp) return
+  calculandoRuta.value = true
+  if (dispRoutePoly) { mapDisp.removeLayer(dispRoutePoly); dispRoutePoly = null }
+  try {
+    const abort = new AbortController()
+    const route = await fetchRoute([lat.value, lng.value], [clat, clng], abort.signal)
+    if (route && mapDisp) {
+      const latlngs = route.geometry.coordinates.map((c: number[]) => [c[1], c[0]] as [number, number])
+      dispRoutePoly = L.polyline(latlngs, { color: '#2563eb', weight: 4, opacity: 0.8 }).addTo(mapDisp)
+      mapDisp.fitBounds(dispRoutePoly.getBounds().pad(0.15))
+      routeInfo.value = { distance: route.distance, duration: route.duration }
+    }
+  } catch {}
+  calculandoRuta.value = false
+}
+
+function cerrarRuta() {
+  if (dispRoutePoly && mapDisp) {
+    mapDisp.removeLayer(dispRoutePoly)
+    dispRoutePoly = null
+    routeInfo.value = null
+  }
+}
+
+let previewAbort: AbortController | null = null
+
+function onPreviewRoute(e: Event) {
+  const ce = e as CustomEvent
+  const p = disponibles.value.find((x: any) => x.id === ce.detail.id)
+  if (p) {
+    const clat = obtenerLatCliente(p)
+    const clng = obtenerLngCliente(p)
+    if (clat && clng) previewRoute(p, clat, clng)
+  }
+}
+
+// Listen for custom event from popup
+if (typeof window !== 'undefined') {
+  window.addEventListener('preview-route', onPreviewRoute)
+}
+
+watch([lat, lng], () => {
+  if (dispRepartidorMarker && mapDisp) {
+    dispRepartidorMarker.setLatLng([lat.value, lng.value])
+  }
+})
+
+// ─── Mapa de Entrega Activa ───
 
 const iniciarMapa = async () => {
   mapError.value = ''
   await nextTick()
-  // Wait for DOM to fully render
   await new Promise(r => setTimeout(r, 100))
   if (!mapContainer.value) { mapError.value = 'Contenedor del mapa no disponible'; return }
   const rect = mapContainer.value.getBoundingClientRect()
   if (rect.width === 0 || rect.height === 0) { mapError.value = 'El contenedor del mapa no tiene dimensiones'; return }
-  if (map) { map.remove(); map = null; marker = null }
+  if (map) { map.remove(); map = null; marker = null; clientMarker = null; activeRoutePoly = null }
   try {
+    const clat = pedidoActivo.value ? obtenerLatCliente(pedidoActivo.value) : null
+    const clng = pedidoActivo.value ? obtenerLngCliente(pedidoActivo.value) : null
+    const bounds: [number, number][] = [[lat.value, lng.value]]
+    if (clat && clng) bounds.push([clat, clng])
+
     map = L.map(mapContainer.value, { zoomControl: true }).setView([lat.value, lng.value], 15)
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="https://openstreetmap.org/copyright">OSM</a>',
     }).addTo(map)
-    const icon = L.divIcon({ html: '🏍️', className: '', iconSize: [32, 32], iconAnchor: [16, 16] })
-    marker = L.marker([lat.value, lng.value], { icon }).addTo(map)
+
+    const repIcon = L.divIcon({ html: '🏍️', className: '', iconSize: [32, 32], iconAnchor: [16, 16] })
+    marker = L.marker([lat.value, lng.value], { icon: repIcon }).addTo(map)
+
+    if (clat && clng) {
+      const homeIcon = L.divIcon({ html: '🏠', className: '', iconSize: [28, 28], iconAnchor: [14, 14] })
+      clientMarker = L.marker([clat, clng], { icon: homeIcon }).addTo(map)
+      map.fitBounds(bounds, { padding: [50, 50] })
+      await dibujarRutaActiva([lat.value, lng.value], [clat, clng])
+    }
+
     setTimeout(() => map?.invalidateSize(), 100)
     setTimeout(() => map?.invalidateSize(), 500)
   } catch (e: any) {
@@ -91,17 +232,52 @@ const iniciarMapa = async () => {
   }
 }
 
+async function dibujarRutaActiva(origen: [number, number], destino: [number, number]) {
+  if (activeRoutePoly && map) { map.removeLayer(activeRoutePoly); activeRoutePoly = null }
+  try {
+    const abort = new AbortController()
+    const route = await fetchRoute(origen, destino, abort.signal)
+    if (route && map) {
+      const latlngs = route.geometry.coordinates.map((c: number[]) => [c[1], c[0]] as [number, number])
+      activeRoutePoly = L.polyline(latlngs, { color: '#16a34a', weight: 4, opacity: 0.85 }).addTo(map)
+      routeInfo.value = { distance: route.distance, duration: route.duration }
+    }
+  } catch {}
+}
+
 const actualizarMarcador = () => {
   if (!marker || !map) return
   marker.setLatLng([lat.value, lng.value])
-  map.panTo([lat.value, lng.value], { animate: true, duration: 0.5 })
+  if (pedidoActivo.value) {
+    const clat = obtenerLatCliente(pedidoActivo.value)
+    const clng = obtenerLngCliente(pedidoActivo.value)
+    if (clat && clng) {
+      const moved = haversineDistance(lastRouteLat, lastRouteLng, lat.value, lng.value)
+      if (moved > 0.1) {
+        lastRouteLat = lat.value
+        lastRouteLng = lng.value
+        dibujarRutaActiva([lat.value, lng.value], [clat, clng])
+      }
+    }
+  }
 }
 
 const destruirMapa = () => {
-  try { if (map) { map.remove(); map = null; marker = null } } catch {}
+  try { if (map) { map.remove(); map = null; marker = null; clientMarker = null; activeRoutePoly = null; routeInfo.value = null } } catch {}
 }
 
-watch([lat, lng], actualizarMarcador)
+const destruirMapaDisponibles = () => {
+  try { if (mapDisp) { mapDisp.remove(); mapDisp = null; dispMarkersLayer = null; dispRoutePoly = null; dispRepartidorMarker = null; routeInfo.value = null } } catch {}
+}
+
+watch([lat, lng], () => {
+  actualizarMarcador()
+  if (dispRepartidorMarker && mapDisp) {
+    dispRepartidorMarker.setLatLng([lat.value, lng.value])
+  }
+})
+
+// ─── Acciones ───
 
 const iniciarEntrega = async (pedido: any) => {
   try {
@@ -113,7 +289,13 @@ const iniciarEntrega = async (pedido: any) => {
     testLat.value = lat.value
     testLng.value = lng.value
     testPedidoId.value = pedido.id
+    // Set destination for simulated movement
+    const clat = obtenerLatCliente(pedido)
+    const clng = obtenerLngCliente(pedido)
+    if (clat && clng) delivery.setDestino(clat, clng)
     delivery.startTracking(pedido.id)
+    await nextTick()
+    destruirMapaDisponibles()
     await iniciarMapa()
   } catch (e: any) { toast.add('Error: ' + e.message, 'error') }
 }
@@ -139,11 +321,15 @@ const continuarEntrega = async (p: any) => {
   testLat.value = ubi?.lat || lat.value
   testLng.value = ubi?.lng || lng.value
   testPedidoId.value = p.id
+  const clat = obtenerLatCliente(p)
+  const clng = obtenerLngCliente(p)
+  if (clat && clng) delivery.setDestino(clat, clng)
   delivery.startTracking(p.id)
+  await nextTick()
+  destruirMapaDisponibles()
   await iniciarMapa()
 }
 
-// Test panel: enviar ubicacion manual
 const enviarUbicacion = async () => {
   if (!testPedidoId.value) return
   lat.value = testLat.value
@@ -185,14 +371,19 @@ const toggleTurno = async () => {
 onMounted(() => {
   checkTurno()
   fetchPedidos()
-  fetchPedidos()
   interval = setInterval(fetchPedidos, 15000)
 })
+
+let interval: ReturnType<typeof setInterval> | null = null
 
 onUnmounted(() => {
   if (interval) clearInterval(interval)
   delivery.stopTracking()
   destruirMapa()
+  destruirMapaDisponibles()
+  if (typeof window !== 'undefined') {
+    window.removeEventListener('preview-route', onPreviewRoute)
+  }
 })
 </script>
 
@@ -208,8 +399,8 @@ onUnmounted(() => {
       </button>
     </div>
 
-    <!-- Tabs -->
-    <div v-if="!pedidoActivo" class="flex gap-2 mb-6 flex-wrap">
+    <!-- Tabs (only when no active delivery) -->
+    <div v-if="!pedidoActivo" class="flex gap-2 mb-4 flex-wrap">
       <button @click="tab = 'disponibles'"
         class="px-4 py-2 rounded text-sm font-semibold cursor-pointer border-none"
         :class="tab === 'disponibles' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-ink hover:bg-gray-300'">
@@ -222,22 +413,29 @@ onUnmounted(() => {
       </button>
     </div>
 
-    <div v-else-if="error && !pedidoActivo" class="text-center py-12">
+    <div v-if="error && !pedidoActivo" class="text-center py-12">
       <p class="text-rojo-mercado-dark mb-3">{{ error }}</p>
       <button @click="fetchPedidos" class="bg-red-700 text-white px-4 py-2 rounded-lg cursor-pointer border-none hover:bg-red-800">Reintentar</button>
     </div>
 
     <div v-if="cargando && !pedidoActivo" class="py-8 space-y-4">
       <div class="skeleton h-6 w-48 mx-auto"></div>
-      <div class="grid grid-cols-3 gap-4">
-        <div class="skeleton h-36"></div>
-        <div class="skeleton h-36"></div>
-        <div class="skeleton h-36"></div>
-      </div>
+      <div class="skeleton h-64 w-full"></div>
     </div>
 
-    <!-- DISPONIBLES -->
+    <!-- ─── TAB: DISPONIBLES ─── -->
     <div v-else-if="!pedidoActivo && tab === 'disponibles'">
+      <!-- Mapa de disponibles -->
+      <div ref="mapDisponibles" class="w-full h-72 rounded-lg border-2 border-platform-edge mb-4 overflow-hidden bg-gray-100" />
+
+      <!-- Route info when previewing -->
+      <div v-if="routeInfo && !pedidoActivo" class="bg-blue-50 border border-blue-200 rounded-lg px-4 py-2 mb-3 text-sm flex items-center gap-4">
+        <span class="text-blue-700">📏 <strong>{{ routeInfo.distance.toFixed(1) }} km</strong></span>
+        <span class="text-blue-700">⏱ ~{{ Math.round(routeInfo.duration) }} min</span>
+        <button @click="cerrarRuta"
+          class="ml-auto text-xs text-blue-600 hover:underline cursor-pointer bg-transparent border-none">Cerrar ruta</button>
+      </div>
+
       <div v-if="disponibles.length === 0" class="text-center py-8 text-ink-muted">No hay pedidos listos para entrega.</div>
       <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div v-for="p in disponibles" :key="p.id" class="bg-green-50 rounded-lg border border-green-200 p-4 hover:shadow-sm transition-shadow">
@@ -255,7 +453,7 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <!-- MIS ENTREGAS -->
+    <!-- ─── TAB: MIS ENTREGAS ─── -->
     <div v-else-if="!pedidoActivo && tab === 'mis_entregas'">
       <div v-if="misEntregas.length === 0" class="text-center py-8 text-ink-muted">Aún no has realizado ninguna entrega.</div>
 
@@ -302,7 +500,7 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <!-- Entrega activa con mapa + panel de pruebas -->
+    <!-- ─── ENTREGA ACTIVA ─── -->
     <div v-else-if="pedidoActivo">
       <button @click="() => { delivery.stopTracking(); destruirMapa(); pedidoActivo = null; testPedidoId = null; fetchPedidos() }"
         class="text-sm text-ink-muted hover:text-ink mb-3 cursor-pointer bg-transparent border-none">⬅ Volver a disponibles</button>
@@ -313,12 +511,23 @@ onUnmounted(() => {
         <p class="text-ink-muted"><span class="font-semibold">Dirección:</span> {{ pedidoActivo.direccion_texto }}</p>
       </div>
 
+      <!-- Route info -->
+      <div v-if="routeInfo" class="bg-green-50 border border-green-200 rounded-lg px-4 py-3 mb-3 flex flex-wrap items-center gap-4 text-sm">
+        <span class="text-green-700 font-medium">🚚 En ruta</span>
+        <span class="text-green-700">📏 <strong>{{ routeInfo.distance.toFixed(1) }} km</strong></span>
+        <span class="text-green-700">⏱ ~{{ Math.round(routeInfo.duration) }} min restantes</span>
+        <span class="text-green-700">🕐 Llegada aprox. ≈ {{ new Date(Date.now() + routeInfo.duration * 60000).toLocaleTimeString('es-BO', { hour: '2-digit', minute: '2-digit' }) }}</span>
+      </div>
+
       <div v-if="mapError" class="bg-red-100 text-red-700 p-3 rounded mb-3 text-sm">{{ mapError }}</div>
 
       <div ref="mapContainer" class="w-full h-96 rounded-lg border-2 border-platform-edge mb-4 overflow-hidden bg-gray-100" />
-      <p class="text-xs text-ink-muted mb-4 text-center">Lat: {{ lat.toFixed(4) }} / Lng: {{ lng.toFixed(4) }}</p>
+      <p class="text-xs text-ink-muted mb-4 text-center">
+        🏍️ {{ lat.toFixed(4) }}, {{ lng.toFixed(4) }}
+        <span v-if="pedidoActivo && obtenerLatCliente(pedidoActivo)">— 🏠 {{ obtenerLatCliente(pedidoActivo)?.toFixed(4) }}, {{ obtenerLngCliente(pedidoActivo)?.toFixed(4) }}</span>
+      </p>
 
-      <!-- Panel de pruebas -->
+      <!-- Test panel -->
       <details class="bg-yellow-50 border border-yellow-300 rounded-lg p-4 mb-4">
         <summary class="font-semibold text-yellow-800 cursor-pointer text-sm">🧪 Panel de Pruebas — Enviar ubicación manual</summary>
         <div class="mt-3 space-y-3">
@@ -330,7 +539,7 @@ onUnmounted(() => {
             <input v-model.number="testLng" type="number" step="0.0001"
               class="flex-1 border border-platform-edge rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400" />
           </div>
-          <div class="flex gap-2">
+          <div class="flex gap-2 flex-wrap">
             <button @click="enviarUbicacion"
               class="bg-yellow-600 text-white px-4 py-2 rounded text-sm font-semibold hover:bg-yellow-700 cursor-pointer border-none">
               📍 Enviar Ubicación
@@ -348,7 +557,6 @@ onUnmounted(() => {
               Universitaria
             </button>
           </div>
-          <!-- Log -->
           <div v-if="testLog.length" class="bg-white rounded border p-2 max-h-32 overflow-y-auto">
             <div v-for="(msg, i) in testLog" :key="i" class="text-xs text-ink-muted py-0.5">{{ msg }}</div>
           </div>

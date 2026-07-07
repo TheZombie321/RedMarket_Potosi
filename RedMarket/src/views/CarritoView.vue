@@ -5,6 +5,14 @@ import { useAuthStore } from '../stores/auth'
 import { useToastStore } from '../stores/toast'
 import { useRouter } from 'vue-router'
 import { apiFetch } from '../composables/useApi'
+import { calcularDeliveryFee } from '../composables/useOsrm'
+
+interface StockCheckItem {
+  id: number
+  producto_id: number
+  nombre: string
+  disponible: boolean
+}
 
 const carrito = useCarritoStore()
 const auth = useAuthStore()
@@ -42,8 +50,9 @@ const direccionFinal = computed(() => {
   return direccionOverride.value
 })
 
+const deliveryFee = computed(() => calcularDeliveryFee(auth.user?.latitud, auth.user?.longitud))
 const totalFormateado = computed(() => carrito.totalPagar.toFixed(2))
-const totalConDelivery = computed(() => (carrito.totalPagar + 5).toFixed(2))
+const totalConDelivery = computed(() => (carrito.totalPagar + deliveryFee.value).toFixed(2))
 
 const getSubtotal = (item: any) => (item.precio_venta * item.cantidad).toFixed(2)
 
@@ -57,6 +66,24 @@ const procesarPago = async () => {
 
   procesando.value = true
   error.value = ''
+
+  // Verificar stock antes de enviar
+  try {
+    const ids = carrito.items.map((i: any) => i.id).join(',')
+    const stockResp = await apiFetch<{ data: StockCheckItem[] }>(`/productos?ids=${ids}&per_page=100`, { skipAuth: true })
+    const productosDisponibles: StockCheckItem[] = stockResp.data ?? []
+    for (const item of carrito.items) {
+      const prod = productosDisponibles.find((p: StockCheckItem) => p.id === item.id)
+      if (!prod?.disponible) {
+        throw new Error(`"${item.nombre}" no está disponible actualmente. Retíralo del carrito para continuar.`)
+      }
+    }
+  } catch (e: any) {
+    error.value = e.message
+    procesando.value = false
+    return
+  }
+
   try {
     const data = await apiFetch<any>('/pedidos', {
       method: 'POST',
@@ -166,7 +193,7 @@ const procesarPago = async () => {
       <div v-if="direccionFinal" class="flex items-center justify-between mt-6 pt-4 border-t-2 border-gray-800">
         <div>
           <p class="text-sm text-gray-500">Productos: Bs. {{ totalFormateado }}</p>
-          <p class="text-sm text-gray-500">Delivery: Bs. 5.00</p>
+          <p class="text-sm text-gray-500">Delivery: Bs. {{ deliveryFee.toFixed(2) }}</p>
           <h3 class="text-xl font-bold mt-1">Total: Bs. {{ totalConDelivery }}</h3>
           <p v-if="paymentMethod === 'stripe'" class="text-xs text-blue-600 mt-1">
             Seras redirigido a Stripe para completar el pago.

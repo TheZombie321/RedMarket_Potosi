@@ -25,14 +25,6 @@ Route::apiResource('productos', ProductoController::class)->only(['index', 'show
 Route::get('/productos/{producto}/resenas', [ResenaController::class, 'index']);
 Route::get('/pedidos/{pedido}/ticket', [TicketController::class, 'ticket']);
 Route::get('/categorias', [CategoriaController::class, 'index'])->withoutMiddleware(['auth:sanctum']);
-Route::get('/img-productos/{filename}', function ($filename) {
-    $filename = basename($filename);
-    $path = base_path('IMGproductos/main/' . $filename);
-    if (!file_exists($path)) {
-        abort(404);
-    }
-    return response()->file($path);
-})->where('filename', '.*');
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('productos', ProductoController::class)->except(['index', 'show']);
     Route::apiResource('categorias', CategoriaController::class);

@@ -104,7 +104,9 @@ class PedidoController extends Controller
                 );
             }
 
-            $deliveryFee = 5.00;
+            $customerLat = $validated['latitud'] ?? null;
+            $customerLng = $validated['longitud'] ?? null;
+            $deliveryFee = $this->calcularDeliveryFee($customerLat, $customerLng);
             $totalFinal = $totalProductos + $deliveryFee;
             $paymentMethod = $validated['payment_method'] ?? 'cash';
 
@@ -286,5 +288,38 @@ class PedidoController extends Controller
             \Log::error('Stripe session creation failed: ' . $e->getMessage());
             abort(422, 'Error Stripe: ' . $e->getMessage());
         }
+    }
+
+    private function calcularDeliveryFee(?float $lat, ?float $lng): float
+    {
+        if (!$lat || !$lng || $lat == 0 || $lng == 0) {
+            return (float) config('delivery.base_fee', 10.00);
+        }
+
+        $storeLat = (float) config('delivery.store_lat', -19.5836);
+        $storeLng = (float) config('delivery.store_lng', -65.7531);
+
+        $earthRadius = 6371;
+        $dLat = deg2rad($lat - $storeLat);
+        $dLng = deg2rad($lng - $storeLng);
+        $a = sin($dLat / 2) * sin($dLat / 2)
+            + cos(deg2rad($storeLat)) * cos(deg2rad($lat))
+            * sin($dLng / 2) * sin($dLng / 2);
+        $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+        $distanceKm = $earthRadius * $c;
+
+        $baseFee = (float) config('delivery.base_fee', 10.00);
+        $baseDistance = (float) config('delivery.base_distance_km', 3);
+        $extraFeePerKm = (float) config('delivery.extra_fee_per_km', 1.00);
+        $maxFee = (float) config('delivery.max_fee', 15.00);
+
+        if ($distanceKm <= $baseDistance) {
+            return $baseFee;
+        }
+
+        $extraKm = ceil($distanceKm - $baseDistance);
+        $totalFee = $baseFee + ($extraFeePerKm * $extraKm);
+
+        return min($totalFee, $maxFee);
     }
 }

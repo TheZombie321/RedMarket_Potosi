@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('pedidos', function (Blueprint $table) {
-            $table->string('payment_method')->default('cash')->after('total');
+            $table->string('payment_method')->default('cash')->after('total_final');
             $table->string('payment_status')->default('pending')->after('payment_method');
         });
     }

@@ -16,7 +16,7 @@ class ProductoResource extends JsonResource
             'precio_venta' => $this->precio_venta,
             'precio_oferta' => $this->precio_oferta,
             'en_descuento' => $this->en_descuento,
-            'stock_actual' => $this->stock_actual,
+            'disponible' => $this->stock_actual > 0,
             'unidad_medida' => $this->unidad_medida,
             'imagen_url' => $this->imagen_url,
             'es_perecedero' => $this->es_perecedero,
@@ -33,6 +33,7 @@ class ProductoResource extends JsonResource
             $data['precio_compra'] = $this->precio_compra;
             $data['pasillo'] = $this->pasillo;
             $data['nivel'] = $this->nivel;
+            $data['stock_actual'] = $this->stock_actual;
             $data['stock_minimo'] = $this->stock_minimo;
         }
 

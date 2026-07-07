@@ -14,7 +14,7 @@ interface Producto {
   precio_venta: number
   precio_oferta?: number
   en_descuento?: boolean
-  stock_actual: number
+  disponible: boolean
   imagen_url?: string
   categoria_id?: number
   categoria?: { id: number; nombre: string }
@@ -180,14 +180,14 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         <div v-for="p in productos" :key="p.id"
           :class="[
-            'bg-blanco-mercado rounded-xl border border-platform-edge p-4 flex flex-col relative overflow-hidden',
+            'bg-blanco-mercado rounded-xl border border-platform-edge p-4 flex flex-col relative overflow-hidden group',
             'transition-all duration-200 ease-out',
-            p.stock_actual > 0
+            p.disponible
               ? 'shadow-sm hover:shadow-md hover:-translate-y-0.5 cursor-pointer'
               : 'opacity-60 grayscale-[30%] cursor-not-allowed'
           ]">
 
-          <div v-if="p.stock_actual <= 0"
+          <div v-if="!p.disponible"
             class="absolute top-3 right-3 bg-ink/80 text-white text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full z-10">
             Agotado
           </div>
@@ -198,7 +198,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
           </div>
 
           <div class="h-44 flex items-center justify-center mb-3">
-            <img :src="p.imagen_url" :alt="p.nombre" loading="lazy" class="max-h-full max-w-full object-contain transition-transform duration-200" :class="p.stock_actual > 0 && 'group-hover:scale-105'" />
+            <img :src="p.imagen_url" :alt="p.nombre" loading="lazy" class="max-h-full max-w-full object-contain transition-transform duration-200 group-hover:scale-105" />
           </div>
 
           <div class="flex-1">
@@ -211,14 +211,14 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
           </div>
 
           <div class="mt-3 flex gap-2">
-            <RouterLink :to="p.stock_actual > 0 ? `/producto/${p.id}` : '#'"
+            <RouterLink :to="p.disponible ? `/producto/${p.id}` : '#'"
               class="flex-1 text-center border text-sm font-medium no-underline rounded-lg py-2 px-3 transition-all duration-150 ease-out"
-              :class="p.stock_actual > 0
+              :class="p.disponible
                 ? 'border-platform-edge text-ink hover:bg-potos-stone hover:border-ink-dim active:scale-[0.97]'
                 : 'border-platform-edge/50 text-ink-dim pointer-events-none'">
               Ver Detalle
             </RouterLink>
-            <button v-if="p.stock_actual > 0"
+            <button v-if="p.disponible"
               @click="carrito.agregarAlCarrito(p); toast.add(`${p.nombre} anadido al carrito`, 'success')"
               class="flex-1 bg-ink text-white py-2 px-3 rounded-lg text-sm font-semibold cursor-pointer border-none
                 transition-all duration-150 ease-out

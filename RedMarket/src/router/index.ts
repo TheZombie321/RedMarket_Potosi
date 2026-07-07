@@ -46,6 +46,8 @@ router.beforeEach((to, from) => {
   if (to.meta.roles && !auth.user?.roles?.some((r: any) => (to.meta.roles as string[]).includes(r.name))) {
     return { name: 'catalogo' }
   }
+
+  return true
 })
 
 export default router

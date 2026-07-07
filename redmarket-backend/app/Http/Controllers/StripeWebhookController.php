@@ -66,7 +66,7 @@ class StripeWebhookController extends Controller
 
         DB::transaction(function () use ($pedidoId) {
             $pedido = Pedido::find($pedidoId);
-            if (!$pedido || $pedido->payment_status === 'paid') return;
+            if (!$pedido || $pedido->payment_status === 'paid' || $pedido->payment_status === 'failed' || $pedido->estado === 'cancelado') return;
 
             $pedido->load('items.producto');
             foreach ($pedido->items as $item) {

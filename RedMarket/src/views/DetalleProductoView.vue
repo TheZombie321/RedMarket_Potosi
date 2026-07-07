@@ -18,13 +18,11 @@ const cargando = ref(true)
 const error = ref('')
 const cantidad = ref(1)
 const agregado = ref(false)
-const fetchAbort = new AbortController()
+let fetchAbort: AbortController | null = null
 
 watch(cantidad, (val) => {
   if (isNaN(val) || val < 1) cantidad.value = 1
-  if (producto.value?.stock_actual && val > producto.value.stock_actual) {
-    cantidad.value = producto.value.stock_actual
-  }
+  if (val > 99) cantidad.value = 99
 })
 
 // Ratings
@@ -44,12 +42,15 @@ const precioFinal = computed(() => {
 })
 
 const obtenerProducto = async () => {
+  if (fetchAbort) fetchAbort.abort()
+  fetchAbort = new AbortController()
+  const signal = fetchAbort.signal
   try {
-    const resp = await apiFetch<any>(`/productos/${route.params.id}`, { skipAuth: true, signal: fetchAbort.signal })
-    if (fetchAbort.signal.aborted) return
+    const resp = await apiFetch<any>(`/productos/${route.params.id}`, { skipAuth: true, signal })
+    if (signal.aborted) return
     producto.value = resp.data ?? resp
-    const res = await apiFetch<any>(`/productos/${route.params.id}/resenas`, { skipAuth: true, signal: fetchAbort.signal })
-    if (fetchAbort.signal.aborted) return
+    const res = await apiFetch<any>(`/productos/${route.params.id}/resenas`, { skipAuth: true, signal })
+    if (signal.aborted) return
     resenas.value = res.data || []
     promedio.value = res.promedio || 0
     totalResenas.value = res.total || 0
@@ -105,7 +106,7 @@ const eliminarResena = async (id: number) => {
 onMounted(obtenerProducto)
 
 onUnmounted(() => {
-  fetchAbort.abort()
+  if (fetchAbort) fetchAbort.abort()
 })
 </script>
 
@@ -167,7 +168,7 @@ onUnmounted(() => {
             <div class="mt-4 space-y-1 text-sm text-gray-500">
               <p><span class="font-medium text-gray-700">Unidad:</span> {{ producto.unidad_medida === 'kg' ? 'Por kilogramo' : producto.unidad_medida === 'lt' ? 'Por litro' : 'Por unidad' }}</p>
               <p v-if="auth.user?.roles?.some((r: any) => ['Administrador', 'Encargado'].includes(r.name))"><span class="font-medium text-gray-700">Código:</span> {{ producto.codigo_barras }}</p>
-              <p><span class="font-medium" :class="(producto.stock_actual ?? 0) > 0 ? 'text-green-600' : 'text-red-600'">{{ (producto.stock_actual ?? 0) > 0 ? 'En stock' : 'Sin stock' }}</span></p>
+              <p><span class="font-medium" :class="producto.disponible ? 'text-green-600' : 'text-red-600'">{{ producto.disponible ? 'En stock' : 'Sin stock' }}</span></p>
             </div>
           </div>
 
@@ -178,9 +179,9 @@ onUnmounted(() => {
               <div class="flex items-center border border-gray-300 rounded">
                 <button @click="cantidad = Math.max(1, cantidad - 1)" aria-label="Reducir cantidad"
                   class="px-3 py-1.5 text-gray-500 hover:bg-gray-100 font-bold cursor-pointer border-none bg-transparent">−</button>
-                <input type="number" v-model.number="cantidad" min="1" :max="producto.stock_actual || 99"
+                <input type="number" v-model.number="cantidad" min="1" max="99"
                   class="w-14 text-center border-x border-gray-300 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
-                <button @click="cantidad = Math.min(producto.stock_actual || 99, cantidad + 1)" aria-label="Aumentar cantidad"
+                <button @click="cantidad = Math.min(99, cantidad + 1)" aria-label="Aumentar cantidad"
                   class="px-3 py-1.5 text-gray-500 hover:bg-gray-100 font-bold cursor-pointer border-none bg-transparent">+</button>
               </div>
             </div>

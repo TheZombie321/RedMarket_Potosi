@@ -27,6 +27,8 @@ class Producto extends Model
         'imagen_url',
         'es_perecedero',
         'fecha_vencimiento',
+        'lote',
+        'fecha_ingreso',
         'categoria_id',
     ];
 
@@ -38,6 +40,8 @@ class Producto extends Model
         'precio_oferta' => 'decimal:2',
         'en_descuento' => 'boolean',
         'es_perecedero' => 'boolean',
+        'lote' => 'string',
+        'fecha_ingreso' => 'date',
         'stock_actual' => 'integer',
         'stock_minimo' => 'integer',
     ];
@@ -46,7 +50,7 @@ class Producto extends Model
     {
         return Attribute::make(
             get: fn(?string $value) => $value
-                ? url('/api/img-productos/' . $value)
+                ? url('/img/productos/main/' . $value)
                 : null,
         );
     }

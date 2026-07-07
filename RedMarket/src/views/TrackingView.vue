@@ -9,6 +9,7 @@ import { estadoBadge, LABELS as labels, PASOS as pasos, pasoActual } from '../ut
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import ConfirmDialog from '../components/ConfirmDialog.vue'
+import { fetchRoute, haversineDistance } from '../composables/useOsrm'
 
 // Fix Leaflet default icon paths for Vite
 delete (L.Icon.Default.prototype as any)._getIconUrl
@@ -37,6 +38,9 @@ if (auth.user?.roles?.some((r: any) => ['Administrador', 'Encargado', 'Picking',
 const mapRefs = ref<Record<number, HTMLDivElement | null>>({})
 const maps = ref<Record<number, L.Map>>({})
 const markers = ref<Record<number, L.Marker>>({})
+const clientMarkers = ref<Record<number, L.Marker>>({})
+const routePolylines = ref<Record<number, L.Polyline>>({})
+const routeInfoMap = ref<Record<number, { distance: number; duration: number }>>({})
 
 const enProceso = computed(() =>
   todosPedidos.value.filter((p: any) => ['pendiente', 'en_preparacion', 'listo_despacho', 'en_camino'].includes(p.estado))
@@ -108,28 +112,60 @@ const initPendingMaps = () => {
 
 const initMapForPedido = async (pedido: any, ubi: { lat: number; lng: number }) => {
   await nextTick()
-  // Double wait to ensure container has dimensions
   await new Promise(r => setTimeout(r, 100))
   const el = mapRefs.value[pedido.id]
   if (!el || maps.value[pedido.id]) return
   const rect = el.getBoundingClientRect()
   if (rect.width === 0 || rect.height === 0) return
   try {
-    const m = L.map(el, { zoomControl: true }).setView([ubi.lat, ubi.lng], 15)
+    // Customer location: pedido lat/lng or auth user
+    const clat = Number(pedido.latitud) || Number(auth.user?.latitud) || null
+    const clng = Number(pedido.longitud) || Number(auth.user?.longitud) || null
+    const bounds: [number, number][] = [[ubi.lat, ubi.lng]]
+    if (clat && clng && clat !== 0 && clng !== 0) bounds.push([clat, clng])
+
+    const m = L.map(el, { zoomControl: true })
+    if (bounds.length > 1) {
+      m.fitBounds(bounds, { padding: [40, 40] })
+    } else {
+      m.setView([ubi.lat, ubi.lng], 15)
+    }
+
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="https://openstreetmap.org/copyright">OSM</a>',
     }).addTo(m)
-    const icon = L.divIcon({ html: '🏍️', className: '', iconSize: [32, 32], iconAnchor: [16, 16] })
-    const marker = L.marker([ubi.lat, ubi.lng], { icon }).addTo(m)
+
+    // Repartidor marker
+    const repIcon = L.divIcon({ html: '🏍️', className: '', iconSize: [32, 32], iconAnchor: [16, 16] })
+    const marker = L.marker([ubi.lat, ubi.lng], { icon: repIcon }).addTo(m)
     maps.value[pedido.id] = m
     markers.value[pedido.id] = marker
+
+    // Customer marker
+    if (clat && clng && clat !== 0 && clng !== 0) {
+      const homeIcon = L.divIcon({ html: '🏠', className: '', iconSize: [28, 28], iconAnchor: [14, 14] })
+      const cm = L.marker([clat, clng], { icon: homeIcon }).addTo(m)
+      clientMarkers.value[pedido.id] = cm
+
+      // Fetch OSRM route from repartidor → customer
+      const route = await fetchRoute([ubi.lat, ubi.lng], [clat, clng])
+      if (route) {
+        const latlngs = route.geometry.coordinates.map((c: number[]) => [c[1], c[0]] as [number, number])
+        const poly = L.polyline(latlngs, { color: '#2563eb', weight: 3, opacity: 0.7, dashArray: '8 6' }).addTo(m)
+        routePolylines.value[pedido.id] = poly
+        routeInfoMap.value[pedido.id] = { distance: route.distance, duration: route.duration }
+      }
+    }
+
     setTimeout(() => m.invalidateSize(), 100)
     setTimeout(() => m.invalidateSize(), 500)
   } catch (e) { console.error('Error init map for pedido', pedido.id, e) }
 }
 
-const updateMarkerForPedido = (pedido: any) => {
+const routeLastPos = ref<Record<number, { lat: number; lng: number }>>({})
+
+const updateMarkerForPedido = async (pedido: any) => {
   const ubi = parseUbicacion(pedido.ubicacion_actual)
   const marker = markers.value[pedido.id]
   const m = maps.value[pedido.id]
@@ -137,6 +173,26 @@ const updateMarkerForPedido = (pedido: any) => {
   try {
     marker.setLatLng([ubi.lat, ubi.lng])
     m.panTo([ubi.lat, ubi.lng], { animate: true, duration: 0.5 })
+
+    if (clientMarkers.value[pedido.id]) {
+      const cm = clientMarkers.value[pedido.id]
+      const cll = cm!.getLatLng()
+      const last = routeLastPos.value[pedido.id]
+      const moved = last
+        ? haversineDistance(last.lat, last.lng, ubi.lat, ubi.lng) > 0.1
+        : true
+      if (moved) {
+        routeLastPos.value[pedido.id] = { lat: ubi.lat, lng: ubi.lng }
+        const route = await fetchRoute([ubi.lat, ubi.lng], [cll.lat, cll.lng])
+        if (route && routePolylines.value[pedido.id]) {
+          m.removeLayer(routePolylines.value[pedido.id]!)
+          const latlngs = route.geometry.coordinates.map((c: number[]) => [c[1], c[0]] as [number, number])
+          const poly = L.polyline(latlngs, { color: '#2563eb', weight: 3, opacity: 0.7, dashArray: '8 6' }).addTo(m)
+          routePolylines.value[pedido.id] = poly
+          routeInfoMap.value[pedido.id] = { distance: route.distance, duration: route.duration }
+        }
+      }
+    }
   } catch (e) { console.error('Error update marker', e) }
 }
 
@@ -144,6 +200,10 @@ const destroyAllMaps = () => {
   Object.values(maps.value).forEach(m => { try { m.remove() } catch {} })
   maps.value = {}
   markers.value = {}
+  clientMarkers.value = {}
+  routePolylines.value = {}
+  routeInfoMap.value = {}
+  routeLastPos.value = {}
 }
 
 // Watch: update markers when ubicacion changes in existing maps
@@ -250,9 +310,14 @@ onUnmounted(() => {
                 </div>
               </div>
 
-              <!-- Mapa para pedidos en_camino -->
+              <!-- Mapa para pedidos en_camino con ruta -->
               <div v-if="p.estado === 'en_camino' && p.ubicacion_actual && (typeof p.ubicacion_actual === 'object' || typeof p.ubicacion_actual === 'string')" class="mb-4">
-                <p class="text-sm font-medium text-ink-muted mb-2">🏍️ Ubicación del repartidor</p>
+                <div class="flex items-center gap-3 mb-2 text-sm">
+                  <span class="font-medium text-ink-muted">🏍️ Repartidor → 🏠 Tu dirección</span>
+                  <span v-if="routeInfoMap[p.id]" class="text-xs text-info bg-info-light px-2 py-0.5 rounded-full">
+                    📏 {{ routeInfoMap[p.id]?.distance.toFixed(1) }} km · ~{{ Math.round(routeInfoMap[p.id]?.duration ?? 0) }} min
+                  </span>
+                </div>
                 <div :ref="(el: any) => { if (el) mapRefs[p.id] = el as HTMLDivElement }" class="w-full h-56 rounded-lg border border-platform-edge overflow-hidden bg-gray-100" />
               </div>
 

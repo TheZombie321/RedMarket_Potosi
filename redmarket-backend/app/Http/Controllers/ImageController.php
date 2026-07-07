@@ -15,6 +15,10 @@ class ImageController extends Controller
         }
         $content = Storage::disk('root_images')->get($path);
         $mime = Storage::disk('root_images')->mimeType($path) ?: 'image/webp';
-        return response($content, 200, ['Content-Type' => $mime]);
+        return response($content, 200, [
+            'Content-Type' => $mime,
+            'Cache-Control' => 'public, max-age=86400, immutable',
+            'Expires' => gmdate('D, d M Y H:i:s', time() + 86400) . ' GMT',
+        ]);
     }
 }

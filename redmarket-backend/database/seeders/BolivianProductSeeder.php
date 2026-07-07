@@ -9,55 +9,6 @@ use Illuminate\Database\Seeder;
 
 class BolivianProductSeeder extends Seeder
 {
-    protected array $imageMap = [
-        'ABR001' => 'prod_ABR001.jpg', 'ABR002' => 'prod_ABR002.jpg', 'ABR003' => 'prod_ABR003.jpg',
-        'ABR004' => 'prod_ABR004.jpg', 'ABR005' => 'prod_ABR005.jpg', 'ABR006' => 'prod_ABR006.jpg',
-        'ABR007' => 'prod_ABR007.jpg', 'ABR008' => 'prod_ABR008.jpg', 'ABR009' => 'prod_ABR009.jpg',
-        'ABR010' => 'prod_ABR010.jpg', 'ABR011' => 'prod_ABR011.jpg', 'ABR012' => 'prod_ABR012.jpg',
-        'ABR013' => 'prod_ABR013.jpg', 'ABR014' => 'prod_ABR014.jpg', 'ABR015' => 'prod_ABR015.jpg',
-        'BEB001' => 'prod_BEB001.jpg', 'BEB002' => 'prod_BEB002.jpg', 'BEB003' => 'prod_BEB003.jpg',
-        'BEB004' => 'prod_BEB004.jpg', 'BEB005' => 'prod_BEB005.jpg', 'BEB006' => 'prod_BEB006.jpg',
-        'BEB007' => 'prod_BEB007.jpg', 'BEB008' => 'prod_BEB008.jpg', 'BEB009' => 'prod_BEB009.jpg',
-        'BEB010' => 'prod_BEB010.jpg', 'BEB011' => 'prod_BEB011.jpg', 'BEB012' => 'prod_BEB012.jpg',
-        'BEB013' => 'prod_BEB013.jpg', 'BEB014' => 'prod_BEB014.jpg', 'BEB015' => 'prod_BEB015.jpg',
-        'LAC001' => 'prod_LAC001.jpg', 'LAC002' => 'prod_LAC002.jpg', 'LAC003' => 'prod_LAC003.jpg',
-        'LAC004' => 'prod_LAC004.jpg', 'LAC005' => 'prod_LAC005.jpg', 'LAC006' => 'prod_LAC006.jpg',
-        'LAC007' => 'prod_LAC007.jpg', 'LAC008' => 'prod_LAC008.jpg', 'LAC009' => 'prod_LAC009.jpg',
-        'LAC010' => 'prod_LAC010.jpg', 'LAC011' => 'prod_LAC011.jpg', 'LAC012' => 'prod_LAC012.jpg',
-        'LAC013' => 'prod_LAC013.jpg', 'LAC014' => 'prod_LAC014.jpg', 'LAC015' => 'prod_LAC015.jpg',
-        'LIM001' => 'prod_LIM001.jpg', 'LIM002' => 'prod_LIM002.jpg', 'LIM003' => 'prod_LIM003.jpg',
-        'LIM004' => 'prod_LIM004.jpg', 'LIM005' => 'prod_LIM005.jpg', 'LIM006' => 'prod_LIM006.jpg',
-        'LIM007' => 'prod_LIM007.jpg', 'LIM008' => 'prod_LIM008.jpg', 'LIM009' => 'prod_LIM009.jpg',
-        'LIM010' => 'prod_LIM010.jpg', 'LIM011' => 'prod_LIM011.jpg', 'LIM012' => 'prod_LIM012.jpg',
-        'LIM013' => 'prod_LIM013.jpg', 'LIM014' => 'prod_LIM014.jpg', 'LIM015' => 'prod_LIM015.jpg',
-        'PAN001' => 'prod_PAN001.jpg', 'PAN002' => 'prod_PAN002.jpg', 'PAN003' => 'prod_PAN003.jpg',
-        'PAN004' => 'prod_PAN004.jpg', 'PAN005' => 'prod_PAN005.jpg', 'PAN006' => 'prod_PAN006.jpg',
-        'PAN007' => 'prod_PAN007.jpg', 'PAN008' => 'prod_PAN008.jpg', 'PAN009' => 'prod_PAN009.jpg',
-        'PAN010' => 'prod_PAN010.jpg', 'PAN011' => 'prod_PAN011.jpg', 'PAN012' => 'prod_PAN012.jpg',
-        'PAN013' => 'prod_PAN013.jpg', 'PAN014' => 'prod_PAN014.jpg', 'PAN015' => 'prod_PAN015.jpg',
-        'CAR001' => 'prod_CAR001.jpg', 'CAR002' => 'prod_CAR002.jpg', 'CAR003' => 'prod_CAR003.jpg',
-        'CAR004' => 'prod_CAR004.jpg', 'CAR005' => 'prod_CAR005.jpg', 'CAR006' => 'prod_CAR006.jpg',
-        'CAR007' => 'prod_CAR007.jpg', 'CAR008' => 'prod_CAR008.jpg', 'CAR009' => 'prod_CAR009.jpg',
-        'CAR010' => 'prod_CAR010.jpg', 'CAR011' => 'prod_CAR011.jpg', 'CAR012' => 'prod_CAR012.jpg',
-        'CAR013' => 'prod_CAR013.jpg', 'CAR014' => 'prod_CAR014.jpg', 'CAR015' => 'prod_CAR015.jpg',
-        'CAR016' => 'prod_CAR016.jpg', 'CAR017' => 'prod_CAR017.jpg', 'CAR018' => 'prod_CAR018.jpg',
-        'CAR019' => 'prod_CAR019.jpg', 'CAR020' => 'prod_CAR020.jpg',
-        'FRS001' => 'prod_FRS001.jpg', 'FRS002' => 'prod_FRS002.jpg', 'FRS003' => 'prod_FRS003.jpg',
-        'FRS004' => 'prod_FRS004.jpg', 'FRS005' => 'prod_FRS005.jpg', 'FRS006' => 'prod_FRS006.jpg',
-        'FRS007' => 'prod_FRS007.jpg', 'FRS008' => 'prod_FRS008.jpg', 'FRS009' => 'prod_FRS009.jpg',
-        'FRS010' => 'prod_FRS010.jpg', 'FRS011' => 'prod_FRS011.jpg', 'FRS012' => 'prod_FRS012.jpg',
-        'FRS013' => 'prod_FRS013.jpg', 'FRS014' => 'prod_FRS014.jpg', 'FRS015' => 'prod_FRS015.jpg',
-        'FRS016' => 'prod_FRS016.jpg', 'FRS017' => 'prod_FRS017.jpg', 'FRS018' => 'prod_FRS018.jpg',
-        'FRS019' => 'prod_FRS019.jpg', 'FRS020' => 'prod_FRS020.jpg',
-        'SNK001' => 'prod_SNK001.jpg', 'SNK002' => 'prod_SNK002.jpg', 'SNK003' => 'prod_SNK003.jpg',
-        'SNK004' => 'prod_SNK004.jpg', 'SNK005' => 'prod_SNK005.jpg', 'SNK006' => 'prod_SNK006.jpg',
-        'SNK007' => 'prod_SNK007.jpg', 'SNK008' => 'prod_SNK008.jpg', 'SNK009' => 'prod_SNK009.jpg',
-        'SNK010' => 'prod_SNK010.jpg', 'SNK011' => 'prod_SNK011.jpg', 'SNK012' => 'prod_SNK012.jpg',
-        'SNK013' => 'prod_SNK013.jpg', 'SNK014' => 'prod_SNK014.jpg', 'SNK015' => 'prod_SNK015.jpg',
-        'SNK016' => 'prod_SNK016.jpg', 'SNK017' => 'prod_SNK017.jpg', 'SNK018' => 'prod_SNK018.jpg',
-        'SNK019' => 'prod_SNK019.jpg', 'SNK020' => 'prod_SNK020.jpg',
-    ];
-
     public function run(): void
     {
         $proveedores = $this->createProveedores();
@@ -67,13 +18,13 @@ class BolivianProductSeeder extends Seeder
         foreach ($productos as $data) {
             $catKey = $data['categoria'];
             $catId = $categorias[$catKey]->id;
-            $imagen = $this->imageFor($data['codigo_barras']);
+            $imagen = 'prod_' . $data['codigo_barras'] . '.webp';
 
             $producto = Producto::firstOrCreate(
                 ['codigo_barras' => $data['codigo_barras']],
                 [
                     'nombre' => $data['nombre'],
-                    'descripcion' => $data['descripcion'] ?? "{$data['nombre']} - producto de calidad en RedMarket Potosi.",
+                    'descripcion' => $data['descripcion'],
                     'categoria_id' => $catId,
                     'precio_compra' => $data['precio_compra'],
                     'precio_venta' => $data['precio_venta'],
@@ -86,6 +37,9 @@ class BolivianProductSeeder extends Seeder
                     'unidad_medida' => $data['unidad_medida'],
                     'imagen_url' => $imagen,
                     'es_perecedero' => $data['es_perecedero'] ?? false,
+                    'fecha_vencimiento' => $data['fecha_vencimiento'] ?? null,
+                    'lote' => $data['lote'] ?? null,
+                    'fecha_ingreso' => $data['fecha_ingreso'] ?? null,
                 ]
             );
 
@@ -103,60 +57,366 @@ class BolivianProductSeeder extends Seeder
             }
         }
 
-        $this->command->info('135 productos bolivianos creados en 8 categorias.');
-    }
-
-    protected function imageFor(string $codigo): string
-    {
-        return $this->imageMap[$codigo] ?? 'prod_ABR001.jpg';
+        $this->command->info(count($productos) . ' productos creados correctamente.');
     }
 
     protected function createProveedores(): array
     {
-        return [
-            'distribuidora' => Proveedor::firstOrCreate(
-                ['nombre' => 'Distribuidora Mayorista'],
-                ['contacto' => 'Carlos Lopez', 'direccion' => 'Av. Circunvalacion #500, Potosi', 'telefono' => '26543210', 'email' => 'distribuidora@example.com']
+        $proveedores = [
+            'distribuidora_mayorista' => Proveedor::firstOrCreate(
+                ['nombre' => 'Distribuidora Mayorista Bolivia S.R.L.'],
+                ['contacto' => 'Carlos López', 'direccion' => 'Av. Circunvalación #500, Potosí', 'telefono' => '26543210', 'email' => 'ventas@distribuidorabolivia.bo']
             ),
-            'pil' => Proveedor::firstOrCreate(
-                ['nombre' => 'PIL Andina S.A.'],
-                ['contacto' => 'Maria Fernandez', 'direccion' => 'Calle Bolivar #123, La Paz', 'telefono' => '22223344', 'email' => 'ventas@pil.bo']
+            'apple' => Proveedor::firstOrCreate(
+                ['nombre' => 'iShop Bolivia S.R.L.'],
+                ['contacto' => 'María García', 'direccion' => 'MegaCenter Local 15, Av. San Martín, Santa Cruz', 'telefono' => '33567890', 'email' => 'ventas@ishopbolivia.bo']
             ),
-            'cbn' => Proveedor::firstOrCreate(
-                ['nombre' => 'Cerveceria Boliviana Nacional'],
-                ['contacto' => 'Pedro Quispe', 'direccion' => 'Av. 6 de Agosto #789, La Paz', 'telefono' => '24445566', 'email' => 'pedidos@cbn.bo']
+            'samsung' => Proveedor::firstOrCreate(
+                ['nombre' => 'Samsung Electronics Bolivia S.A.'],
+                ['contacto' => 'Pedro Quispe', 'direccion' => 'Av. Ballivián #1234, Edif. Samsung, La Paz', 'telefono' => '22456789', 'email' => 'contacto@samsung.bo']
             ),
-            'fino' => Proveedor::firstOrCreate(
-                ['nombre' => 'Industrias Fino S.A.'],
-                ['contacto' => 'Ana Gutierrez', 'direccion' => 'Zona Industrial #456, Cochabamba', 'telefono' => '46667788', 'email' => 'ventas@fino.bo']
+            'huawei' => Proveedor::firstOrCreate(
+                ['nombre' => 'Huawei Technologies Bolivia'],
+                ['contacto' => 'Ana Morales', 'direccion' => 'Av. 6 de Agosto #2450, La Paz', 'telefono' => '24443322', 'email' => 'ventas@huawei.bo']
             ),
-            'dillman' => Proveedor::firstOrCreate(
-                ['nombre' => 'Dillman S.A.'],
-                ['contacto' => 'Roberto Vargas', 'direccion' => 'Av. Blanco Galindo km 5, Cochabamba', 'telefono' => '48889900', 'email' => 'contacto@dillman.bo']
+            'nokia' => Proveedor::firstOrCreate(
+                ['nombre' => 'Nokia Solutions Bolivia'],
+                ['contacto' => 'Juan Pérez', 'direccion' => 'Calle Potosí #789, Cochabamba', 'telefono' => '46667788', 'email' => 'info@nokiabolivia.bo']
             ),
-            'embol' => Proveedor::firstOrCreate(
+            'microsoft' => Proveedor::firstOrCreate(
+                ['nombre' => 'Microsoft Bolivia S.R.L.'],
+                ['contacto' => 'Roberto Vargas', 'direccion' => 'Av. Montenegro #1155, Calacoto, La Paz', 'telefono' => '22778899', 'email' => 'ventas@microsoft.bo']
+            ),
+            'lenovo' => Proveedor::firstOrCreate(
+                ['nombre' => 'Lenovo Bolivia S.A.'],
+                ['contacto' => 'Laura Méndez', 'direccion' => 'Av. América #345, Cochabamba', 'telefono' => '44556677', 'email' => 'contacto@lenovo.bo']
+            ),
+            'hp' => Proveedor::firstOrCreate(
+                ['nombre' => 'HP Bolivia S.R.L.'],
+                ['contacto' => 'Diego Gutiérrez', 'direccion' => 'Av. Busch #678, La Paz', 'telefono' => '22334455', 'email' => 'ventas@hp.bo']
+            ),
+            'dell' => Proveedor::firstOrCreate(
+                ['nombre' => 'Dell Technologies Bolivia'],
+                ['contacto' => 'Carmen Flores', 'direccion' => 'Av. Irala #456, Cochabamba', 'telefono' => '44998877', 'email' => 'soporte@dell.bo']
+            ),
+            'asus' => Proveedor::firstOrCreate(
+                ['nombre' => 'ASUS Bolivia S.R.L.'],
+                ['contacto' => 'Luis Torrez', 'direccion' => 'Calle 21 #890, Calacoto, La Paz', 'telefono' => '22776655', 'email' => 'ventas@asus.bo']
+            ),
+            'google' => Proveedor::firstOrCreate(
+                ['nombre' => 'Google LLC Sucursal Bolivia'],
+                ['contacto' => 'Andrea Ríos', 'direccion' => 'Av. Arce #2500, La Paz', 'telefono' => '24446688', 'email' => 'ads@google.bo']
+            ),
+            'amazon' => Proveedor::firstOrCreate(
+                ['nombre' => 'Amazon Web Services Bolivia'],
+                ['contacto' => 'Pablo Castillo', 'direccion' => 'Av. San Martín #1500, Santa Cruz', 'telefono' => '33557799', 'email' => 'aws@amazon.bo']
+            ),
+            'sony' => Proveedor::firstOrCreate(
+                ['nombre' => 'Sony Bolivia S.A.'],
+                ['contacto' => 'Jorge Fernández', 'direccion' => 'Av. 6 de Agosto #1987, La Paz', 'telefono' => '24446666', 'email' => 'contacto@sony.bo']
+            ),
+            'lg' => Proveedor::firstOrCreate(
+                ['nombre' => 'LG Electronics Bolivia S.R.L.'],
+                ['contacto' => 'Mónica Rojas', 'direccion' => 'Av. Blanco Galindo km 5, Cochabamba', 'telefono' => '44889900', 'email' => 'ventas@lg.bo']
+            ),
+            'philips' => Proveedor::firstOrCreate(
+                ['nombre' => 'Philips Bolivia S.A.'],
+                ['contacto' => 'Ricardo Méndez', 'direccion' => 'Av. Camacho #1356, La Paz', 'telefono' => '22445566', 'email' => 'info@philips.bo']
+            ),
+            'nike' => Proveedor::firstOrCreate(
+                ['nombre' => 'Nike Bolivia S.R.L.'],
+                ['contacto' => 'Karina Salazar', 'direccion' => 'Ventura Mall Local 25, Santa Cruz', 'telefono' => '33442211', 'email' => 'ventas@nike.bo']
+            ),
+            'adidas' => Proveedor::firstOrCreate(
+                ['nombre' => 'Adidas Bolivia S.A.'],
+                ['contacto' => 'Fernando Roca', 'direccion' => 'MegaCenter Local 50, Santa Cruz', 'telefono' => '33443344', 'email' => 'contacto@adidas.bo']
+            ),
+            'puma' => Proveedor::firstOrCreate(
+                ['nombre' => 'Puma Sports Bolivia'],
+                ['contacto' => 'Sofía Vargas', 'direccion' => 'Av. San Martín #800, Santa Cruz', 'telefono' => '33556677', 'email' => 'ventas@puma.bo']
+            ),
+            'reebok' => Proveedor::firstOrCreate(
+                ['nombre' => 'Reebok Bolivia S.R.L.'],
+                ['contacto' => 'Marcelo Torres', 'direccion' => 'Calle 21 #456, La Paz', 'telefono' => '22778800', 'email' => 'info@reebok.bo']
+            ),
+            'gucci' => Proveedor::firstOrCreate(
+                ['nombre' => 'Gucci Bolivia S.A.'],
+                ['contacto' => 'Elena Pardo', 'direccion' => 'Av. Ballivián #2000, La Paz', 'telefono' => '22447788', 'email' => 'ventas@gucci.bo']
+            ),
+            'dior' => Proveedor::firstOrCreate(
+                ['nombre' => 'Dior Bolivia S.R.L.'],
+                ['contacto' => 'Camila Orozco', 'direccion' => 'Calle 10 #345, Calacoto, La Paz', 'telefono' => '22779900', 'email' => 'contacto@dior.bo']
+            ),
+            'chanel' => Proveedor::firstOrCreate(
+                ['nombre' => 'Chanel Bolivia S.A.'],
+                ['contacto' => 'Ximena Loza', 'direccion' => 'Av. Montenegro #1000, La Paz', 'telefono' => '22446677', 'email' => 'ventas@chanel.bo']
+            ),
+            'calvin_klein' => Proveedor::firstOrCreate(
+                ['nombre' => 'Calvin Klein Bolivia'],
+                ['contacto' => 'Daniela Peredo', 'direccion' => 'Ventura Mall Local 30, Santa Cruz', 'telefono' => '33440011', 'email' => 'info@ck.bo']
+            ),
+            'nestle' => Proveedor::firstOrCreate(
+                ['nombre' => 'Nestlé Bolivia S.A.'],
+                ['contacto' => 'Raúl Quispe', 'direccion' => 'Av. 6 de Agosto #2000, La Paz', 'telefono' => '22441122', 'email' => 'pedidos@nestle.bo']
+            ),
+            'coca_cola' => Proveedor::firstOrCreate(
                 ['nombre' => 'Embotelladora Boliviana (Embol)'],
-                ['contacto' => 'Laura Mendez', 'direccion' => 'Av. Ecologica #200, Santa Cruz', 'telefono' => '35556677', 'email' => 'pedidos@embol.bo']
+                ['contacto' => 'Laura Méndez', 'direccion' => 'Av. Ecológica #200, Santa Cruz', 'telefono' => '35556677', 'email' => 'pedidos@embol.bo']
             ),
-            'italiana' => Proveedor::firstOrCreate(
-                ['nombre' => 'La Italiana S.A.'],
-                ['contacto' => 'Giuseppe Rossi', 'direccion' => 'Calle Comercio #789, Potosi', 'telefono' => '26223344', 'email' => 'info@laitaliana.bo']
+            'pepsi' => Proveedor::firstOrCreate(
+                ['nombre' => 'PepsiCo Alimentos Bolivia'],
+                ['contacto' => 'José Luis Ríos', 'direccion' => 'Zona Industrial #789, Cochabamba', 'telefono' => '44778899', 'email' => 'ventas@pepsico.bo']
+            ),
+            'unilever' => Proveedor::firstOrCreate(
+                ['nombre' => 'Unilever Andina Bolivia S.R.L.'],
+                ['contacto' => 'Patricia Díaz', 'direccion' => 'Av. Ecuador #1500, La Paz', 'telefono' => '22447766', 'email' => 'contacto@unilever.bo']
+            ),
+            'procter_gamble' => Proveedor::firstOrCreate(
+                ['nombre' => 'Procter & Gamble Bolivia S.R.L.'],
+                ['contacto' => 'Oscar Fernández', 'direccion' => 'Av. Ballivián #500, Cochabamba', 'telefono' => '44881100', 'email' => 'ventas@pg.bo']
+            ),
+            'loreal' => Proveedor::firstOrCreate(
+                ['nombre' => 'L\'Oréal Bolivia S.A.'],
+                ['contacto' => 'Claudia Álvarez', 'direccion' => 'Av. Arce #2800, La Paz', 'telefono' => '22446688', 'email' => 'contacto@loreal.bo']
+            ),
+            'essence' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Bela Vista S.R.L.'],
+                ['contacto' => 'Roberto Pinto', 'direccion' => 'Calle Comercio #456, Potosí', 'telefono' => '26223344', 'email' => 'ventas@belavista.bo']
+            ),
+            'olay' => Proveedor::firstOrCreate(
+                ['nombre' => 'Distribuidora de Cosméticos del Sur'],
+                ['contacto' => 'María Fernanda Roca', 'direccion' => 'Av. Monseñor Fife #123, Tarija', 'telefono' => '46661234', 'email' => 'ventas@dicosur.bo']
+            ),
+            'vaseline' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Unifarma Bolivia'],
+                ['contacto' => 'Carlos Mendoza', 'direccion' => 'Calle Bolívar #567, La Paz', 'telefono' => '22443322', 'email' => 'pedidos@unifarma.bo']
+            ),
+            'puma_energy' => Proveedor::firstOrCreate(
+                ['nombre' => 'Bebidas Energéticas Bolivia S.R.L.'],
+                ['contacto' => 'Mario Vargas', 'direccion' => 'Av. Circunvalación #890, Potosí', 'telefono' => '26554433', 'email' => 'ventas@bebidasenergeticas.bo']
+            ),
+            'glamour_beauty' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Glamour Beauty Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'glamourbeauty@proveedor.bo']
+            ),
+            'velvet_touch' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Velvet Touch Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'velvettouch@proveedor.bo']
+            ),
+            'chic_cosmetics' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Chic Cosmetics Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'chiccosmetics@proveedor.bo']
+            ),
+            'nail_couture' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Nail Couture Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'nailcouture@proveedor.bo']
+            ),
+            'dolce_gabbana' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Dolce Gabbana Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'dolcegabbana@proveedor.bo']
+            ),
+            'annibale_colombo' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Annibale Colombo Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'annibalecolombo@proveedor.bo']
+            ),
+            'furniture_co' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Furniture Co Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'furnitureco@proveedor.bo']
+            ),
+            'knoll' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Knoll Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'knoll@proveedor.bo']
+            ),
+            'bath_trends' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Bath Trends Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'bathtrends@proveedor.bo']
+            ),
+            'fashion_trends' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Fashion Trends Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'fashiontrends@proveedor.bo']
+            ),
+            'gigabyte' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Gigabyte Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'gigabyte@proveedor.bo']
+            ),
+            'classic_wear' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Classic Wear Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'classicwear@proveedor.bo']
+            ),
+            'casual_comfort' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Casual Comfort Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'casualcomfort@proveedor.bo']
+            ),
+            'urban_chic' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Urban Chic Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'urbanchic@proveedor.bo']
+            ),
+            'off_white' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Off White Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'offwhite@proveedor.bo']
+            ),
+            'fashion_timepieces' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Fashion Timepieces Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'fashiontimepieces@proveedor.bo']
+            ),
+            'longines' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Longines Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'longines@proveedor.bo']
+            ),
+            'rolex' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Rolex Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'rolex@proveedor.bo']
+            ),
+            'beats' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Beats Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'beats@proveedor.bo']
+            ),
+            'techgear' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Techgear Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'techgear@proveedor.bo']
+            ),
+            'gadgetmaster' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Gadgetmaster Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'gadgetmaster@proveedor.bo']
+            ),
+            'snaptech' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Snaptech Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'snaptech@proveedor.bo']
+            ),
+            'provision' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Provision Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'provision@proveedor.bo']
+            ),
+            'generic_motors' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Generic Motors Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'genericmotors@proveedor.bo']
+            ),
+            'kawasaki' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Kawasaki Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'kawasaki@proveedor.bo']
+            ),
+            'motogp' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Motogp Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'motogp@proveedor.bo']
+            ),
+            'scootmaster' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Scootmaster Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'scootmaster@proveedor.bo']
+            ),
+            'speedmaster' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Speedmaster Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'speedmaster@proveedor.bo']
+            ),
+            'attitude' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Attitude Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'attitude@proveedor.bo']
+            ),
+            'oppo' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Oppo Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'oppo@proveedor.bo']
+            ),
+            'realme' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Realme Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'realme@proveedor.bo']
+            ),
+            'vivo' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Vivo Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'vivo@proveedor.bo']
+            ),
+            'fashion_shades' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Fashion Shades Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'fashionshades@proveedor.bo']
+            ),
+            'fashion_fun' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Fashion Fun Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'fashionfun@proveedor.bo']
+            ),
+            'chrysler' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Chrysler Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'chrysler@proveedor.bo']
+            ),
+            'dodge' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Dodge Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'dodge@proveedor.bo']
+            ),
+            'fashionista' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Fashionista Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'fashionista@proveedor.bo']
+            ),
+            'heshe' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Heshe Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'heshe@proveedor.bo']
+            ),
+            'prada' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Prada Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'prada@proveedor.bo']
+            ),
+            'elegance_collection' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Elegance Collection Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'elegancecollection@proveedor.bo']
+            ),
+            'comfort_trends' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Comfort Trends Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'comforttrends@proveedor.bo']
+            ),
+            'fashion_diva' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Fashion Diva Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'fashiondiva@proveedor.bo']
+            ),
+            'pampi' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Pampi Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'pampi@proveedor.bo']
+            ),
+            'fashion_express' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Fashion Express Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'fashionexpress@proveedor.bo']
+            ),
+            'iwc' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Iwc Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'iwc@proveedor.bo']
+            ),
+            'fashion_gold' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Fashion Gold Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'fashiongold@proveedor.bo']
+            ),
+            'fashion_co' => Proveedor::firstOrCreate(
+                ['nombre' => 'Importadora Fashion Co Bolivia S.R.L.'],
+                ['contacto' => 'Contacto RedMarket', 'direccion' => 'Calle Comercio #100, Potosí', 'telefono' => '26220000', 'email' => 'fashionco@proveedor.bo']
             ),
         ];
+        return $proveedores;
+
     }
 
     protected function createCategorias(): array
     {
         $nombres = [
-            'abarrotes' => 'Abarrotes',
-            'bebidas' => 'Bebidas',
-            'lacteos' => 'Lacteos',
-            'limpieza' => 'Limpieza',
-            'panaderia' => 'Panaderia',
-            'carnes' => 'Carnes y Embutidos',
-            'frutas' => 'Frutas y Verduras',
-            'snacks' => 'Snacks y Golosinas',
+            'beauty' => 'Belleza',
+            'fragrances' => 'Fragancias',
+            'furniture' => 'Muebles',
+            'groceries' => 'Despensa',
+            'home-decoration' => 'Decoración del Hogar',
+            'kitchen-accessories' => 'Accesorios de Cocina',
+            'laptops' => 'Laptops',
+            'mens-shirts' => 'Camisetas Hombre',
+            'mens-shoes' => 'Zapatos Hombre',
+            'mens-watches' => 'Relojes Hombre',
+            'mobile-accessories' => 'Accesorios Móviles',
+            'motorcycle' => 'Motocicletas',
+            'skin-care' => 'Cuidado de la Piel',
+            'smartphones' => 'Smartphones',
+            'sports-accessories' => 'Accesorios Deportivos',
+            'sunglasses' => 'Lentes de Sol',
+            'tablets' => 'Tablets',
+            'tops' => 'Blusas',
+            'vehicle' => 'Vehículos',
+            'womens-bags' => 'Carteras Mujer',
+            'womens-dresses' => 'Vestidos Mujer',
+            'womens-jewellery' => 'Joyería Mujer',
+            'womens-shoes' => 'Zapatos Mujer',
+            'womens-watches' => 'Relojes Mujer',
         ];
+
         $map = [];
         foreach ($nombres as $key => $name) {
             $map[$key] = Categoria::firstOrCreate(['nombre' => $name]);
@@ -167,156 +427,249 @@ class BolivianProductSeeder extends Seeder
     protected function getProductosData(): array
     {
         return [
-            // -- ABARROTES (15) --
-            ['nombre' => 'Arroz Grano de Oro 1kg', 'categoria' => 'abarrotes', 'precio_compra' => 6.50, 'precio_venta' => 8.50, 'stock_actual' => 120, 'codigo_barras' => 'ABR001', 'pasillo' => '1', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'italiana'],
-            ['nombre' => 'Aceite Vegetal Fino 1L', 'categoria' => 'abarrotes', 'precio_compra' => 9.00, 'precio_venta' => 12.00, 'stock_actual' => 80, 'codigo_barras' => 'ABR002', 'pasillo' => '1', 'nivel' => 'A', 'unidad_medida' => 'lt', 'proveedor' => 'fino'],
-            ['nombre' => 'Azucar Cana Real 1kg', 'categoria' => 'abarrotes', 'precio_compra' => 5.50, 'precio_venta' => 7.50, 'stock_actual' => 100, 'codigo_barras' => 'ABR003', 'pasillo' => '1', 'nivel' => 'B', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora'],
-            ['nombre' => 'Fideos Don Victorio Spaghetti 500g', 'categoria' => 'abarrotes', 'precio_compra' => 4.00, 'precio_venta' => 5.50, 'stock_actual' => 140, 'codigo_barras' => 'ABR004', 'pasillo' => '2', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'italiana'],
-            ['nombre' => 'Harina Selecta 1kg', 'categoria' => 'abarrotes', 'precio_compra' => 5.00, 'precio_venta' => 7.00, 'stock_actual' => 90, 'codigo_barras' => 'ABR005', 'pasillo' => '2', 'nivel' => 'B', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'en_descuento' => true, 'precio_oferta' => 5.90],
-            ['nombre' => 'Sal Yodada Saltena 500g', 'categoria' => 'abarrotes', 'precio_compra' => 2.00, 'precio_venta' => 3.00, 'stock_actual' => 200, 'codigo_barras' => 'ABR006', 'pasillo' => '2', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora'],
-            ['nombre' => 'Galletas Casino Familiares 400g', 'categoria' => 'abarrotes', 'precio_compra' => 7.00, 'precio_venta' => 9.50, 'stock_actual' => 85, 'codigo_barras' => 'ABR007', 'pasillo' => '2', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'fino', 'en_descuento' => true, 'precio_oferta' => 7.90],
-            ['nombre' => 'Cafe Soluble Nescafe 200g', 'categoria' => 'abarrotes', 'precio_compra' => 18.00, 'precio_venta' => 24.00, 'stock_actual' => 35, 'codigo_barras' => 'ABR008', 'pasillo' => '2', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora'],
-            ['nombre' => 'Leche Condensada PIL 395g', 'categoria' => 'abarrotes', 'precio_compra' => 9.00, 'precio_venta' => 12.50, 'stock_actual' => 50, 'codigo_barras' => 'ABR009', 'pasillo' => '1', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'pil'],
-            ['nombre' => 'Mermelada de Fresa La Italiana 300g', 'categoria' => 'abarrotes', 'precio_compra' => 8.00, 'precio_venta' => 11.00, 'stock_actual' => 45, 'codigo_barras' => 'ABR010', 'pasillo' => '2', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'italiana', 'en_descuento' => true, 'precio_oferta' => 9.50],
-            ['nombre' => 'Atun en Lata Real 170g', 'categoria' => 'abarrotes', 'precio_compra' => 6.00, 'precio_venta' => 8.50, 'stock_actual' => 70, 'codigo_barras' => 'ABR011', 'pasillo' => '1', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora'],
-            ['nombre' => 'Sardina en Lata Real 120g', 'categoria' => 'abarrotes', 'precio_compra' => 4.00, 'precio_venta' => 5.50, 'stock_actual' => 65, 'codigo_barras' => 'ABR012', 'pasillo' => '1', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora'],
-            ['nombre' => 'Mayonesa Fino 250g', 'categoria' => 'abarrotes', 'precio_compra' => 5.00, 'precio_venta' => 7.00, 'stock_actual' => 55, 'codigo_barras' => 'ABR013', 'pasillo' => '2', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'fino'],
-            ['nombre' => 'Mostaza Fino 200g', 'categoria' => 'abarrotes', 'precio_compra' => 4.00, 'precio_venta' => 5.50, 'stock_actual' => 60, 'codigo_barras' => 'ABR014', 'pasillo' => '2', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fino'],
-            ['nombre' => 'Vinagre de Vino Los Andes 500ml', 'categoria' => 'abarrotes', 'precio_compra' => 3.00, 'precio_venta' => 4.50, 'stock_actual' => 75, 'codigo_barras' => 'ABR015', 'pasillo' => '2', 'nivel' => 'C', 'unidad_medida' => 'lt', 'proveedor' => 'distribuidora'],
 
-            // -- BEBIDAS (15) --
-            ['nombre' => 'Coca-Cola 2L', 'categoria' => 'bebidas', 'precio_compra' => 8.00, 'precio_venta' => 11.00, 'stock_actual' => 100, 'codigo_barras' => 'BEB001', 'pasillo' => '3', 'nivel' => 'A', 'unidad_medida' => 'lt', 'proveedor' => 'embol'],
-            ['nombre' => 'Pepsi 2L', 'categoria' => 'bebidas', 'precio_compra' => 7.50, 'precio_venta' => 10.00, 'stock_actual' => 85, 'codigo_barras' => 'BEB002', 'pasillo' => '3', 'nivel' => 'A', 'unidad_medida' => 'lt', 'proveedor' => 'embol'],
-            ['nombre' => 'Agua Vital 2L', 'categoria' => 'bebidas', 'precio_compra' => 4.00, 'precio_venta' => 5.50, 'stock_actual' => 160, 'codigo_barras' => 'BEB003', 'pasillo' => '3', 'nivel' => 'B', 'unidad_medida' => 'lt', 'proveedor' => 'embol', 'en_descuento' => true, 'precio_oferta' => 4.50],
-            ['nombre' => 'Jugo Deli Naranja 1L', 'categoria' => 'bebidas', 'precio_compra' => 6.00, 'precio_venta' => 8.50, 'stock_actual' => 55, 'codigo_barras' => 'BEB004', 'pasillo' => '3', 'nivel' => 'B', 'unidad_medida' => 'lt', 'proveedor' => 'cbn'],
-            ['nombre' => 'Cerveza Paceña 355ml', 'categoria' => 'bebidas', 'precio_compra' => 5.00, 'precio_venta' => 7.00, 'stock_actual' => 120, 'codigo_barras' => 'BEB005', 'pasillo' => '3', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'cbn'],
-            ['nombre' => 'Cerveza Huari 355ml', 'categoria' => 'bebidas', 'precio_compra' => 5.50, 'precio_venta' => 7.50, 'stock_actual' => 110, 'codigo_barras' => 'BEB006', 'pasillo' => '3', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'cbn'],
-            ['nombre' => 'Sprite 2L', 'categoria' => 'bebidas', 'precio_compra' => 7.00, 'precio_venta' => 9.50, 'stock_actual' => 90, 'codigo_barras' => 'BEB007', 'pasillo' => '3', 'nivel' => 'A', 'unidad_medida' => 'lt', 'proveedor' => 'embol'],
-            ['nombre' => 'Fanta Naranja 2L', 'categoria' => 'bebidas', 'precio_compra' => 7.00, 'precio_venta' => 9.50, 'stock_actual' => 80, 'codigo_barras' => 'BEB008', 'pasillo' => '3', 'nivel' => 'A', 'unidad_medida' => 'lt', 'proveedor' => 'embol'],
-            ['nombre' => 'Agua Con Gas Vital 1.5L', 'categoria' => 'bebidas', 'precio_compra' => 5.00, 'precio_venta' => 7.00, 'stock_actual' => 70, 'codigo_barras' => 'BEB009', 'pasillo' => '3', 'nivel' => 'B', 'unidad_medida' => 'lt', 'proveedor' => 'embol'],
-            ['nombre' => 'Jugo Deli Multifruta 1L', 'categoria' => 'bebidas', 'precio_compra' => 6.50, 'precio_venta' => 9.00, 'stock_actual' => 50, 'codigo_barras' => 'BEB010', 'pasillo' => '3', 'nivel' => 'B', 'unidad_medida' => 'lt', 'proveedor' => 'cbn', 'en_descuento' => true, 'precio_oferta' => 7.50],
-            ['nombre' => 'Energizante Boost 500ml', 'categoria' => 'bebidas', 'precio_compra' => 5.00, 'precio_venta' => 7.00, 'stock_actual' => 65, 'codigo_barras' => 'BEB011', 'pasillo' => '3', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'cbn'],
-            ['nombre' => 'Nectar de Durazno Pulp 1L', 'categoria' => 'bebidas', 'precio_compra' => 7.00, 'precio_venta' => 9.50, 'stock_actual' => 45, 'codigo_barras' => 'BEB012', 'pasillo' => '3', 'nivel' => 'B', 'unidad_medida' => 'lt', 'proveedor' => 'cbn'],
-            ['nombre' => 'Agua de Mesa Vital 500ml (pack 6)', 'categoria' => 'bebidas', 'precio_compra' => 8.00, 'precio_venta' => 11.00, 'stock_actual' => 60, 'codigo_barras' => 'BEB013', 'pasillo' => '3', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'embol'],
-            ['nombre' => 'Malta Victoria 355ml', 'categoria' => 'bebidas', 'precio_compra' => 3.50, 'precio_venta' => 5.00, 'stock_actual' => 95, 'codigo_barras' => 'BEB014', 'pasillo' => '3', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'cbn', 'en_descuento' => true, 'precio_oferta' => 4.00],
-            ['nombre' => 'Gaseosa Latan 2L', 'categoria' => 'bebidas', 'precio_compra' => 5.00, 'precio_venta' => 7.00, 'stock_actual' => 75, 'codigo_barras' => 'BEB015', 'pasillo' => '3', 'nivel' => 'A', 'unidad_medida' => 'lt', 'proveedor' => 'embol'],
+            // Belleza
+            ['nombre' => 'Essence Mascara Lash Princess', 'categoria' => 'beauty', 'precio_compra' => 54.95, 'precio_venta' => 74.93, 'stock_actual' => 99, 'codigo_barras' => 'ESS001', 'pasillo' => '3', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'essence', 'descripcion' => 'The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.', 'en_descuento' => true, 'precio_oferta' => 67.08, ],
+            ['nombre' => 'Eyeshadow Palette with Mirror', 'categoria' => 'beauty', 'precio_compra' => 109.95, 'precio_venta' => 149.93, 'stock_actual' => 34, 'codigo_barras' => 'EYE002', 'pasillo' => '9', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'glamour_beauty', 'descripcion' => 'The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating stunning eye looks. With a built-in mirror, it\'s convenient for on-the-go makeup application.', 'en_descuento' => true, 'precio_oferta' => 122.66, ],
+            ['nombre' => 'Powder Canister', 'categoria' => 'beauty', 'precio_compra' => 82.45, 'precio_venta' => 112.43, 'stock_actual' => 89, 'codigo_barras' => 'POW003', 'pasillo' => '6', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'velvet_touch', 'descripcion' => 'The Powder Canister is a finely milled setting powder designed to set makeup and control shine. With a lightweight and translucent formula, it provides a smooth and matte finish.', 'en_descuento' => true, 'precio_oferta' => 101.37, ],
+            ['nombre' => 'Red Lipstick', 'categoria' => 'beauty', 'precio_compra' => 71.45, 'precio_venta' => 97.43, 'stock_actual' => 91, 'codigo_barras' => 'RED004', 'pasillo' => '9', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'chic_cosmetics', 'descripcion' => 'The Red Lipstick is a classic and bold choice for adding a pop of color to your lips. With a creamy and pigmented formula, it provides a vibrant and long-lasting finish.', 'en_descuento' => true, 'precio_oferta' => 85.58, ],
+            ['nombre' => 'Red Nail Polish', 'categoria' => 'beauty', 'precio_compra' => 49.45, 'precio_venta' => 67.43, 'stock_actual' => 79, 'codigo_barras' => 'RED005', 'pasillo' => '4', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'nail_couture', 'descripcion' => 'The Red Nail Polish offers a rich and glossy red hue for vibrant and polished nails. With a quick-drying formula, it provides a salon-quality finish at home.', 'en_descuento' => true, 'precio_oferta' => 59.72, ],
 
-            // -- LACTEOS (15) --
-            ['nombre' => 'Leche Entera PIL 1L', 'categoria' => 'lacteos', 'precio_compra' => 7.00, 'precio_venta' => 9.50, 'stock_actual' => 80, 'codigo_barras' => 'LAC001', 'pasillo' => '4', 'nivel' => 'A', 'unidad_medida' => 'lt', 'proveedor' => 'pil', 'es_perecedero' => true],
-            ['nombre' => 'Leche Descremada PIL 1L', 'categoria' => 'lacteos', 'precio_compra' => 7.00, 'precio_venta' => 9.50, 'stock_actual' => 60, 'codigo_barras' => 'LAC002', 'pasillo' => '4', 'nivel' => 'A', 'unidad_medida' => 'lt', 'proveedor' => 'pil', 'es_perecedero' => true],
-            ['nombre' => 'Yogurt Natural PIL 900ml', 'categoria' => 'lacteos', 'precio_compra' => 8.00, 'precio_venta' => 11.00, 'stock_actual' => 50, 'codigo_barras' => 'LAC003', 'pasillo' => '4', 'nivel' => 'A', 'unidad_medida' => 'lt', 'proveedor' => 'pil', 'es_perecedero' => true],
-            ['nombre' => 'Yogurt Frutilla PIL 900ml', 'categoria' => 'lacteos', 'precio_compra' => 8.50, 'precio_venta' => 11.50, 'stock_actual' => 45, 'codigo_barras' => 'LAC004', 'pasillo' => '4', 'nivel' => 'A', 'unidad_medida' => 'lt', 'proveedor' => 'pil', 'es_perecedero' => true, 'en_descuento' => true, 'precio_oferta' => 9.90],
-            ['nombre' => 'Queso Criollo Premium 500g', 'categoria' => 'lacteos', 'precio_compra' => 15.00, 'precio_venta' => 20.00, 'stock_actual' => 30, 'codigo_barras' => 'LAC005', 'pasillo' => '4', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'pil', 'es_perecedero' => true],
-            ['nombre' => 'Queso Mozzarella PIL 250g', 'categoria' => 'lacteos', 'precio_compra' => 10.00, 'precio_venta' => 14.00, 'stock_actual' => 35, 'codigo_barras' => 'LAC006', 'pasillo' => '4', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'pil', 'es_perecedero' => true],
-            ['nombre' => 'Mantequilla Finita 250g', 'categoria' => 'lacteos', 'precio_compra' => 9.00, 'precio_venta' => 12.50, 'stock_actual' => 40, 'codigo_barras' => 'LAC007', 'pasillo' => '4', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'pil', 'es_perecedero' => true, 'en_descuento' => true, 'precio_oferta' => 10.90],
-            ['nombre' => 'Margarina Dorada 250g', 'categoria' => 'lacteos', 'precio_compra' => 6.00, 'precio_venta' => 8.50, 'stock_actual' => 55, 'codigo_barras' => 'LAC008', 'pasillo' => '4', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'pil'],
-            ['nombre' => 'Crema de Leche PIL 200ml', 'categoria' => 'lacteos', 'precio_compra' => 7.00, 'precio_venta' => 9.50, 'stock_actual' => 40, 'codigo_barras' => 'LAC009', 'pasillo' => '4', 'nivel' => 'A', 'unidad_medida' => 'ml', 'proveedor' => 'pil', 'es_perecedero' => true],
-            ['nombre' => 'Huevos Colorados (docena)', 'categoria' => 'lacteos', 'precio_compra' => 8.00, 'precio_venta' => 11.00, 'stock_actual' => 60, 'codigo_barras' => 'LAC010', 'pasillo' => '4', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Leche Evaporada PIL 400g', 'categoria' => 'lacteos', 'precio_compra' => 6.00, 'precio_venta' => 8.50, 'stock_actual' => 70, 'codigo_barras' => 'LAC011', 'pasillo' => '4', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'pil'],
-            ['nombre' => 'Queso Crema PIL 200g', 'categoria' => 'lacteos', 'precio_compra' => 7.00, 'precio_venta' => 9.50, 'stock_actual' => 35, 'codigo_barras' => 'LAC012', 'pasillo' => '4', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'pil', 'es_perecedero' => true],
-            ['nombre' => 'Leche Saborizada PIL Chocolate 1L', 'categoria' => 'lacteos', 'precio_compra' => 8.00, 'precio_venta' => 11.00, 'stock_actual' => 50, 'codigo_barras' => 'LAC013', 'pasillo' => '4', 'nivel' => 'A', 'unidad_medida' => 'lt', 'proveedor' => 'pil', 'es_perecedero' => true],
-            ['nombre' => 'Yogurt Bebible PIL Durazno 200ml', 'categoria' => 'lacteos', 'precio_compra' => 3.00, 'precio_venta' => 4.50, 'stock_actual' => 80, 'codigo_barras' => 'LAC014', 'pasillo' => '4', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'pil', 'es_perecedero' => true, 'en_descuento' => true, 'precio_oferta' => 3.50],
-            ['nombre' => 'Dulce de Leche PIL 400g', 'categoria' => 'lacteos', 'precio_compra' => 10.00, 'precio_venta' => 14.00, 'stock_actual' => 25, 'codigo_barras' => 'LAC015', 'pasillo' => '4', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'pil'],
+            // Fragancias
+            ['nombre' => 'Calvin Klein CK One', 'categoria' => 'fragrances', 'precio_compra' => 274.95, 'precio_venta' => 374.93, 'stock_actual' => 29, 'codigo_barras' => 'CAL006', 'pasillo' => '7', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'calvin_klein', 'descripcion' => 'CK One by Calvin Klein is a classic unisex fragrance, known for its fresh and clean scent. It\'s a versatile fragrance suitable for everyday wear.', ],
+            ['nombre' => 'Chanel Coco Noir Eau De', 'categoria' => 'fragrances', 'precio_compra' => 714.95, 'precio_venta' => 974.93, 'stock_actual' => 58, 'codigo_barras' => 'CHA007', 'pasillo' => '3', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'chanel', 'descripcion' => 'Coco Noir by Chanel is an elegant and mysterious fragrance, featuring notes of grapefruit, rose, and sandalwood. Perfect for evening occasions.', 'en_descuento' => true, 'precio_oferta' => 813.97, ],
+            ['nombre' => 'Dior J\'adore', 'categoria' => 'fragrances', 'precio_compra' => 494.95, 'precio_venta' => 674.93, 'stock_actual' => 98, 'codigo_barras' => 'DIO008', 'pasillo' => '2', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'dior', 'descripcion' => 'J\'adore by Dior is a luxurious and floral fragrance, known for its blend of ylang-ylang, rose, and jasmine. It embodies femininity and sophistication.', 'en_descuento' => true, 'precio_oferta' => 575.58, ],
+            ['nombre' => 'Dolce Shine Eau de', 'categoria' => 'fragrances', 'precio_compra' => 384.95, 'precio_venta' => 524.93, 'stock_actual' => 4, 'codigo_barras' => 'DOL009', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'dolce_gabbana', 'descripcion' => 'Dolce Shine by Dolce & Gabbana is a vibrant and fruity fragrance, featuring notes of mango, jasmine, and blonde woods. It\'s a joyful and youthful scent.', ],
+            ['nombre' => 'Gucci Bloom Eau de', 'categoria' => 'fragrances', 'precio_compra' => 439.95, 'precio_venta' => 599.93, 'stock_actual' => 91, 'codigo_barras' => 'GUC010', 'pasillo' => '7', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'gucci', 'descripcion' => 'Gucci Bloom by Gucci is a floral and captivating fragrance, with notes of tuberose, jasmine, and Rangoon creeper. It\'s a modern and romantic scent.', 'en_descuento' => true, 'precio_oferta' => 513.6, ],
 
-            // -- LIMPIEZA (15) --
-            ['nombre' => 'Detergente Ace 1kg', 'categoria' => 'limpieza', 'precio_compra' => 10.00, 'precio_venta' => 14.00, 'stock_actual' => 60, 'codigo_barras' => 'LIM001', 'pasillo' => '5', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'dillman'],
-            ['nombre' => 'Detergente Opal 1kg', 'categoria' => 'limpieza', 'precio_compra' => 8.00, 'precio_venta' => 11.00, 'stock_actual' => 70, 'codigo_barras' => 'LIM002', 'pasillo' => '5', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'dillman'],
-            ['nombre' => 'Cloro Los Andes 1L', 'categoria' => 'limpieza', 'precio_compra' => 5.00, 'precio_venta' => 7.00, 'stock_actual' => 85, 'codigo_barras' => 'LIM003', 'pasillo' => '5', 'nivel' => 'B', 'unidad_medida' => 'lt', 'proveedor' => 'dillman', 'en_descuento' => true, 'precio_oferta' => 5.50],
-            ['nombre' => 'Jabon Liquido Soprole 500ml', 'categoria' => 'limpieza', 'precio_compra' => 8.00, 'precio_venta' => 11.00, 'stock_actual' => 50, 'codigo_barras' => 'LIM004', 'pasillo' => '5', 'nivel' => 'B', 'unidad_medida' => 'lt', 'proveedor' => 'dillman'],
-            ['nombre' => 'Lava Vajilla Limon 500ml', 'categoria' => 'limpieza', 'precio_compra' => 6.50, 'precio_venta' => 9.00, 'stock_actual' => 65, 'codigo_barras' => 'LIM005', 'pasillo' => '5', 'nivel' => 'B', 'unidad_medida' => 'lt', 'proveedor' => 'dillman', 'en_descuento' => true, 'precio_oferta' => 7.50],
-            ['nombre' => 'Desinfectante Pinol 1L', 'categoria' => 'limpieza', 'precio_compra' => 7.00, 'precio_venta' => 9.50, 'stock_actual' => 55, 'codigo_barras' => 'LIM006', 'pasillo' => '5', 'nivel' => 'B', 'unidad_medida' => 'lt', 'proveedor' => 'dillman'],
-            ['nombre' => 'Jabon de Tocador Rexona 125g', 'categoria' => 'limpieza', 'precio_compra' => 3.00, 'precio_venta' => 4.50, 'stock_actual' => 100, 'codigo_barras' => 'LIM007', 'pasillo' => '5', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora'],
-            ['nombre' => 'Papel Higienico Elite (rollo x50m)', 'categoria' => 'limpieza', 'precio_compra' => 2.50, 'precio_venta' => 3.50, 'stock_actual' => 150, 'codigo_barras' => 'LIM008', 'pasillo' => '5', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'dillman'],
-            ['nombre' => 'Papel Higienico Elite pack 12', 'categoria' => 'limpieza', 'precio_compra' => 28.00, 'precio_venta' => 38.00, 'stock_actual' => 30, 'codigo_barras' => 'LIM009', 'pasillo' => '5', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'dillman', 'en_descuento' => true, 'precio_oferta' => 32.00],
-            ['nombre' => 'Limpiador Multiusos Poett 500ml', 'categoria' => 'limpieza', 'precio_compra' => 5.00, 'precio_venta' => 7.00, 'stock_actual' => 60, 'codigo_barras' => 'LIM010', 'pasillo' => '5', 'nivel' => 'B', 'unidad_medida' => 'lt', 'proveedor' => 'dillman'],
-            ['nombre' => 'Lustramuebles Pronto 250ml', 'categoria' => 'limpieza', 'precio_compra' => 6.00, 'precio_venta' => 8.50, 'stock_actual' => 40, 'codigo_barras' => 'LIM011', 'pasillo' => '5', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'dillman'],
-            ['nombre' => 'Ambientador Sapolio Aerosol 360ml', 'categoria' => 'limpieza', 'precio_compra' => 7.00, 'precio_venta' => 9.50, 'stock_actual' => 45, 'codigo_barras' => 'LIM012', 'pasillo' => '5', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'dillman'],
-            ['nombre' => 'Esponja Scotch-Brite 3M', 'categoria' => 'limpieza', 'precio_compra' => 2.00, 'precio_venta' => 3.00, 'stock_actual' => 120, 'codigo_barras' => 'LIM013', 'pasillo' => '5', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora'],
-            ['nombre' => 'Bolsa de Basura Resistente pack 20', 'categoria' => 'limpieza', 'precio_compra' => 5.00, 'precio_venta' => 7.00, 'stock_actual' => 80, 'codigo_barras' => 'LIM014', 'pasillo' => '5', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora'],
-            ['nombre' => 'Cera para Pisos Los Andes 500ml', 'categoria' => 'limpieza', 'precio_compra' => 8.00, 'precio_venta' => 11.00, 'stock_actual' => 35, 'codigo_barras' => 'LIM015', 'pasillo' => '5', 'nivel' => 'B', 'unidad_medida' => 'lt', 'proveedor' => 'dillman'],
+            // Muebles
+            ['nombre' => 'Annibale Colombo Bed', 'categoria' => 'furniture', 'precio_compra' => 10449.95, 'precio_venta' => 14249.93, 'stock_actual' => 88, 'codigo_barras' => 'ANN011', 'pasillo' => '3', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'annibale_colombo', 'descripcion' => 'The Annibale Colombo Bed is a luxurious and elegant bed frame, crafted with high-quality materials for a comfortable and stylish bedroom.', 'en_descuento' => true, 'precio_oferta' => 13028.71, ],
+            ['nombre' => 'Annibale Colombo Sofa', 'categoria' => 'furniture', 'precio_compra' => 13749.95, 'precio_venta' => 18749.93, 'stock_actual' => 60, 'codigo_barras' => 'ANN012', 'pasillo' => '7', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'annibale_colombo', 'descripcion' => 'The Annibale Colombo Sofa is a sophisticated and comfortable seating option, featuring exquisite design and premium upholstery for your living room.', 'en_descuento' => true, 'precio_oferta' => 16049.94, ],
+            ['nombre' => 'Bedside Table African Cherry', 'categoria' => 'furniture', 'precio_compra' => 1649.95, 'precio_venta' => 2249.93, 'stock_actual' => 64, 'codigo_barras' => 'BED013', 'pasillo' => '5', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'furniture_co', 'descripcion' => 'The Bedside Table in African Cherry is a stylish and functional addition to your bedroom, providing convenient storage space and a touch of elegance.', 'en_descuento' => true, 'precio_oferta' => 1820.42, ],
+            ['nombre' => 'Knoll Saarinen Executive Conference Chair', 'categoria' => 'furniture', 'precio_compra' => 2749.95, 'precio_venta' => 3749.93, 'stock_actual' => 26, 'codigo_barras' => 'KNO014', 'pasillo' => '9', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'knoll', 'descripcion' => 'The Knoll Saarinen Executive Conference Chair is a modern and ergonomic chair, perfect for your office or conference room with its timeless design.', ],
+            ['nombre' => 'Wooden Bathroom Sink With Mirror', 'categoria' => 'furniture', 'precio_compra' => 4399.95, 'precio_venta' => 5999.93, 'stock_actual' => 7, 'codigo_barras' => 'WOO015', 'pasillo' => '3', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'bath_trends', 'descripcion' => 'The Wooden Bathroom Sink with Mirror is a unique and stylish addition to your bathroom, featuring a wooden sink countertop and a matching mirror.', 'en_descuento' => true, 'precio_oferta' => 5471.94, ],
 
-            // -- PANADERIA (15) --
-            ['nombre' => 'Pan de Molde Bimbo 500g', 'categoria' => 'panaderia', 'precio_compra' => 7.00, 'precio_venta' => 9.50, 'stock_actual' => 50, 'codigo_barras' => 'PAN001', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora'],
-            ['nombre' => 'Pan Integral Bimbo 500g', 'categoria' => 'panaderia', 'precio_compra' => 8.00, 'precio_venta' => 11.00, 'stock_actual' => 40, 'codigo_barras' => 'PAN002', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora'],
-            ['nombre' => 'Galletas Maria Casino 250g', 'categoria' => 'panaderia', 'precio_compra' => 4.00, 'precio_venta' => 5.50, 'stock_actual' => 90, 'codigo_barras' => 'PAN003', 'pasillo' => '6', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fino', 'en_descuento' => true, 'precio_oferta' => 4.50],
-            ['nombre' => 'Galletas Soda Casino 250g', 'categoria' => 'panaderia', 'precio_compra' => 4.00, 'precio_venta' => 5.50, 'stock_actual' => 85, 'codigo_barras' => 'PAN004', 'pasillo' => '6', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fino'],
-            ['nombre' => 'Bizcocho Salteno 200g', 'categoria' => 'panaderia', 'precio_compra' => 5.00, 'precio_venta' => 7.00, 'stock_actual' => 45, 'codigo_barras' => 'PAN005', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora'],
-            ['nombre' => 'Tortillas de Harima 6un', 'categoria' => 'panaderia', 'precio_compra' => 6.00, 'precio_venta' => 8.50, 'stock_actual' => 60, 'codigo_barras' => 'PAN006', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora'],
-            ['nombre' => 'Paneton D Avila 250g', 'categoria' => 'panaderia', 'precio_compra' => 6.00, 'precio_venta' => 8.50, 'stock_actual' => 30, 'codigo_barras' => 'PAN007', 'pasillo' => '6', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora'],
-            ['nombre' => 'Pan de Muerto 200g', 'categoria' => 'panaderia', 'precio_compra' => 3.00, 'precio_venta' => 4.50, 'stock_actual' => 40, 'codigo_barras' => 'PAN008', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora'],
-            ['nombre' => 'Galletas Rellenas Casino Vainilla 300g', 'categoria' => 'panaderia', 'precio_compra' => 5.00, 'precio_venta' => 7.00, 'stock_actual' => 70, 'codigo_barras' => 'PAN009', 'pasillo' => '6', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fino', 'en_descuento' => true, 'precio_oferta' => 5.90],
-            ['nombre' => 'Galletas Chokochips Casino 300g', 'categoria' => 'panaderia', 'precio_compra' => 6.00, 'precio_venta' => 8.50, 'stock_actual' => 55, 'codigo_barras' => 'PAN010', 'pasillo' => '6', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fino'],
-            ['nombre' => 'Pan Blandito Bimbo 380g', 'categoria' => 'panaderia', 'precio_compra' => 8.00, 'precio_venta' => 11.00, 'stock_actual' => 35, 'codigo_barras' => 'PAN011', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora'],
-            ['nombre' => 'Croissant Bimbo 200g', 'categoria' => 'panaderia', 'precio_compra' => 7.00, 'precio_venta' => 9.50, 'stock_actual' => 25, 'codigo_barras' => 'PAN012', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora'],
-            ['nombre' => 'Muffin Vainilla 100g', 'categoria' => 'panaderia', 'precio_compra' => 3.50, 'precio_venta' => 5.00, 'stock_actual' => 50, 'codigo_barras' => 'PAN013', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora'],
-            ['nombre' => 'Pan de Hamburguesa Bimbo 4un', 'categoria' => 'panaderia', 'precio_compra' => 6.00, 'precio_venta' => 8.50, 'stock_actual' => 40, 'codigo_barras' => 'PAN014', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora'],
-            ['nombre' => 'Rosquillas Caseras 200g', 'categoria' => 'panaderia', 'precio_compra' => 4.00, 'precio_venta' => 5.50, 'stock_actual' => 35, 'codigo_barras' => 'PAN015', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora'],
+            // Despensa
+            ['nombre' => 'Apple', 'categoria' => 'groceries', 'precio_compra' => 10.95, 'precio_venta' => 14.93, 'stock_actual' => 8, 'codigo_barras' => 'APP016', 'pasillo' => '7', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Fresh and crisp apples, perfect for snacking or incorporating into various recipes.', 'en_descuento' => true, 'precio_oferta' => 13.05, 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Beef Steak', 'categoria' => 'groceries', 'precio_compra' => 71.45, 'precio_venta' => 97.43, 'stock_actual' => 86, 'codigo_barras' => 'BEE017', 'pasillo' => '1', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'High-quality beef steak, great for grilling or cooking to your preferred level of doneness.', 'en_descuento' => true, 'precio_oferta' => 88.07, 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Cat Food', 'categoria' => 'groceries', 'precio_compra' => 49.45, 'precio_venta' => 67.43, 'stock_actual' => 46, 'codigo_barras' => 'CAT018', 'pasillo' => '7', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Nutritious cat food formulated to meet the dietary needs of your feline friend.', 'en_descuento' => true, 'precio_oferta' => 60.97, 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Chicken Meat', 'categoria' => 'groceries', 'precio_compra' => 54.95, 'precio_venta' => 74.93, 'stock_actual' => 97, 'codigo_barras' => 'CHI019', 'pasillo' => '7', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Fresh and tender chicken meat, suitable for various culinary preparations.', 'en_descuento' => true, 'precio_oferta' => 64.66, 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Cooking Oil', 'categoria' => 'groceries', 'precio_compra' => 27.45, 'precio_venta' => 37.43, 'stock_actual' => 10, 'codigo_barras' => 'COO020', 'pasillo' => '7', 'nivel' => 'C', 'unidad_medida' => 'lt', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Versatile cooking oil suitable for frying, sautéing, and various culinary applications.', 'en_descuento' => true, 'precio_oferta' => 33.94, 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Cucumber', 'categoria' => 'groceries', 'precio_compra' => 8.2, 'precio_venta' => 11.18, 'stock_actual' => 84, 'codigo_barras' => 'CUC021', 'pasillo' => '7', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Crisp and hydrating cucumbers, ideal for salads, snacks, or as a refreshing side.', 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Dog Food', 'categoria' => 'groceries', 'precio_compra' => 60.45, 'precio_venta' => 82.43, 'stock_actual' => 71, 'codigo_barras' => 'DOG022', 'pasillo' => '5', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Specially formulated dog food designed to provide essential nutrients for your canine companion.', 'en_descuento' => true, 'precio_oferta' => 73.96, 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Eggs', 'categoria' => 'groceries', 'precio_compra' => 16.45, 'precio_venta' => 22.43, 'stock_actual' => 9, 'codigo_barras' => 'EGG023', 'pasillo' => '5', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Fresh eggs, a versatile ingredient for baking, cooking, or breakfast.', 'en_descuento' => true, 'precio_oferta' => 19.95, 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Fish Steak', 'categoria' => 'groceries', 'precio_compra' => 82.45, 'precio_venta' => 112.43, 'stock_actual' => 74, 'codigo_barras' => 'FIS024', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Quality fish steak, suitable for grilling, baking, or pan-searing.', 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Green Bell Pepper', 'categoria' => 'groceries', 'precio_compra' => 7.1, 'precio_venta' => 9.68, 'stock_actual' => 33, 'codigo_barras' => 'GRE025', 'pasillo' => '1', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Fresh and vibrant green bell pepper, perfect for adding color and flavor to your dishes.', 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Green Chili Pepper', 'categoria' => 'groceries', 'precio_compra' => 5.45, 'precio_venta' => 7.43, 'stock_actual' => 3, 'codigo_barras' => 'GRE026', 'pasillo' => '1', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Spicy green chili pepper, ideal for adding heat to your favorite recipes.', 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Honey Jar', 'categoria' => 'groceries', 'precio_compra' => 38.45, 'precio_venta' => 52.43, 'stock_actual' => 34, 'codigo_barras' => 'HON027', 'pasillo' => '5', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Pure and natural honey in a convenient jar, perfect for sweetening beverages or drizzling over food.', 'en_descuento' => true, 'precio_oferta' => 44.88, 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Ice Cream', 'categoria' => 'groceries', 'precio_compra' => 30.2, 'precio_venta' => 41.18, 'stock_actual' => 27, 'codigo_barras' => 'ICE028', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Creamy and delicious ice cream, available in various flavors for a delightful treat.', 'en_descuento' => true, 'precio_oferta' => 37.6, 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Juice', 'categoria' => 'groceries', 'precio_compra' => 21.95, 'precio_venta' => 29.93, 'stock_actual' => 50, 'codigo_barras' => 'JUI029', 'pasillo' => '7', 'nivel' => 'C', 'unidad_medida' => 'lt', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Refreshing fruit juice, packed with vitamins and great for staying hydrated.', 'en_descuento' => true, 'precio_oferta' => 26.32, 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Kiwi', 'categoria' => 'groceries', 'precio_compra' => 13.7, 'precio_venta' => 18.68, 'stock_actual' => 99, 'codigo_barras' => 'KIW030', 'pasillo' => '8', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Nutrient-rich kiwi, perfect for snacking or adding a tropical twist to your dishes.', 'en_descuento' => true, 'precio_oferta' => 15.84, 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Lemon', 'categoria' => 'groceries', 'precio_compra' => 4.35, 'precio_venta' => 5.93, 'stock_actual' => 31, 'codigo_barras' => 'LEM031', 'pasillo' => '2', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Zesty and tangy lemons, versatile for cooking, baking, or making refreshing beverages.', 'en_descuento' => true, 'precio_oferta' => 5.35, 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Milk', 'categoria' => 'groceries', 'precio_compra' => 19.2, 'precio_venta' => 26.18, 'stock_actual' => 27, 'codigo_barras' => 'MIL032', 'pasillo' => '9', 'nivel' => 'A', 'unidad_medida' => 'lt', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Fresh and nutritious milk, a staple for various recipes and daily consumption.', 'en_descuento' => true, 'precio_oferta' => 22.58, 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Mulberry', 'categoria' => 'groceries', 'precio_compra' => 27.45, 'precio_venta' => 37.43, 'stock_actual' => 99, 'codigo_barras' => 'MUL033', 'pasillo' => '7', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Sweet and juicy mulberries, perfect for snacking or adding to desserts and cereals.', 'en_descuento' => true, 'precio_oferta' => 32.61, 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Nescafe Coffee', 'categoria' => 'groceries', 'precio_compra' => 43.95, 'precio_venta' => 59.93, 'stock_actual' => 57, 'codigo_barras' => 'NES034', 'pasillo' => '4', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Quality coffee from Nescafe, available in various blends for a rich and satisfying cup.', 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Potatoes', 'categoria' => 'groceries', 'precio_compra' => 12.6, 'precio_venta' => 17.18, 'stock_actual' => 13, 'codigo_barras' => 'POT035', 'pasillo' => '4', 'nivel' => 'B', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Versatile and starchy potatoes, great for roasting, mashing, or as a side dish.', 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Protein Powder', 'categoria' => 'groceries', 'precio_compra' => 109.95, 'precio_venta' => 149.93, 'stock_actual' => 80, 'codigo_barras' => 'PRO036', 'pasillo' => '1', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Nutrient-packed protein powder, ideal for supplementing your diet with essential proteins.', 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Red Onions', 'categoria' => 'groceries', 'precio_compra' => 10.95, 'precio_venta' => 14.93, 'stock_actual' => 82, 'codigo_barras' => 'RED037', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Flavorful and aromatic red onions, perfect for adding depth to your savory dishes.', 'en_descuento' => true, 'precio_oferta' => 13.45, 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Rice', 'categoria' => 'groceries', 'precio_compra' => 32.95, 'precio_venta' => 44.93, 'stock_actual' => 59, 'codigo_barras' => 'RIC038', 'pasillo' => '5', 'nivel' => 'B', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'High-quality rice, a staple for various cuisines and a versatile base for many dishes.', 'en_descuento' => true, 'precio_oferta' => 40.76, 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Soft Drinks', 'categoria' => 'groceries', 'precio_compra' => 10.95, 'precio_venta' => 14.93, 'stock_actual' => 53, 'codigo_barras' => 'SOF039', 'pasillo' => '8', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Assorted soft drinks in various flavors, perfect for refreshing beverages.', 'en_descuento' => true, 'precio_oferta' => 12.32, 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Strawberry', 'categoria' => 'groceries', 'precio_compra' => 21.95, 'precio_venta' => 29.93, 'stock_actual' => 46, 'codigo_barras' => 'STR040', 'pasillo' => '4', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Sweet and succulent strawberries, great for snacking, desserts, or blending into smoothies.', 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Tissue Paper Box', 'categoria' => 'groceries', 'precio_compra' => 13.7, 'precio_venta' => 18.68, 'stock_actual' => 86, 'codigo_barras' => 'TIS041', 'pasillo' => '1', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Convenient tissue paper box for everyday use, providing soft and absorbent tissues.', 'en_descuento' => true, 'precio_oferta' => 16.2, 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
+            ['nombre' => 'Water', 'categoria' => 'groceries', 'precio_compra' => 5.45, 'precio_venta' => 7.43, 'stock_actual' => 53, 'codigo_barras' => 'WAT042', 'pasillo' => '2', 'nivel' => 'A', 'unidad_medida' => 'lt', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'Pure and refreshing bottled water, essential for staying hydrated throughout the day.', 'en_descuento' => true, 'precio_oferta' => 6.32, 'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ],
 
-            // -- CARNES Y EMBUTIDOS (20) --
-            ['nombre' => 'Carne de Res Molida 1kg', 'categoria' => 'carnes', 'precio_compra' => 22.00, 'precio_venta' => 30.00, 'stock_actual' => 40, 'codigo_barras' => 'CAR001', 'pasillo' => '7', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true, 'en_descuento' => true, 'precio_oferta' => 26.00],
-            ['nombre' => 'Carne de Res en Trozo 1kg', 'categoria' => 'carnes', 'precio_compra' => 25.00, 'precio_venta' => 34.00, 'stock_actual' => 30, 'codigo_barras' => 'CAR002', 'pasillo' => '7', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Pollo Entero 1kg', 'categoria' => 'carnes', 'precio_compra' => 14.00, 'precio_venta' => 19.00, 'stock_actual' => 50, 'codigo_barras' => 'CAR003', 'pasillo' => '7', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Pechuga de Pollo 1kg', 'categoria' => 'carnes', 'precio_compra' => 18.00, 'precio_venta' => 24.00, 'stock_actual' => 35, 'codigo_barras' => 'CAR004', 'pasillo' => '7', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Salchicha Vienesa Rosvil 300g', 'categoria' => 'carnes', 'precio_compra' => 8.00, 'precio_venta' => 11.00, 'stock_actual' => 60, 'codigo_barras' => 'CAR005', 'pasillo' => '7', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora', 'es_perecedero' => true, 'en_descuento' => true, 'precio_oferta' => 9.50],
-            ['nombre' => 'Jamon de Cerdo Rosvil 250g', 'categoria' => 'carnes', 'precio_compra' => 10.00, 'precio_venta' => 14.00, 'stock_actual' => 45, 'codigo_barras' => 'CAR006', 'pasillo' => '7', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Chorizo Parrillero 500g', 'categoria' => 'carnes', 'precio_compra' => 12.00, 'precio_venta' => 16.00, 'stock_actual' => 35, 'codigo_barras' => 'CAR007', 'pasillo' => '7', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Carne de Cerdo 1kg', 'categoria' => 'carnes', 'precio_compra' => 18.00, 'precio_venta' => 24.00, 'stock_actual' => 25, 'codigo_barras' => 'CAR008', 'pasillo' => '7', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Milanesa de Pollo 500g', 'categoria' => 'carnes', 'precio_compra' => 10.00, 'precio_venta' => 14.00, 'stock_actual' => 30, 'codigo_barras' => 'CAR009', 'pasillo' => '7', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora', 'es_perecedero' => true, 'en_descuento' => true, 'precio_oferta' => 12.00],
-            ['nombre' => 'Hamburguesa de Res 500g', 'categoria' => 'carnes', 'precio_compra' => 11.00, 'precio_venta' => 15.00, 'stock_actual' => 40, 'codigo_barras' => 'CAR010', 'pasillo' => '7', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Tocino Ahumado 200g', 'categoria' => 'carnes', 'precio_compra' => 9.00, 'precio_venta' => 12.50, 'stock_actual' => 30, 'codigo_barras' => 'CAR011', 'pasillo' => '7', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Sobrasada Rosvil 200g', 'categoria' => 'carnes', 'precio_compra' => 8.00, 'precio_venta' => 11.00, 'stock_actual' => 35, 'codigo_barras' => 'CAR012', 'pasillo' => '7', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Alitas de Pollo 1kg', 'categoria' => 'carnes', 'precio_compra' => 12.00, 'precio_venta' => 16.00, 'stock_actual' => 30, 'codigo_barras' => 'CAR013', 'pasillo' => '7', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Mortadela Rosvil 500g', 'categoria' => 'carnes', 'precio_compra' => 7.00, 'precio_venta' => 9.50, 'stock_actual' => 55, 'codigo_barras' => 'CAR014', 'pasillo' => '7', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Costilla de Res 1kg', 'categoria' => 'carnes', 'precio_compra' => 20.00, 'precio_venta' => 27.00, 'stock_actual' => 20, 'codigo_barras' => 'CAR015', 'pasillo' => '7', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Carne de Cordero 1kg', 'categoria' => 'carnes', 'precio_compra' => 28.00, 'precio_venta' => 38.00, 'stock_actual' => 15, 'codigo_barras' => 'CAR016', 'pasillo' => '7', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Lomito de Cerdo 500g', 'categoria' => 'carnes', 'precio_compra' => 14.00, 'precio_venta' => 19.00, 'stock_actual' => 25, 'codigo_barras' => 'CAR017', 'pasillo' => '7', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora', 'es_perecedero' => true, 'en_descuento' => true, 'precio_oferta' => 16.00],
-            ['nombre' => 'Pata de Cerdo 1kg', 'categoria' => 'carnes', 'precio_compra' => 10.00, 'precio_venta' => 14.00, 'stock_actual' => 20, 'codigo_barras' => 'CAR018', 'pasillo' => '7', 'nivel' => 'B', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Chuleta de Cerdo 1kg', 'categoria' => 'carnes', 'precio_compra' => 16.00, 'precio_venta' => 22.00, 'stock_actual' => 20, 'codigo_barras' => 'CAR019', 'pasillo' => '7', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true, 'en_descuento' => true, 'precio_oferta' => 18.50],
-            ['nombre' => 'Salchicha Parrillera Rosvil 400g', 'categoria' => 'carnes', 'precio_compra' => 9.00, 'precio_venta' => 12.50, 'stock_actual' => 40, 'codigo_barras' => 'CAR020', 'pasillo' => '7', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
+            // Decoración del Hogar
+            ['nombre' => 'Decoration Swing', 'categoria' => 'home-decoration', 'precio_compra' => 329.95, 'precio_venta' => 449.93, 'stock_actual' => 47, 'codigo_barras' => 'DEC043', 'pasillo' => '4', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Decoration Swing is a charming addition to your home decor. Crafted with intricate details, it adds a touch of elegance and whimsy to any room.', 'en_descuento' => true, 'precio_oferta' => 403.09, ],
+            ['nombre' => 'Family Tree Photo Frame', 'categoria' => 'home-decoration', 'precio_compra' => 164.95, 'precio_venta' => 224.93, 'stock_actual' => 77, 'codigo_barras' => 'FAM044', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Family Tree Photo Frame is a sentimental and stylish way to display your cherished family memories. With multiple photo slots, it tells the story of your loved ones.', 'en_descuento' => true, 'precio_oferta' => 191.48, ],
+            ['nombre' => 'House Showpiece Plant', 'categoria' => 'home-decoration', 'precio_compra' => 219.95, 'precio_venta' => 299.93, 'stock_actual' => 28, 'codigo_barras' => 'HOU045', 'pasillo' => '8', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The House Showpiece Plant is an artificial plant that brings a touch of nature to your home without the need for maintenance. It adds greenery and style to any space.', ],
+            ['nombre' => 'Plant Pot', 'categoria' => 'home-decoration', 'precio_compra' => 82.45, 'precio_venta' => 112.43, 'stock_actual' => 59, 'codigo_barras' => 'PLA046', 'pasillo' => '8', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Plant Pot is a stylish container for your favorite plants. With a sleek design, it complements your indoor or outdoor garden, adding a modern touch to your plant display.', ],
+            ['nombre' => 'Table Lamp', 'categoria' => 'home-decoration', 'precio_compra' => 274.95, 'precio_venta' => 374.93, 'stock_actual' => 9, 'codigo_barras' => 'TAB047', 'pasillo' => '8', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Table Lamp is a functional and decorative lighting solution for your living space. With a modern design, it provides both ambient and task lighting, enhancing the atmosphere.', ],
 
-            // -- FRUTAS Y VERDURAS (20) --
-            ['nombre' => 'Papa Blanca 1kg', 'categoria' => 'frutas', 'precio_compra' => 3.00, 'precio_venta' => 4.50, 'stock_actual' => 100, 'codigo_barras' => 'FRS001', 'pasillo' => '8', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Cebolla 1kg', 'categoria' => 'frutas', 'precio_compra' => 3.50, 'precio_venta' => 5.00, 'stock_actual' => 90, 'codigo_barras' => 'FRS002', 'pasillo' => '8', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Tomate 1kg', 'categoria' => 'frutas', 'precio_compra' => 4.00, 'precio_venta' => 5.50, 'stock_actual' => 80, 'codigo_barras' => 'FRS003', 'pasillo' => '8', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true, 'en_descuento' => true, 'precio_oferta' => 4.50],
-            ['nombre' => 'Platano 1kg', 'categoria' => 'frutas', 'precio_compra' => 4.00, 'precio_venta' => 5.50, 'stock_actual' => 85, 'codigo_barras' => 'FRS004', 'pasillo' => '8', 'nivel' => 'B', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Manzana Nacional 1kg', 'categoria' => 'frutas', 'precio_compra' => 6.00, 'precio_venta' => 8.50, 'stock_actual' => 60, 'codigo_barras' => 'FRS005', 'pasillo' => '8', 'nivel' => 'B', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Naranja 1kg', 'categoria' => 'frutas', 'precio_compra' => 5.00, 'precio_venta' => 7.00, 'stock_actual' => 70, 'codigo_barras' => 'FRS006', 'pasillo' => '8', 'nivel' => 'B', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true, 'en_descuento' => true, 'precio_oferta' => 5.90],
-            ['nombre' => 'Limon 1kg', 'categoria' => 'frutas', 'precio_compra' => 5.00, 'precio_venta' => 7.00, 'stock_actual' => 65, 'codigo_barras' => 'FRS007', 'pasillo' => '8', 'nivel' => 'B', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Zanahoria 1kg', 'categoria' => 'frutas', 'precio_compra' => 3.00, 'precio_venta' => 4.50, 'stock_actual' => 75, 'codigo_barras' => 'FRS008', 'pasillo' => '8', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Lechuga 1un', 'categoria' => 'frutas', 'precio_compra' => 2.00, 'precio_venta' => 3.00, 'stock_actual' => 50, 'codigo_barras' => 'FRS009', 'pasillo' => '8', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Locoto 1kg', 'categoria' => 'frutas', 'precio_compra' => 6.00, 'precio_venta' => 8.50, 'stock_actual' => 40, 'codigo_barras' => 'FRS010', 'pasillo' => '8', 'nivel' => 'B', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Durazno 1kg', 'categoria' => 'frutas', 'precio_compra' => 7.00, 'precio_venta' => 9.50, 'stock_actual' => 35, 'codigo_barras' => 'FRS011', 'pasillo' => '8', 'nivel' => 'B', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Uva 1kg', 'categoria' => 'frutas', 'precio_compra' => 10.00, 'precio_venta' => 14.00, 'stock_actual' => 25, 'codigo_barras' => 'FRS012', 'pasillo' => '8', 'nivel' => 'B', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true, 'en_descuento' => true, 'precio_oferta' => 11.90],
-            ['nombre' => 'Frutilla 1kg', 'categoria' => 'frutas', 'precio_compra' => 12.00, 'precio_venta' => 16.00, 'stock_actual' => 20, 'codigo_barras' => 'FRS013', 'pasillo' => '8', 'nivel' => 'B', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Pimiento Morron 1kg', 'categoria' => 'frutas', 'precio_compra' => 7.00, 'precio_venta' => 9.50, 'stock_actual' => 45, 'codigo_barras' => 'FRS014', 'pasillo' => '8', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Ajo 250g', 'categoria' => 'frutas', 'precio_compra' => 4.00, 'precio_venta' => 5.50, 'stock_actual' => 60, 'codigo_barras' => 'FRS015', 'pasillo' => '8', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Pera 1kg', 'categoria' => 'frutas', 'precio_compra' => 7.00, 'precio_venta' => 9.50, 'stock_actual' => 30, 'codigo_barras' => 'FRS016', 'pasillo' => '8', 'nivel' => 'B', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Sandia 1un', 'categoria' => 'frutas', 'precio_compra' => 12.00, 'precio_venta' => 16.00, 'stock_actual' => 15, 'codigo_barras' => 'FRS017', 'pasillo' => '8', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Pina 1un', 'categoria' => 'frutas', 'precio_compra' => 8.00, 'precio_venta' => 11.00, 'stock_actual' => 20, 'codigo_barras' => 'FRS018', 'pasillo' => '8', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora', 'es_perecedero' => true, 'en_descuento' => true, 'precio_oferta' => 9.00],
-            ['nombre' => 'Mango 1kg', 'categoria' => 'frutas', 'precio_compra' => 8.00, 'precio_venta' => 11.00, 'stock_actual' => 25, 'codigo_barras' => 'FRS019', 'pasillo' => '8', 'nivel' => 'B', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
-            ['nombre' => 'Habas 1kg', 'categoria' => 'frutas', 'precio_compra' => 5.00, 'precio_venta' => 7.00, 'stock_actual' => 35, 'codigo_barras' => 'FRS020', 'pasillo' => '8', 'nivel' => 'A', 'unidad_medida' => 'kg', 'proveedor' => 'distribuidora', 'es_perecedero' => true],
+            // Accesorios de Cocina
+            ['nombre' => 'Bamboo Spatula', 'categoria' => 'kitchen-accessories', 'precio_compra' => 43.95, 'precio_venta' => 59.93, 'stock_actual' => 37, 'codigo_barras' => 'BAM048', 'pasillo' => '1', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Bamboo Spatula is a versatile kitchen tool made from eco-friendly bamboo. Ideal for flipping, stirring, and serving various dishes.', ],
+            ['nombre' => 'Black Aluminium Cup', 'categoria' => 'kitchen-accessories', 'precio_compra' => 32.95, 'precio_venta' => 44.93, 'stock_actual' => 75, 'codigo_barras' => 'BLA049', 'pasillo' => '1', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Black Aluminium Cup is a stylish and durable cup suitable for both hot and cold beverages. Its sleek black design adds a modern touch to your drinkware collection.', 'en_descuento' => true, 'precio_oferta' => 37.9, ],
+            ['nombre' => 'Black Whisk', 'categoria' => 'kitchen-accessories', 'precio_compra' => 54.95, 'precio_venta' => 74.93, 'stock_actual' => 73, 'codigo_barras' => 'BLA050', 'pasillo' => '7', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Black Whisk is a kitchen essential for whisking and beating ingredients. Its ergonomic handle and sleek design make it a practical and stylish tool.', 'en_descuento' => true, 'precio_oferta' => 67.26, ],
+            ['nombre' => 'Boxed Blender', 'categoria' => 'kitchen-accessories', 'precio_compra' => 219.95, 'precio_venta' => 299.93, 'stock_actual' => 9, 'codigo_barras' => 'BOX051', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Boxed Blender is a powerful and compact blender perfect for smoothies, shakes, and more. Its convenient design and multiple functions make it a versatile kitchen appliance.', ],
+            ['nombre' => 'Carbon Steel Wok', 'categoria' => 'kitchen-accessories', 'precio_compra' => 164.95, 'precio_venta' => 224.93, 'stock_actual' => 40, 'codigo_barras' => 'CAR052', 'pasillo' => '1', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Carbon Steel Wok is a versatile cooking pan suitable for stir-frying, sautéing, and deep frying. Its sturdy construction ensures even heat distribution for delicious meals.', ],
+            ['nombre' => 'Chopping Board', 'categoria' => 'kitchen-accessories', 'precio_compra' => 71.45, 'precio_venta' => 97.43, 'stock_actual' => 14, 'codigo_barras' => 'CHO053', 'pasillo' => '2', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Chopping Board is an essential kitchen accessory for food preparation. Made from durable material, it provides a safe and hygienic surface for cutting and chopping.', 'en_descuento' => true, 'precio_oferta' => 89.61, ],
+            ['nombre' => 'Citrus Squeezer Yellow', 'categoria' => 'kitchen-accessories', 'precio_compra' => 49.45, 'precio_venta' => 67.43, 'stock_actual' => 22, 'codigo_barras' => 'CIT054', 'pasillo' => '7', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Citrus Squeezer in Yellow is a handy tool for extracting juice from citrus fruits. Its vibrant color adds a cheerful touch to your kitchen gadgets.', 'en_descuento' => true, 'precio_oferta' => 59.27, ],
+            ['nombre' => 'Egg Slicer', 'categoria' => 'kitchen-accessories', 'precio_compra' => 38.45, 'precio_venta' => 52.43, 'stock_actual' => 40, 'codigo_barras' => 'EGG055', 'pasillo' => '4', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Egg Slicer is a convenient tool for slicing boiled eggs evenly. It\'s perfect for salads, sandwiches, and other dishes where sliced eggs are desired.', 'en_descuento' => true, 'precio_oferta' => 44.69, ],
+            ['nombre' => 'Electric Stove', 'categoria' => 'kitchen-accessories', 'precio_compra' => 274.95, 'precio_venta' => 374.93, 'stock_actual' => 21, 'codigo_barras' => 'ELE056', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Electric Stove provides a portable and efficient cooking solution. Ideal for small kitchens or as an additional cooking surface for various culinary needs.', 'en_descuento' => true, 'precio_oferta' => 322.29, ],
+            ['nombre' => 'Fine Mesh Strainer', 'categoria' => 'kitchen-accessories', 'precio_compra' => 54.95, 'precio_venta' => 74.93, 'stock_actual' => 85, 'codigo_barras' => 'FIN057', 'pasillo' => '5', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Fine Mesh Strainer is a versatile tool for straining liquids and sifting dry ingredients. Its fine mesh ensures efficient filtering for smooth cooking and baking.', ],
+            ['nombre' => 'Fork', 'categoria' => 'kitchen-accessories', 'precio_compra' => 21.95, 'precio_venta' => 29.93, 'stock_actual' => 7, 'codigo_barras' => 'FOR058', 'pasillo' => '5', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Fork is a classic utensil for various dining and serving purposes. Its durable and ergonomic design makes it a reliable choice for everyday use.', 'en_descuento' => true, 'precio_oferta' => 27.51, ],
+            ['nombre' => 'Glass', 'categoria' => 'kitchen-accessories', 'precio_compra' => 27.45, 'precio_venta' => 37.43, 'stock_actual' => 46, 'codigo_barras' => 'GLA059', 'pasillo' => '8', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Glass is a versatile and elegant drinking vessel suitable for a variety of beverages. Its clear design allows you to enjoy the colors and textures of your drinks.', ],
+            ['nombre' => 'Grater Black', 'categoria' => 'kitchen-accessories', 'precio_compra' => 60.45, 'precio_venta' => 82.43, 'stock_actual' => 84, 'codigo_barras' => 'GRA060', 'pasillo' => '1', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Grater in Black is a handy kitchen tool for grating cheese, vegetables, and more. Its sleek design and sharp blades make food preparation efficient and easy.', ],
+            ['nombre' => 'Hand Blender', 'categoria' => 'kitchen-accessories', 'precio_compra' => 192.45, 'precio_venta' => 262.43, 'stock_actual' => 84, 'codigo_barras' => 'HAN061', 'pasillo' => '3', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Hand Blender is a versatile kitchen appliance for blending, pureeing, and mixing. Its compact design and powerful motor make it a convenient tool for various recipes.', 'en_descuento' => true, 'precio_oferta' => 217.76, ],
+            ['nombre' => 'Ice Cube Tray', 'categoria' => 'kitchen-accessories', 'precio_compra' => 32.95, 'precio_venta' => 44.93, 'stock_actual' => 13, 'codigo_barras' => 'ICE062', 'pasillo' => '8', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Ice Cube Tray is a practical accessory for making ice cubes in various shapes. Perfect for keeping your drinks cool and adding a fun element to your beverages.', ],
+            ['nombre' => 'Kitchen Sieve', 'categoria' => 'kitchen-accessories', 'precio_compra' => 43.95, 'precio_venta' => 59.93, 'stock_actual' => 68, 'codigo_barras' => 'KIT063', 'pasillo' => '9', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Kitchen Sieve is a versatile tool for sifting and straining dry and wet ingredients. Its fine mesh design ensures smooth results in your cooking and baking.', 'en_descuento' => true, 'precio_oferta' => 48.6, ],
+            ['nombre' => 'Knife', 'categoria' => 'kitchen-accessories', 'precio_compra' => 82.45, 'precio_venta' => 112.43, 'stock_actual' => 7, 'codigo_barras' => 'KNI064', 'pasillo' => '2', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Knife is an essential kitchen tool for chopping, slicing, and dicing. Its sharp blade and ergonomic handle make it a reliable choice for food preparation.', 'en_descuento' => true, 'precio_oferta' => 91.23, ],
+            ['nombre' => 'Lunch Box', 'categoria' => 'kitchen-accessories', 'precio_compra' => 71.45, 'precio_venta' => 97.43, 'stock_actual' => 94, 'codigo_barras' => 'LUN065', 'pasillo' => '5', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Lunch Box is a convenient and portable container for packing and carrying your meals. With compartments for different foods, it\'s perfect for on-the-go dining.', 'en_descuento' => true, 'precio_oferta' => 87.36, ],
+            ['nombre' => 'Microwave Oven', 'categoria' => 'kitchen-accessories', 'precio_compra' => 494.95, 'precio_venta' => 674.93, 'stock_actual' => 59, 'codigo_barras' => 'MIC066', 'pasillo' => '8', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Microwave Oven is a versatile kitchen appliance for quick and efficient cooking, reheating, and defrosting. Its compact size makes it suitable for various kitchen setups.', 'en_descuento' => true, 'precio_oferta' => 593.06, ],
+            ['nombre' => 'Mug Tree Stand', 'categoria' => 'kitchen-accessories', 'precio_compra' => 87.95, 'precio_venta' => 119.93, 'stock_actual' => 88, 'codigo_barras' => 'MUG067', 'pasillo' => '2', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Mug Tree Stand is a stylish and space-saving solution for organizing your mugs. Keep your favorite mugs easily accessible and neatly displayed in your kitchen.', 'en_descuento' => true, 'precio_oferta' => 108.84, ],
+            ['nombre' => 'Pan', 'categoria' => 'kitchen-accessories', 'precio_compra' => 137.45, 'precio_venta' => 187.43, 'stock_actual' => 90, 'codigo_barras' => 'PAN068', 'pasillo' => '7', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Pan is a versatile and essential cookware item for frying, sautéing, and cooking various dishes. Its non-stick coating ensures easy food release and cleanup.', ],
+            ['nombre' => 'Plate', 'categoria' => 'kitchen-accessories', 'precio_compra' => 21.95, 'precio_venta' => 29.93, 'stock_actual' => 66, 'codigo_barras' => 'PLA069', 'pasillo' => '4', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Plate is a classic and essential dishware item for serving meals. Its durable and stylish design makes it suitable for everyday use or special occasions.', ],
+            ['nombre' => 'Red Tongs', 'categoria' => 'kitchen-accessories', 'precio_compra' => 38.45, 'precio_venta' => 52.43, 'stock_actual' => 82, 'codigo_barras' => 'RED070', 'pasillo' => '1', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Red Tongs are versatile kitchen tongs suitable for various cooking and serving tasks. Their vibrant color adds a pop of excitement to your kitchen utensils.', 'en_descuento' => true, 'precio_oferta' => 44.82, ],
+            ['nombre' => 'Silver Pot With Glass Cap', 'categoria' => 'kitchen-accessories', 'precio_compra' => 219.95, 'precio_venta' => 299.93, 'stock_actual' => 40, 'codigo_barras' => 'SIL071', 'pasillo' => '3', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Silver Pot with Glass Cap is a stylish and functional cookware item for boiling, simmering, and preparing delicious meals. Its glass cap allows you to monitor cooking progress.', ],
+            ['nombre' => 'Slotted Turner', 'categoria' => 'kitchen-accessories', 'precio_compra' => 49.45, 'precio_venta' => 67.43, 'stock_actual' => 88, 'codigo_barras' => 'SLO072', 'pasillo' => '5', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Slotted Turner is a kitchen utensil designed for flipping and turning food items. Its slotted design allows excess liquid to drain, making it ideal for frying and sautéing.', 'en_descuento' => true, 'precio_oferta' => 58.43, ],
+            ['nombre' => 'Spice Rack', 'categoria' => 'kitchen-accessories', 'precio_compra' => 109.95, 'precio_venta' => 149.93, 'stock_actual' => 79, 'codigo_barras' => 'SPI073', 'pasillo' => '8', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Spice Rack is a convenient organizer for your spices and seasonings. Keep your kitchen essentials within reach and neatly arranged with this stylish spice rack.', 'en_descuento' => true, 'precio_oferta' => 131.8, ],
+            ['nombre' => 'Spoon', 'categoria' => 'kitchen-accessories', 'precio_compra' => 27.45, 'precio_venta' => 37.43, 'stock_actual' => 59, 'codigo_barras' => 'SPO074', 'pasillo' => '5', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Spoon is a versatile kitchen utensil for stirring, serving, and tasting. Its ergonomic design and durable construction make it an essential tool for every kitchen.', ],
+            ['nombre' => 'Tray', 'categoria' => 'kitchen-accessories', 'precio_compra' => 93.45, 'precio_venta' => 127.43, 'stock_actual' => 71, 'codigo_barras' => 'TRA075', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Tray is a functional and decorative item for serving snacks, appetizers, or drinks. Its stylish design makes it a versatile accessory for entertaining guests.', ],
+            ['nombre' => 'Wooden Rolling Pin', 'categoria' => 'kitchen-accessories', 'precio_compra' => 65.95, 'precio_venta' => 89.93, 'stock_actual' => 80, 'codigo_barras' => 'WOO076', 'pasillo' => '6', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Wooden Rolling Pin is a classic kitchen tool for rolling out dough for baking. Its smooth surface and sturdy handles make it easy to achieve uniform thickness.', 'en_descuento' => true, 'precio_oferta' => 81.16, ],
+            ['nombre' => 'Yellow Peeler', 'categoria' => 'kitchen-accessories', 'precio_compra' => 32.95, 'precio_venta' => 44.93, 'stock_actual' => 35, 'codigo_barras' => 'YEL077', 'pasillo' => '9', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Yellow Peeler is a handy tool for peeling fruits and vegetables with ease. Its bright yellow color adds a cheerful touch to your kitchen gadgets.', 'en_descuento' => true, 'precio_oferta' => 39.32, ],
 
-            // -- SNACKS Y GOLOSINAS (20) --
-            ['nombre' => 'Papas Fritas Fino 150g', 'categoria' => 'snacks', 'precio_compra' => 4.00, 'precio_venta' => 5.50, 'stock_actual' => 100, 'codigo_barras' => 'SNK001', 'pasillo' => '9', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'fino'],
-            ['nombre' => 'Papas Fritas Fino Jalapeno 150g', 'categoria' => 'snacks', 'precio_compra' => 4.50, 'precio_venta' => 6.00, 'stock_actual' => 90, 'codigo_barras' => 'SNK002', 'pasillo' => '9', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'fino'],
-            ['nombre' => 'Chizitos Fino 100g', 'categoria' => 'snacks', 'precio_compra' => 3.00, 'precio_venta' => 4.50, 'stock_actual' => 110, 'codigo_barras' => 'SNK003', 'pasillo' => '9', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'fino', 'en_descuento' => true, 'precio_oferta' => 3.50],
-            ['nombre' => 'Mani Salado Fino 200g', 'categoria' => 'snacks', 'precio_compra' => 3.50, 'precio_venta' => 5.00, 'stock_actual' => 80, 'codigo_barras' => 'SNK004', 'pasillo' => '9', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fino'],
-            ['nombre' => 'Chocolate Savoy 100g', 'categoria' => 'snacks', 'precio_compra' => 7.00, 'precio_venta' => 9.50, 'stock_actual' => 60, 'codigo_barras' => 'SNK005', 'pasillo' => '9', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fino', 'en_descuento' => true, 'precio_oferta' => 7.90],
-            ['nombre' => 'Caramelos Savoy surtido 200g', 'categoria' => 'snacks', 'precio_compra' => 3.00, 'precio_venta' => 4.50, 'stock_actual' => 120, 'codigo_barras' => 'SNK006', 'pasillo' => '9', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fino'],
-            ['nombre' => 'Chicles Tutti Frutti 50g', 'categoria' => 'snacks', 'precio_compra' => 2.00, 'precio_venta' => 3.00, 'stock_actual' => 150, 'codigo_barras' => 'SNK007', 'pasillo' => '9', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'fino'],
-            ['nombre' => 'Palomitas de Maiz Fino 100g', 'categoria' => 'snacks', 'precio_compra' => 3.00, 'precio_venta' => 4.50, 'stock_actual' => 70, 'codigo_barras' => 'SNK008', 'pasillo' => '9', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'fino'],
-            ['nombre' => 'Galletas Wafer Vainilla 150g', 'categoria' => 'snacks', 'precio_compra' => 4.00, 'precio_venta' => 5.50, 'stock_actual' => 85, 'codigo_barras' => 'SNK009', 'pasillo' => '9', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fino'],
-            ['nombre' => 'Galletas Wafer Chocolate 150g', 'categoria' => 'snacks', 'precio_compra' => 4.00, 'precio_venta' => 5.50, 'stock_actual' => 80, 'codigo_barras' => 'SNK010', 'pasillo' => '9', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fino'],
-            ['nombre' => 'Mani Japones 100g', 'categoria' => 'snacks', 'precio_compra' => 4.00, 'precio_venta' => 5.50, 'stock_actual' => 65, 'codigo_barras' => 'SNK011', 'pasillo' => '9', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fino', 'en_descuento' => true, 'precio_oferta' => 4.50],
-            ['nombre' => 'Tostada Saltada Fino 100g', 'categoria' => 'snacks', 'precio_compra' => 3.50, 'precio_venta' => 5.00, 'stock_actual' => 75, 'codigo_barras' => 'SNK012', 'pasillo' => '9', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'fino'],
-            ['nombre' => 'Alfajor Savoy 50g', 'categoria' => 'snacks', 'precio_compra' => 2.00, 'precio_venta' => 3.00, 'stock_actual' => 130, 'codigo_barras' => 'SNK013', 'pasillo' => '9', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fino'],
-            ['nombre' => 'Gomitas Savoy 100g', 'categoria' => 'snacks', 'precio_compra' => 3.00, 'precio_venta' => 4.50, 'stock_actual' => 90, 'codigo_barras' => 'SNK014', 'pasillo' => '9', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fino', 'en_descuento' => true, 'precio_oferta' => 3.50],
-            ['nombre' => 'Chocolate Blanco Savoy 100g', 'categoria' => 'snacks', 'precio_compra' => 7.00, 'precio_venta' => 9.50, 'stock_actual' => 50, 'codigo_barras' => 'SNK015', 'pasillo' => '9', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fino'],
-            ['nombre' => 'Mix de Frutos Secos 200g', 'categoria' => 'snacks', 'precio_compra' => 8.00, 'precio_venta' => 11.00, 'stock_actual' => 40, 'codigo_barras' => 'SNK016', 'pasillo' => '9', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fino'],
-            ['nombre' => 'Galletas Rellenas Fino Vainilla 200g', 'categoria' => 'snacks', 'precio_compra' => 5.00, 'precio_venta' => 7.00, 'stock_actual' => 70, 'codigo_barras' => 'SNK017', 'pasillo' => '9', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'fino', 'en_descuento' => true, 'precio_oferta' => 5.90],
-            ['nombre' => 'Barra de Cereal Savoy Avena 40g', 'categoria' => 'snacks', 'precio_compra' => 2.50, 'precio_venta' => 3.50, 'stock_actual' => 100, 'codigo_barras' => 'SNK018', 'pasillo' => '9', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fino'],
-            ['nombre' => 'Chizitos Fino 200g', 'categoria' => 'snacks', 'precio_compra' => 5.00, 'precio_venta' => 7.00, 'stock_actual' => 60, 'codigo_barras' => 'SNK019', 'pasillo' => '9', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'fino', 'en_descuento' => true, 'precio_oferta' => 5.50],
-            ['nombre' => 'Pasankalla Fino 150g', 'categoria' => 'snacks', 'precio_compra' => 4.00, 'precio_venta' => 5.50, 'stock_actual' => 80, 'codigo_barras' => 'SNK020', 'pasillo' => '9', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fino'],
+            // Laptops
+            ['nombre' => 'Apple MacBook Pro 14 Inch Space Grey', 'categoria' => 'laptops', 'precio_compra' => 10999.95, 'precio_venta' => 14999.93, 'stock_actual' => 24, 'codigo_barras' => 'APP078', 'pasillo' => '7', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'apple', 'descripcion' => 'The MacBook Pro 14 Inch in Space Grey is a powerful and sleek laptop, featuring Apple\'s M1 Pro chip for exceptional performance and a stunning Retina display.', ],
+            ['nombre' => 'Asus Zenbook Pro Dual Screen Laptop', 'categoria' => 'laptops', 'precio_compra' => 9899.95, 'precio_venta' => 13499.93, 'stock_actual' => 45, 'codigo_barras' => 'ASU079', 'pasillo' => '9', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'asus', 'descripcion' => 'The Asus Zenbook Pro Dual Screen Laptop is a high-performance device with dual screens, providing productivity and versatility for creative professionals.', 'en_descuento' => true, 'precio_oferta' => 11996.04, ],
+            ['nombre' => 'Huawei Matebook X Pro', 'categoria' => 'laptops', 'precio_compra' => 7699.95, 'precio_venta' => 10499.93, 'stock_actual' => 75, 'codigo_barras' => 'HUA080', 'pasillo' => '3', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'huawei', 'descripcion' => 'The Huawei Matebook X Pro is a slim and stylish laptop with a high-resolution touchscreen display, offering a premium experience for users on the go.', 'en_descuento' => true, 'precio_oferta' => 9515.04, ],
+            ['nombre' => 'Lenovo Yoga 920', 'categoria' => 'laptops', 'precio_compra' => 6049.95, 'precio_venta' => 8249.93, 'stock_actual' => 40, 'codigo_barras' => 'LEN081', 'pasillo' => '1', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'lenovo', 'descripcion' => 'The Lenovo Yoga 920 is a 2-in-1 convertible laptop with a flexible hinge, allowing you to use it as a laptop or tablet, offering versatility and portability.', ],
+            ['nombre' => 'New DELL XPS 13 9300 Laptop', 'categoria' => 'laptops', 'precio_compra' => 8249.95, 'precio_venta' => 11249.93, 'stock_actual' => 74, 'codigo_barras' => 'NEW082', 'pasillo' => '5', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'dell', 'descripcion' => 'The New DELL XPS 13 9300 Laptop is a compact and powerful device, featuring a virtually borderless InfinityEdge display and high-end performance for various tasks.', 'en_descuento' => true, 'precio_oferta' => 9912.31, ],
+
+            // Camisetas Hombre
+            ['nombre' => 'Blue & Black Check Shirt', 'categoria' => 'mens-shirts', 'precio_compra' => 164.95, 'precio_venta' => 224.93, 'stock_actual' => 38, 'codigo_barras' => 'BLU083', 'pasillo' => '9', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fashion_trends', 'descripcion' => 'The Blue & Black Check Shirt is a stylish and comfortable men\'s shirt featuring a classic check pattern. Made from high-quality fabric, it\'s suitable for both casual and semi-formal occasions.', 'en_descuento' => true, 'precio_oferta' => 190.4, ],
+            ['nombre' => 'Gigabyte Aorus Men Tshirt', 'categoria' => 'mens-shirts', 'precio_compra' => 137.45, 'precio_venta' => 187.43, 'stock_actual' => 90, 'codigo_barras' => 'GIG084', 'pasillo' => '4', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'gigabyte', 'descripcion' => 'The Gigabyte Aorus Men Tshirt is a cool and casual shirt for gaming enthusiasts. With the Aorus logo and sleek design, it\'s perfect for expressing your gaming style.', ],
+            ['nombre' => 'Man Plaid Shirt', 'categoria' => 'mens-shirts', 'precio_compra' => 192.45, 'precio_venta' => 262.43, 'stock_actual' => 82, 'codigo_barras' => 'MAN085', 'pasillo' => '8', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'classic_wear', 'descripcion' => 'The Man Plaid Shirt is a timeless and versatile men\'s shirt with a classic plaid pattern. Its comfortable fit and casual style make it a wardrobe essential for various occasions.', 'en_descuento' => true, 'precio_oferta' => 211.26, ],
+            ['nombre' => 'Man Short Sleeve Shirt', 'categoria' => 'mens-shirts', 'precio_compra' => 109.95, 'precio_venta' => 149.93, 'stock_actual' => 2, 'codigo_barras' => 'MAN086', 'pasillo' => '8', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'casual_comfort', 'descripcion' => 'The Man Short Sleeve Shirt is a breezy and stylish option for warm days. With a comfortable fit and short sleeves, it\'s perfect for a laid-back yet polished look.', ],
+            ['nombre' => 'Men Check Shirt', 'categoria' => 'mens-shirts', 'precio_compra' => 153.95, 'precio_venta' => 209.93, 'stock_actual' => 95, 'codigo_barras' => 'MEN087', 'pasillo' => '2', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'urban_chic', 'descripcion' => 'The Men Check Shirt is a classic and versatile shirt featuring a stylish check pattern. Suitable for various occasions, it adds a smart and polished touch to your wardrobe.', 'en_descuento' => true, 'precio_oferta' => 186.04, ],
+
+            // Zapatos Hombre
+            ['nombre' => 'Nike Air Jordan 1 Red And Black', 'categoria' => 'mens-shoes', 'precio_compra' => 824.95, 'precio_venta' => 1124.93, 'stock_actual' => 7, 'codigo_barras' => 'NIK088', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'nike', 'descripcion' => 'The Nike Air Jordan 1 in Red and Black is an iconic basketball sneaker known for its stylish design and high-performance features, making it a favorite among sneaker enthusiasts and athletes.', ],
+            ['nombre' => 'Nike Baseball Cleats', 'categoria' => 'mens-shoes', 'precio_compra' => 439.95, 'precio_venta' => 599.93, 'stock_actual' => 12, 'codigo_barras' => 'NIK089', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'nike', 'descripcion' => 'Nike Baseball Cleats are designed for maximum traction and performance on the baseball field. They provide stability and support for players during games and practices.', 'en_descuento' => true, 'precio_oferta' => 491.7, ],
+            ['nombre' => 'Puma Future Rider Trainers', 'categoria' => 'mens-shoes', 'precio_compra' => 494.95, 'precio_venta' => 674.93, 'stock_actual' => 90, 'codigo_barras' => 'PUM090', 'pasillo' => '2', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'puma', 'descripcion' => 'The Puma Future Rider Trainers offer a blend of retro style and modern comfort. Perfect for casual wear, these trainers provide a fashionable and comfortable option for everyday use.', ],
+            ['nombre' => 'Sports Sneakers Off White & Red', 'categoria' => 'mens-shoes', 'precio_compra' => 659.95, 'precio_venta' => 899.93, 'stock_actual' => 17, 'codigo_barras' => 'SPO091', 'pasillo' => '3', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'off_white', 'descripcion' => 'The Sports Sneakers in Off White and Red combine style and functionality, making them a fashionable choice for sports enthusiasts. The red and off-white color combination adds a bold and energetic touch.', ],
+            ['nombre' => 'Sports Sneakers Off White Red', 'categoria' => 'mens-shoes', 'precio_compra' => 604.95, 'precio_venta' => 824.93, 'stock_actual' => 62, 'codigo_barras' => 'SPO092', 'pasillo' => '8', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'off_white', 'descripcion' => 'Another variant of the Sports Sneakers in Off White Red, featuring a unique design. These sneakers offer style and comfort for casual occasions.', ],
+
+            // Relojes Hombre
+            ['nombre' => 'Brown Leather Belt Watch', 'categoria' => 'mens-watches', 'precio_compra' => 494.95, 'precio_venta' => 674.93, 'stock_actual' => 32, 'codigo_barras' => 'BRO093', 'pasillo' => '4', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fashion_timepieces', 'descripcion' => 'The Brown Leather Belt Watch is a stylish timepiece with a classic design. Featuring a genuine leather strap and a sleek dial, it adds a touch of sophistication to your look.', ],
+            ['nombre' => 'Longines Master Collection', 'categoria' => 'mens-watches', 'precio_compra' => 8249.95, 'precio_venta' => 11249.93, 'stock_actual' => 100, 'codigo_barras' => 'LON094', 'pasillo' => '8', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'longines', 'descripcion' => 'The Longines Master Collection is an elegant and refined watch known for its precision and craftsmanship. With a timeless design, it\'s a symbol of luxury and sophistication.', 'en_descuento' => true, 'precio_oferta' => 9310.44, ],
+            ['nombre' => 'Rolex Cellini Date Black Dial', 'categoria' => 'mens-watches', 'precio_compra' => 49499.95, 'precio_venta' => 67499.93, 'stock_actual' => 40, 'codigo_barras' => 'ROL095', 'pasillo' => '4', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'rolex', 'descripcion' => 'The Rolex Cellini Date with Black Dial is a classic and prestigious watch. With a black dial and date complication, it exudes sophistication and is a symbol of Rolex\'s heritage.', 'en_descuento' => true, 'precio_oferta' => 61505.94, ],
+            ['nombre' => 'Rolex Cellini Moonphase', 'categoria' => 'mens-watches', 'precio_compra' => 71499.95, 'precio_venta' => 97499.93, 'stock_actual' => 36, 'codigo_barras' => 'ROL096', 'pasillo' => '7', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'rolex', 'descripcion' => 'The Rolex Cellini Moonphase is a masterpiece of horology, featuring a moon phase complication and exquisite design. It reflects Rolex\'s commitment to precision and elegance.', 'en_descuento' => true, 'precio_oferta' => 80417.94, ],
+            ['nombre' => 'Rolex Datejust', 'categoria' => 'mens-watches', 'precio_compra' => 60499.95, 'precio_venta' => 82499.93, 'stock_actual' => 86, 'codigo_barras' => 'ROL097', 'pasillo' => '8', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'rolex', 'descripcion' => 'The Rolex Datejust is an iconic and versatile timepiece with a date window. Known for its timeless design and reliability, it\'s a symbol of Rolex\'s watchmaking excellence.', ],
+            ['nombre' => 'Rolex Submariner Watch', 'categoria' => 'mens-watches', 'precio_compra' => 76999.95, 'precio_venta' => 104999.93, 'stock_actual' => 55, 'codigo_barras' => 'ROL098', 'pasillo' => '3', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'rolex', 'descripcion' => 'The Rolex Submariner is a legendary dive watch with a rich history. Known for its durability and water resistance, it\'s a symbol of adventure and exploration.', ],
+
+            // Accesorios Móviles
+            ['nombre' => 'Amazon Echo Plus', 'categoria' => 'mobile-accessories', 'precio_compra' => 549.95, 'precio_venta' => 749.93, 'stock_actual' => 61, 'codigo_barras' => 'AMA099', 'pasillo' => '8', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'amazon', 'descripcion' => 'The Amazon Echo Plus is a smart speaker with built-in Alexa voice control. It features premium sound quality and serves as a hub for controlling smart home devices.', 'en_descuento' => true, 'precio_oferta' => 659.41, ],
+            ['nombre' => 'Apple Airpods', 'categoria' => 'mobile-accessories', 'precio_compra' => 714.95, 'precio_venta' => 974.93, 'stock_actual' => 67, 'codigo_barras' => 'APP100', 'pasillo' => '9', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'apple', 'descripcion' => 'The Apple Airpods offer a seamless wireless audio experience. With easy pairing, high-quality sound, and Siri integration, they are perfect for on-the-go listening.', 'en_descuento' => true, 'precio_oferta' => 823.43, ],
+            ['nombre' => 'Apple AirPods Max Silver', 'categoria' => 'mobile-accessories', 'precio_compra' => 3024.95, 'precio_venta' => 4124.93, 'stock_actual' => 59, 'codigo_barras' => 'APP101', 'pasillo' => '3', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'apple', 'descripcion' => 'The Apple AirPods Max in Silver are premium over-ear headphones with high-fidelity audio, adaptive EQ, and active noise cancellation. Experience immersive sound in style.', 'en_descuento' => true, 'precio_oferta' => 3561.05, ],
+            ['nombre' => 'Apple Airpower Wireless Charger', 'categoria' => 'mobile-accessories', 'precio_compra' => 439.95, 'precio_venta' => 599.93, 'stock_actual' => 1, 'codigo_barras' => 'APP102', 'pasillo' => '9', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'apple', 'descripcion' => 'The Apple AirPower Wireless Charger provides a convenient way to charge your compatible Apple devices wirelessly. Simply place your devices on the charging mat for effortless charging.', ],
+            ['nombre' => 'Apple HomePod Mini Cosmic Grey', 'categoria' => 'mobile-accessories', 'precio_compra' => 549.95, 'precio_venta' => 749.93, 'stock_actual' => 27, 'codigo_barras' => 'APP103', 'pasillo' => '3', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'apple', 'descripcion' => 'The Apple HomePod Mini in Cosmic Grey is a compact smart speaker that delivers impressive audio and integrates seamlessly with the Apple ecosystem for a smart home experience.', 'en_descuento' => true, 'precio_oferta' => 614.19, ],
+            ['nombre' => 'Apple iPhone Charger', 'categoria' => 'mobile-accessories', 'precio_compra' => 109.95, 'precio_venta' => 149.93, 'stock_actual' => 31, 'codigo_barras' => 'APP104', 'pasillo' => '6', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'apple', 'descripcion' => 'The Apple iPhone Charger is a high-quality charger designed for fast and efficient charging of your iPhone. Ensure your device stays powered up and ready to go.', 'en_descuento' => true, 'precio_oferta' => 122.16, ],
+            ['nombre' => 'Apple MagSafe Battery Pack', 'categoria' => 'mobile-accessories', 'precio_compra' => 549.95, 'precio_venta' => 749.93, 'stock_actual' => 1, 'codigo_barras' => 'APP105', 'pasillo' => '6', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'apple', 'descripcion' => 'The Apple MagSafe Battery Pack is a portable and convenient way to add extra battery life to your MagSafe-compatible iPhone. Attach it magnetically for a secure connection.', 'en_descuento' => true, 'precio_oferta' => 621.17, ],
+            ['nombre' => 'Apple Watch Series 4 Gold', 'categoria' => 'mobile-accessories', 'precio_compra' => 1924.95, 'precio_venta' => 2624.93, 'stock_actual' => 33, 'codigo_barras' => 'APP106', 'pasillo' => '7', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'apple', 'descripcion' => 'The Apple Watch Series 4 in Gold is a stylish and advanced smartwatch with features like heart rate monitoring, fitness tracking, and a beautiful Retina display.', 'en_descuento' => true, 'precio_oferta' => 2309.41, ],
+            ['nombre' => 'Beats Flex Wireless Earphones', 'categoria' => 'mobile-accessories', 'precio_compra' => 274.95, 'precio_venta' => 374.93, 'stock_actual' => 50, 'codigo_barras' => 'BEA107', 'pasillo' => '7', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'beats', 'descripcion' => 'The Beats Flex Wireless Earphones offer a comfortable and versatile audio experience. With magnetic earbuds and up to 12 hours of battery life, they are ideal for everyday use.', ],
+            ['nombre' => 'iPhone 12 Silicone Case with MagSafe Plum', 'categoria' => 'mobile-accessories', 'precio_compra' => 164.95, 'precio_venta' => 224.93, 'stock_actual' => 69, 'codigo_barras' => 'IPH108', 'pasillo' => '2', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'apple', 'descripcion' => 'The iPhone 12 Silicone Case with MagSafe in Plum is a stylish and protective case designed for the iPhone 12. It features MagSafe technology for easy attachment of accessories.', 'en_descuento' => true, 'precio_oferta' => 193.78, ],
+            ['nombre' => 'Monopod', 'categoria' => 'mobile-accessories', 'precio_compra' => 109.95, 'precio_venta' => 149.93, 'stock_actual' => 48, 'codigo_barras' => 'MON109', 'pasillo' => '3', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'techgear', 'descripcion' => 'The Monopod is a versatile camera accessory for stable and adjustable shooting. Perfect for capturing selfies, group photos, and videos with ease.', 'en_descuento' => true, 'precio_oferta' => 137.07, ],
+            ['nombre' => 'Selfie Lamp with iPhone', 'categoria' => 'mobile-accessories', 'precio_compra' => 82.45, 'precio_venta' => 112.43, 'stock_actual' => 58, 'codigo_barras' => 'SEL110', 'pasillo' => '3', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'gadgetmaster', 'descripcion' => 'The Selfie Lamp with iPhone is a portable and adjustable LED light designed to enhance your selfies and video calls. Attach it to your iPhone for well-lit photos.', 'en_descuento' => true, 'precio_oferta' => 90.62, ],
+            ['nombre' => 'Selfie Stick Monopod', 'categoria' => 'mobile-accessories', 'precio_compra' => 71.45, 'precio_venta' => 97.43, 'stock_actual' => 11, 'codigo_barras' => 'SEL111', 'pasillo' => '2', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'snaptech', 'descripcion' => 'The Selfie Stick Monopod is a extendable and foldable device for capturing the perfect selfie or group photo. Compatible with smartphones and cameras.', 'en_descuento' => true, 'precio_oferta' => 78.8, ],
+            ['nombre' => 'TV Studio Camera Pedestal', 'categoria' => 'mobile-accessories', 'precio_compra' => 2749.95, 'precio_venta' => 3749.93, 'stock_actual' => 15, 'codigo_barras' => 'TVS112', 'pasillo' => '1', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'provision', 'descripcion' => 'The TV Studio Camera Pedestal is a professional-grade camera support system for smooth and precise camera movements in a studio setting. Ideal for broadcast and production.', 'en_descuento' => true, 'precio_oferta' => 3438.31, ],
+
+            // Motocicletas
+            ['nombre' => 'Generic Motorcycle', 'categoria' => 'motorcycle', 'precio_compra' => 21999.95, 'precio_venta' => 29999.93, 'stock_actual' => 34, 'codigo_barras' => 'GEN113', 'pasillo' => '9', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'generic_motors', 'descripcion' => 'The Generic Motorcycle is a versatile and reliable bike suitable for various riding preferences. With a balanced design, it provides a comfortable and efficient riding experience.', 'en_descuento' => true, 'precio_oferta' => 26369.94, ],
+            ['nombre' => 'Kawasaki Z800', 'categoria' => 'motorcycle', 'precio_compra' => 49499.95, 'precio_venta' => 67499.93, 'stock_actual' => 52, 'codigo_barras' => 'KAW114', 'pasillo' => '4', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'kawasaki', 'descripcion' => 'The Kawasaki Z800 is a powerful and agile sportbike known for its striking design and performance. It\'s equipped with advanced features, making it a favorite among motorcycle enthusiasts.', 'en_descuento' => true, 'precio_oferta' => 60905.19, ],
+            ['nombre' => 'MotoGP CI.H1', 'categoria' => 'motorcycle', 'precio_compra' => 82499.95, 'precio_venta' => 112499.93, 'stock_actual' => 10, 'codigo_barras' => 'MOT115', 'pasillo' => '8', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'motogp', 'descripcion' => 'The MotoGP CI.H1 is a high-performance motorcycle inspired by MotoGP racing technology. It offers cutting-edge features and precision engineering for an exhilarating riding experience.', ],
+            ['nombre' => 'Scooter Motorcycle', 'categoria' => 'motorcycle', 'precio_compra' => 16499.95, 'precio_venta' => 22499.93, 'stock_actual' => 84, 'codigo_barras' => 'SCO116', 'pasillo' => '5', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'scootmaster', 'descripcion' => 'The Scooter Motorcycle is a practical and fuel-efficient bike ideal for urban commuting. It features a step-through design and user-friendly controls for easy maneuverability.', ],
+            ['nombre' => 'Sportbike Motorcycle', 'categoria' => 'motorcycle', 'precio_compra' => 41249.95, 'precio_venta' => 56249.93, 'stock_actual' => 0, 'codigo_barras' => 'SPO117', 'pasillo' => '1', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'speedmaster', 'descripcion' => 'The Sportbike Motorcycle is designed for speed and agility, with a sleek and aerodynamic profile. It\'s suitable for riders looking for a dynamic and thrilling riding experience.', 'en_descuento' => true, 'precio_oferta' => 49736.19, ],
+
+            // Cuidado de la Piel
+            ['nombre' => 'Attitude Super Leaves Hand Soap', 'categoria' => 'skin-care', 'precio_compra' => 49.45, 'precio_venta' => 67.43, 'stock_actual' => 94, 'codigo_barras' => 'ATT118', 'pasillo' => '6', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'attitude', 'descripcion' => 'Attitude Super Leaves Hand Soap is a natural and nourishing hand soap enriched with the goodness of super leaves. It cleanses and moisturizes your hands, leaving them feeling fresh and soft.', 'en_descuento' => true, 'precio_oferta' => 54.96, ],
+            ['nombre' => 'Olay Ultra Moisture Shea Butter Body Wash', 'categoria' => 'skin-care', 'precio_compra' => 71.45, 'precio_venta' => 97.43, 'stock_actual' => 34, 'codigo_barras' => 'OLA119', 'pasillo' => '3', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'olay', 'descripcion' => 'Olay Ultra Moisture Shea Butter Body Wash is a luxurious body wash that hydrates and nourishes your skin with the moisturizing power of shea butter. Enjoy a rich lather and silky-smooth skin.', 'en_descuento' => true, 'precio_oferta' => 81.46, ],
+            ['nombre' => 'Vaseline Men Body and Face Lotion', 'categoria' => 'skin-care', 'precio_compra' => 54.95, 'precio_venta' => 74.93, 'stock_actual' => 95, 'codigo_barras' => 'VAS120', 'pasillo' => '2', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'vaseline', 'descripcion' => 'Vaseline Men Body and Face Lotion is a specially formulated lotion designed to provide long-lasting moisture to men\'s skin. It absorbs quickly and helps keep the skin hydrated and healthy.', 'en_descuento' => true, 'precio_oferta' => 64.9, ],
+
+            // Smartphones
+            ['nombre' => 'iPhone 5s', 'categoria' => 'smartphones', 'precio_compra' => 1099.95, 'precio_venta' => 1499.93, 'stock_actual' => 25, 'codigo_barras' => 'IPH121', 'pasillo' => '5', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'apple', 'descripcion' => 'The iPhone 5s is a classic smartphone known for its compact design and advanced features during its release. While it\'s an older model, it still provides a reliable user experience.', 'en_descuento' => true, 'precio_oferta' => 1306.29, ],
+            ['nombre' => 'iPhone 6', 'categoria' => 'smartphones', 'precio_compra' => 1649.95, 'precio_venta' => 2249.93, 'stock_actual' => 60, 'codigo_barras' => 'IPH122', 'pasillo' => '4', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'apple', 'descripcion' => 'The iPhone 6 is a stylish and capable smartphone with a larger display and improved performance. It introduced new features and design elements, making it a popular choice in its time.', ],
+            ['nombre' => 'iPhone 13 Pro', 'categoria' => 'smartphones', 'precio_compra' => 6049.95, 'precio_venta' => 8249.93, 'stock_actual' => 56, 'codigo_barras' => 'IPH123', 'pasillo' => '2', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'apple', 'descripcion' => 'The iPhone 13 Pro is a cutting-edge smartphone with a powerful camera system, high-performance chip, and stunning display. It offers advanced features for users who demand top-notch technology.', 'en_descuento' => true, 'precio_oferta' => 7476.91, ],
+            ['nombre' => 'iPhone X', 'categoria' => 'smartphones', 'precio_compra' => 4949.95, 'precio_venta' => 6749.93, 'stock_actual' => 37, 'codigo_barras' => 'IPH124', 'pasillo' => '8', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'apple', 'descripcion' => 'The iPhone X is a flagship smartphone featuring a bezel-less OLED display, facial recognition technology (Face ID), and impressive performance. It represents a milestone in iPhone design and innovation.', 'en_descuento' => true, 'precio_oferta' => 5427.62, ],
+            ['nombre' => 'Oppo A57', 'categoria' => 'smartphones', 'precio_compra' => 1374.95, 'precio_venta' => 1874.93, 'stock_actual' => 19, 'codigo_barras' => 'OPP125', 'pasillo' => '6', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'oppo', 'descripcion' => 'The Oppo A57 is a mid-range smartphone known for its sleek design and capable features. It offers a balance of performance and affordability, making it a popular choice.', ],
+            ['nombre' => 'Oppo F19 Pro Plus', 'categoria' => 'smartphones', 'precio_compra' => 2199.95, 'precio_venta' => 2999.93, 'stock_actual' => 78, 'codigo_barras' => 'OPP126', 'pasillo' => '7', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'oppo', 'descripcion' => 'The Oppo F19 Pro Plus is a feature-rich smartphone with a focus on camera capabilities. It boasts advanced photography features and a powerful performance for a premium user experience.', 'en_descuento' => true, 'precio_oferta' => 2440.74, ],
+            ['nombre' => 'Oppo K1', 'categoria' => 'smartphones', 'precio_compra' => 1649.95, 'precio_venta' => 2249.93, 'stock_actual' => 55, 'codigo_barras' => 'OPP127', 'pasillo' => '9', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'oppo', 'descripcion' => 'The Oppo K1 series offers a range of smartphones with various features and specifications. Known for their stylish design and reliable performance, the Oppo K1 series caters to diverse user preferences.', 'en_descuento' => true, 'precio_oferta' => 1838.42, ],
+            ['nombre' => 'Realme C35', 'categoria' => 'smartphones', 'precio_compra' => 824.95, 'precio_venta' => 1124.93, 'stock_actual' => 48, 'codigo_barras' => 'REA128', 'pasillo' => '8', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'realme', 'descripcion' => 'The Realme C35 is a budget-friendly smartphone with a focus on providing essential features for everyday use. It offers a reliable performance and user-friendly experience.', 'en_descuento' => true, 'precio_oferta' => 952.82, ],
+            ['nombre' => 'Realme X', 'categoria' => 'smartphones', 'precio_compra' => 1649.95, 'precio_venta' => 2249.93, 'stock_actual' => 12, 'codigo_barras' => 'REA129', 'pasillo' => '9', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'realme', 'descripcion' => 'The Realme X is a mid-range smartphone known for its sleek design and impressive display. It offers a good balance of performance and camera capabilities for users seeking a quality device.', ],
+            ['nombre' => 'Realme XT', 'categoria' => 'smartphones', 'precio_compra' => 1924.95, 'precio_venta' => 2624.93, 'stock_actual' => 80, 'codigo_barras' => 'REA130', 'pasillo' => '3', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'realme', 'descripcion' => 'The Realme XT is a feature-rich smartphone with a focus on camera technology. It comes equipped with advanced camera sensors, delivering high-quality photos and videos for photography enthusiasts.', 'en_descuento' => true, 'precio_oferta' => 2322.8, ],
+            ['nombre' => 'Samsung Galaxy S7', 'categoria' => 'smartphones', 'precio_compra' => 1649.95, 'precio_venta' => 2249.93, 'stock_actual' => 67, 'codigo_barras' => 'SAM131', 'pasillo' => '2', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'samsung', 'descripcion' => 'The Samsung Galaxy S7 is a flagship smartphone known for its sleek design and advanced features. It features a high-resolution display, powerful camera, and robust performance.', 'en_descuento' => true, 'precio_oferta' => 1810.07, ],
+            ['nombre' => 'Samsung Galaxy S8', 'categoria' => 'smartphones', 'precio_compra' => 2749.95, 'precio_venta' => 3749.93, 'stock_actual' => 0, 'codigo_barras' => 'SAM132', 'pasillo' => '3', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'samsung', 'descripcion' => 'The Samsung Galaxy S8 is a premium smartphone with an Infinity Display, offering a stunning visual experience. It boasts advanced camera capabilities and cutting-edge technology.', 'en_descuento' => true, 'precio_oferta' => 3020.57, ],
+            ['nombre' => 'Samsung Galaxy S10', 'categoria' => 'smartphones', 'precio_compra' => 3849.95, 'precio_venta' => 5249.93, 'stock_actual' => 19, 'codigo_barras' => 'SAM133', 'pasillo' => '2', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'samsung', 'descripcion' => 'The Samsung Galaxy S10 is a flagship device featuring a dynamic AMOLED display, versatile camera system, and powerful performance. It represents innovation and excellence in smartphone technology.', ],
+            ['nombre' => 'Vivo S1', 'categoria' => 'smartphones', 'precio_compra' => 1374.95, 'precio_venta' => 1874.93, 'stock_actual' => 50, 'codigo_barras' => 'VIV134', 'pasillo' => '7', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'vivo', 'descripcion' => 'The Vivo S1 is a stylish and mid-range smartphone offering a blend of design and performance. It features a vibrant display, capable camera system, and reliable functionality.', 'en_descuento' => true, 'precio_oferta' => 1684.25, ],
+            ['nombre' => 'Vivo V9', 'categoria' => 'smartphones', 'precio_compra' => 1649.95, 'precio_venta' => 2249.93, 'stock_actual' => 82, 'codigo_barras' => 'VIV135', 'pasillo' => '4', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'vivo', 'descripcion' => 'The Vivo V9 is a smartphone known for its sleek design and emphasis on capturing high-quality selfies. It features a notch display, dual-camera setup, and a modern design.', 'en_descuento' => true, 'precio_oferta' => 1852.37, ],
+            ['nombre' => 'Vivo X21', 'categoria' => 'smartphones', 'precio_compra' => 2749.95, 'precio_venta' => 3749.93, 'stock_actual' => 7, 'codigo_barras' => 'VIV136', 'pasillo' => '4', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'vivo', 'descripcion' => 'The Vivo X21 is a premium smartphone with a focus on cutting-edge technology. It features an in-display fingerprint sensor, a high-resolution display, and advanced camera capabilities.', 'en_descuento' => true, 'precio_oferta' => 3097.07, ],
+
+            // Accesorios Deportivos
+            ['nombre' => 'American Football', 'categoria' => 'sports-accessories', 'precio_compra' => 109.95, 'precio_venta' => 149.93, 'stock_actual' => 53, 'codigo_barras' => 'AME137', 'pasillo' => '6', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The American Football is a classic ball used in American football games. It is designed for throwing and catching, making it an essential piece of equipment for the sport.', ],
+            ['nombre' => 'Baseball Ball', 'categoria' => 'sports-accessories', 'precio_compra' => 49.45, 'precio_venta' => 67.43, 'stock_actual' => 100, 'codigo_barras' => 'BAS138', 'pasillo' => '3', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Baseball Ball is a standard baseball used in baseball games. It features a durable leather cover and is designed for pitching, hitting, and fielding in the game of baseball.', ],
+            ['nombre' => 'Baseball Glove', 'categoria' => 'sports-accessories', 'precio_compra' => 137.45, 'precio_venta' => 187.43, 'stock_actual' => 22, 'codigo_barras' => 'BAS139', 'pasillo' => '7', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Baseball Glove is a protective glove worn by baseball players. It is designed to catch and field the baseball, providing players with comfort and control during the game.', ],
+            ['nombre' => 'Basketball', 'categoria' => 'sports-accessories', 'precio_compra' => 82.45, 'precio_venta' => 112.43, 'stock_actual' => 75, 'codigo_barras' => 'BAS140', 'pasillo' => '2', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Basketball is a standard ball used in basketball games. It is designed for dribbling, shooting, and passing in the game of basketball, suitable for both indoor and outdoor play.', ],
+            ['nombre' => 'Basketball Rim', 'categoria' => 'sports-accessories', 'precio_compra' => 219.95, 'precio_venta' => 299.93, 'stock_actual' => 43, 'codigo_barras' => 'BAS141', 'pasillo' => '3', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Basketball Rim is a sturdy hoop and net assembly mounted on a basketball backboard. It provides a target for shooting and scoring in the game of basketball.', ],
+            ['nombre' => 'Cricket Ball', 'categoria' => 'sports-accessories', 'precio_compra' => 71.45, 'precio_venta' => 97.43, 'stock_actual' => 30, 'codigo_barras' => 'CRI142', 'pasillo' => '4', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Cricket Ball is a hard leather ball used in the sport of cricket. It is bowled and batted in the game, and its hardness and seam contribute to the dynamics of cricket play.', 'en_descuento' => true, 'precio_oferta' => 89.02, ],
+            ['nombre' => 'Cricket Bat', 'categoria' => 'sports-accessories', 'precio_compra' => 164.95, 'precio_venta' => 224.93, 'stock_actual' => 98, 'codigo_barras' => 'CRI143', 'pasillo' => '4', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Cricket Bat is an essential piece of cricket equipment used by batsmen to hit the cricket ball. It is made of wood and comes in various sizes and designs.', ],
+            ['nombre' => 'Cricket Helmet', 'categoria' => 'sports-accessories', 'precio_compra' => 247.45, 'precio_venta' => 337.43, 'stock_actual' => 10, 'codigo_barras' => 'CRI144', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Cricket Helmet is a protective headgear worn by cricket players, especially batsmen and wicketkeepers. It provides protection against fast bowling and bouncers.', 'en_descuento' => true, 'precio_oferta' => 304.9, ],
+            ['nombre' => 'Cricket Wicket', 'categoria' => 'sports-accessories', 'precio_compra' => 164.95, 'precio_venta' => 224.93, 'stock_actual' => 25, 'codigo_barras' => 'CRI145', 'pasillo' => '8', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Cricket Wicket is a set of three stumps and two bails, forming a wicket used in the sport of cricket. Batsmen aim to protect the wicket while scoring runs.', 'en_descuento' => true, 'precio_oferta' => 186.85, ],
+            ['nombre' => 'Feather Shuttlecock', 'categoria' => 'sports-accessories', 'precio_compra' => 32.95, 'precio_venta' => 44.93, 'stock_actual' => 95, 'codigo_barras' => 'FEA146', 'pasillo' => '2', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Feather Shuttlecock is used in the sport of badminton. It features natural feathers and is designed for high-speed play, providing stability and accuracy during matches.', ],
+            ['nombre' => 'Football', 'categoria' => 'sports-accessories', 'precio_compra' => 98.95, 'precio_venta' => 134.93, 'stock_actual' => 96, 'codigo_barras' => 'FOO147', 'pasillo' => '9', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Football, also known as a soccer ball, is the standard ball used in the sport of football (soccer). It is designed for kicking and passing in the game.', ],
+            ['nombre' => 'Golf Ball', 'categoria' => 'sports-accessories', 'precio_compra' => 54.95, 'precio_venta' => 74.93, 'stock_actual' => 84, 'codigo_barras' => 'GOL148', 'pasillo' => '2', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Golf Ball is a small ball used in the sport of golf. It features dimples on its surface, providing aerodynamic lift and distance when struck by a golf club.', 'en_descuento' => true, 'precio_oferta' => 61.91, ],
+            ['nombre' => 'Iron Golf', 'categoria' => 'sports-accessories', 'precio_compra' => 274.95, 'precio_venta' => 374.93, 'stock_actual' => 90, 'codigo_barras' => 'IRO149', 'pasillo' => '6', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Iron Golf is a type of golf club designed for various golf shots. It features a solid metal head and is used for approach shots, chipping, and other golfing techniques.', ],
+            ['nombre' => 'Metal Baseball Bat', 'categoria' => 'sports-accessories', 'precio_compra' => 164.95, 'precio_venta' => 224.93, 'stock_actual' => 16, 'codigo_barras' => 'MET150', 'pasillo' => '2', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Metal Baseball Bat is a durable and lightweight baseball bat made from metal alloys. It is commonly used in baseball games for hitting and batting practice.', 'en_descuento' => true, 'precio_oferta' => 181.05, ],
+            ['nombre' => 'Tennis Ball', 'categoria' => 'sports-accessories', 'precio_compra' => 38.45, 'precio_venta' => 52.43, 'stock_actual' => 28, 'codigo_barras' => 'TEN151', 'pasillo' => '9', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Tennis Ball is a standard ball used in the sport of tennis. It is designed for bouncing and hitting with tennis rackets during matches or practice sessions.', 'en_descuento' => true, 'precio_oferta' => 46.26, ],
+            ['nombre' => 'Tennis Racket', 'categoria' => 'sports-accessories', 'precio_compra' => 274.95, 'precio_venta' => 374.93, 'stock_actual' => 6, 'codigo_barras' => 'TEN152', 'pasillo' => '9', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Tennis Racket is an essential piece of equipment used in the sport of tennis. It features a frame with strings and a grip, allowing players to hit the tennis ball.', 'en_descuento' => true, 'precio_oferta' => 301.41, ],
+            ['nombre' => 'Volleyball', 'categoria' => 'sports-accessories', 'precio_compra' => 65.95, 'precio_venta' => 89.93, 'stock_actual' => 0, 'codigo_barras' => 'VOL153', 'pasillo' => '4', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Volleyball is a standard ball used in the sport of volleyball. It is designed for passing, setting, and spiking over the net during volleyball matches.', 'en_descuento' => true, 'precio_oferta' => 78.91, ],
+
+            // Lentes de Sol
+            ['nombre' => 'Black Sun Glasses', 'categoria' => 'sunglasses', 'precio_compra' => 164.95, 'precio_venta' => 224.93, 'stock_actual' => 60, 'codigo_barras' => 'BLA154', 'pasillo' => '2', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fashion_shades', 'descripcion' => 'The Black Sun Glasses are a classic and stylish choice, featuring a sleek black frame and tinted lenses. They provide both UV protection and a fashionable look.', ],
+            ['nombre' => 'Classic Sun Glasses', 'categoria' => 'sunglasses', 'precio_compra' => 137.45, 'precio_venta' => 187.43, 'stock_actual' => 1, 'codigo_barras' => 'CLA155', 'pasillo' => '9', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'fashion_shades', 'descripcion' => 'The Classic Sun Glasses offer a timeless design with a neutral frame and UV-protected lenses. These sunglasses are versatile and suitable for various occasions.', ],
+            ['nombre' => 'Green and Black Glasses', 'categoria' => 'sunglasses', 'precio_compra' => 192.45, 'precio_venta' => 262.43, 'stock_actual' => 24, 'codigo_barras' => 'GRE156', 'pasillo' => '2', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fashion_shades', 'descripcion' => 'The Green and Black Glasses feature a bold combination of green and black colors, adding a touch of vibrancy to your eyewear collection. They are both stylish and eye-catching.', ],
+            ['nombre' => 'Party Glasses', 'categoria' => 'sunglasses', 'precio_compra' => 109.95, 'precio_venta' => 149.93, 'stock_actual' => 86, 'codigo_barras' => 'PAR157', 'pasillo' => '3', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'fashion_fun', 'descripcion' => 'The Party Glasses are designed to add flair to your party outfit. With unique shapes or colorful frames, they\'re perfect for adding a playful touch to your look during celebrations.', 'en_descuento' => true, 'precio_oferta' => 133.11, ],
+            ['nombre' => 'Sunglasses', 'categoria' => 'sunglasses', 'precio_compra' => 126.45, 'precio_venta' => 172.43, 'stock_actual' => 27, 'codigo_barras' => 'SUN158', 'pasillo' => '2', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'fashion_shades', 'descripcion' => 'The Sunglasses offer a classic and simple design with a focus on functionality. These sunglasses provide essential UV protection while maintaining a timeless look.', ],
+
+            // Tablets
+            ['nombre' => 'iPad Mini 2021 Starlight', 'categoria' => 'tablets', 'precio_compra' => 2749.95, 'precio_venta' => 3749.93, 'stock_actual' => 47, 'codigo_barras' => 'IPA159', 'pasillo' => '6', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'apple', 'descripcion' => 'The iPad Mini 2021 in Starlight is a compact and powerful tablet from Apple. Featuring a stunning Retina display, powerful A-series chip, and a sleek design, it offers a premium tablet experience.', ],
+            ['nombre' => 'Samsung Galaxy Tab S8 Plus Grey', 'categoria' => 'tablets', 'precio_compra' => 3299.95, 'precio_venta' => 4499.93, 'stock_actual' => 62, 'codigo_barras' => 'SAM160', 'pasillo' => '7', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'samsung', 'descripcion' => 'The Samsung Galaxy Tab S8 Plus in Grey is a high-performance Android tablet by Samsung. With a large AMOLED display, powerful processor, and S Pen support, it\'s ideal for productivity and entertainment.', 'en_descuento' => true, 'precio_oferta' => 3900.99, ],
+            ['nombre' => 'Samsung Galaxy Tab White', 'categoria' => 'tablets', 'precio_compra' => 1924.95, 'precio_venta' => 2624.93, 'stock_actual' => 92, 'codigo_barras' => 'SAM161', 'pasillo' => '1', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'samsung', 'descripcion' => 'The Samsung Galaxy Tab in White is a sleek and versatile Android tablet. With a vibrant display, long-lasting battery, and a range of features, it offers a great user experience for various tasks.', 'en_descuento' => true, 'precio_oferta' => 2147.19, ],
+
+            // Blusas
+            ['nombre' => 'Blue Frock', 'categoria' => 'tops', 'precio_compra' => 164.95, 'precio_venta' => 224.93, 'stock_actual' => 52, 'codigo_barras' => 'BLU162', 'pasillo' => '7', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Blue Frock is a charming and stylish dress for various occasions. With a vibrant blue color and a comfortable design, it adds a touch of elegance to your wardrobe.', 'en_descuento' => true, 'precio_oferta' => 197.65, ],
+            ['nombre' => 'Girl Summer Dress', 'categoria' => 'tops', 'precio_compra' => 109.95, 'precio_venta' => 149.93, 'stock_actual' => 43, 'codigo_barras' => 'GIR163', 'pasillo' => '9', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Girl Summer Dress is a cute and breezy dress designed for warm weather. With playful patterns and lightweight fabric, it\'s perfect for keeping cool and stylish during the summer.', 'en_descuento' => true, 'precio_oferta' => 121.14, ],
+            ['nombre' => 'Gray Dress', 'categoria' => 'tops', 'precio_compra' => 192.45, 'precio_venta' => 262.43, 'stock_actual' => 55, 'codigo_barras' => 'GRA164', 'pasillo' => '6', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Gray Dress is a versatile and chic option for various occasions. With a neutral gray color, it can be dressed up or down, making it a wardrobe staple for any fashion-forward individual.', 'en_descuento' => true, 'precio_oferta' => 224.95, ],
+            ['nombre' => 'Short Frock', 'categoria' => 'tops', 'precio_compra' => 137.45, 'precio_venta' => 187.43, 'stock_actual' => 22, 'codigo_barras' => 'SHO165', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Short Frock is a playful and trendy dress with a shorter length. Ideal for casual outings or special occasions, it combines style and comfort for a fashionable look.', 'en_descuento' => true, 'precio_oferta' => 162.22, ],
+            ['nombre' => 'Tartan Dress', 'categoria' => 'tops', 'precio_compra' => 219.95, 'precio_venta' => 299.93, 'stock_actual' => 73, 'codigo_barras' => 'TAR166', 'pasillo' => '6', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Tartan Dress features a classic tartan pattern, bringing a timeless and sophisticated touch to your wardrobe. Perfect for fall and winter, it adds a hint of traditional charm.', 'en_descuento' => true, 'precio_oferta' => 261.09, ],
+
+            // Vehículos
+            ['nombre' => '300 Touring', 'categoria' => 'vehicle', 'precio_compra' => 159499.95, 'precio_venta' => 217499.93, 'stock_actual' => 54, 'codigo_barras' => 'TOU167', 'pasillo' => '2', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'chrysler', 'descripcion' => 'The 300 Touring is a stylish and comfortable sedan, known for its luxurious features and smooth performance.', ],
+            ['nombre' => 'Charger SXT RWD', 'categoria' => 'vehicle', 'precio_compra' => 181499.95, 'precio_venta' => 247499.93, 'stock_actual' => 57, 'codigo_barras' => 'CHA168', 'pasillo' => '3', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'dodge', 'descripcion' => 'The Charger SXT RWD is a powerful and sporty rear-wheel-drive sedan, offering a blend of performance and practicality.', 'en_descuento' => true, 'precio_oferta' => 227130.69, ],
+            ['nombre' => 'Dodge Hornet GT Plus', 'categoria' => 'vehicle', 'precio_compra' => 137499.95, 'precio_venta' => 187499.93, 'stock_actual' => 82, 'codigo_barras' => 'DOD169', 'pasillo' => '6', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'dodge', 'descripcion' => 'The Dodge Hornet GT Plus is a compact and agile hatchback, perfect for urban driving with a touch of sportiness.', ],
+            ['nombre' => 'Durango SXT RWD', 'categoria' => 'vehicle', 'precio_compra' => 203499.95, 'precio_venta' => 277499.93, 'stock_actual' => 95, 'codigo_barras' => 'DUR170', 'pasillo' => '6', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'dodge', 'descripcion' => 'The Durango SXT RWD is a spacious and versatile SUV, known for its strong performance and family-friendly features.', 'en_descuento' => true, 'precio_oferta' => 231878.94, ],
+            ['nombre' => 'Pacifica Touring', 'categoria' => 'vehicle', 'precio_compra' => 175999.95, 'precio_venta' => 239999.93, 'stock_actual' => 53, 'codigo_barras' => 'PAC171', 'pasillo' => '9', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'chrysler', 'descripcion' => 'The Pacifica Touring is a stylish and well-equipped minivan, offering comfort and convenience for family journeys.', 'en_descuento' => true, 'precio_oferta' => 204575.94, ],
+
+            // Carteras Mujer
+            ['nombre' => 'Blue Women\'s Handbag', 'categoria' => 'womens-bags', 'precio_compra' => 274.95, 'precio_venta' => 374.93, 'stock_actual' => 76, 'codigo_barras' => 'BLU172', 'pasillo' => '3', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'fashionista', 'descripcion' => 'The Blue Women\'s Handbag is a stylish and spacious accessory for everyday use. With a vibrant blue color and multiple compartments, it combines fashion and functionality.', 'en_descuento' => true, 'precio_oferta' => 307.89, ],
+            ['nombre' => 'Heshe Women\'s Leather Bag', 'categoria' => 'womens-bags', 'precio_compra' => 714.95, 'precio_venta' => 974.93, 'stock_actual' => 99, 'codigo_barras' => 'HES173', 'pasillo' => '5', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'heshe', 'descripcion' => 'The Heshe Women\'s Leather Bag is a luxurious and high-quality leather bag for the sophisticated woman. With a timeless design and durable craftsmanship, it\'s a versatile accessory.', ],
+            ['nombre' => 'Prada Women Bag', 'categoria' => 'womens-bags', 'precio_compra' => 3299.95, 'precio_venta' => 4499.93, 'stock_actual' => 75, 'codigo_barras' => 'PRA174', 'pasillo' => '9', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'prada', 'descripcion' => 'The Prada Women Bag is an iconic designer bag that exudes elegance and luxury. Crafted with precision and featuring the Prada logo, it\'s a statement piece for fashion enthusiasts.', 'en_descuento' => true, 'precio_oferta' => 3865.89, ],
+            ['nombre' => 'White Faux Leather Backpack', 'categoria' => 'womens-bags', 'precio_compra' => 219.95, 'precio_venta' => 299.93, 'stock_actual' => 39, 'codigo_barras' => 'WHI175', 'pasillo' => '4', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'urban_chic', 'descripcion' => 'The White Faux Leather Backpack is a trendy and practical backpack for the modern woman. With a sleek white design and ample storage space, it\'s perfect for both casual and on-the-go styles.', 'en_descuento' => true, 'precio_oferta' => 254.34, ],
+            ['nombre' => 'Women Handbag Black', 'categoria' => 'womens-bags', 'precio_compra' => 329.95, 'precio_venta' => 449.93, 'stock_actual' => 11, 'codigo_barras' => 'WOM176', 'pasillo' => '5', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'elegance_collection', 'descripcion' => 'The Women Handbag in Black is a classic and versatile accessory that complements various outfits. With a timeless black color and functional design, it\'s a must-have in every woman\'s wardrobe.', 'en_descuento' => true, 'precio_oferta' => 397.6, ],
+
+            // Vestidos Mujer
+            ['nombre' => 'Black Women\'s Gown', 'categoria' => 'womens-dresses', 'precio_compra' => 714.95, 'precio_venta' => 974.93, 'stock_actual' => 25, 'codigo_barras' => 'BLA177', 'pasillo' => '5', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Black Women\'s Gown is an elegant and timeless evening gown. With a sleek black design, it\'s perfect for formal events and special occasions, exuding sophistication and style.', 'en_descuento' => true, 'precio_oferta' => 872.76, ],
+            ['nombre' => 'Corset Leather With Skirt', 'categoria' => 'womens-dresses', 'precio_compra' => 494.95, 'precio_venta' => 674.93, 'stock_actual' => 30, 'codigo_barras' => 'COR178', 'pasillo' => '4', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Corset Leather With Skirt is a bold and edgy ensemble that combines a stylish corset with a matching skirt. Ideal for fashion-forward individuals, it makes a statement at any event.', 'en_descuento' => true, 'precio_oferta' => 565.19, ],
+            ['nombre' => 'Corset With Black Skirt', 'categoria' => 'womens-dresses', 'precio_compra' => 439.95, 'precio_venta' => 599.93, 'stock_actual' => 33, 'codigo_barras' => 'COR179', 'pasillo' => '2', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Corset With Black Skirt is a chic and versatile outfit that pairs a fashionable corset with a classic black skirt. It offers a trendy and coordinated look for various occasions.', 'en_descuento' => true, 'precio_oferta' => 509.58, ],
+            ['nombre' => 'Dress Pea', 'categoria' => 'womens-dresses', 'precio_compra' => 274.95, 'precio_venta' => 374.93, 'stock_actual' => 6, 'codigo_barras' => 'DRE180', 'pasillo' => '7', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Dress Pea is a stylish and comfortable dress with a pea pattern. Perfect for casual outings, it adds a playful and fun element to your wardrobe, making it a great choice for day-to-day wear.', 'en_descuento' => true, 'precio_oferta' => 308.64, ],
+            ['nombre' => 'Marni Red & Black Suit', 'categoria' => 'womens-dresses', 'precio_compra' => 989.95, 'precio_venta' => 1349.93, 'stock_actual' => 62, 'codigo_barras' => 'MAR181', 'pasillo' => '8', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Marni Red & Black Suit is a sophisticated and fashion-forward suit ensemble. With a combination of red and black tones, it showcases a modern design for a bold and confident look.', 'en_descuento' => true, 'precio_oferta' => 1093.17, ],
+
+            // Joyería Mujer
+            ['nombre' => 'Green Crystal Earring', 'categoria' => 'womens-jewellery', 'precio_compra' => 164.95, 'precio_venta' => 224.93, 'stock_actual' => 54, 'codigo_barras' => 'GRE182', 'pasillo' => '6', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Green Crystal Earring is a dazzling accessory that features a vibrant green crystal. With a classic design, it adds a touch of elegance to your ensemble, perfect for formal or special occasions.', 'en_descuento' => true, 'precio_oferta' => 190.65, ],
+            ['nombre' => 'Green Oval Earring', 'categoria' => 'womens-jewellery', 'precio_compra' => 137.45, 'precio_venta' => 187.43, 'stock_actual' => 73, 'codigo_barras' => 'GRE183', 'pasillo' => '6', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Green Oval Earring is a stylish and versatile accessory with a unique oval shape. Whether for casual or dressy occasions, its green hue and contemporary design make it a standout piece.', 'en_descuento' => true, 'precio_oferta' => 158.98, ],
+            ['nombre' => 'Tropical Earring', 'categoria' => 'womens-jewellery', 'precio_compra' => 109.95, 'precio_venta' => 149.93, 'stock_actual' => 1, 'codigo_barras' => 'TRO184', 'pasillo' => '4', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'distribuidora_mayorista', 'descripcion' => 'The Tropical Earring is a fun and playful accessory inspired by tropical elements. Featuring vibrant colors and a lively design, it\'s perfect for adding a touch of summer to your look.', ],
+
+            // Zapatos Mujer
+            ['nombre' => 'Black & Brown Slipper', 'categoria' => 'womens-shoes', 'precio_compra' => 109.95, 'precio_venta' => 149.93, 'stock_actual' => 3, 'codigo_barras' => 'BLA185', 'pasillo' => '3', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'comfort_trends', 'descripcion' => 'The Black & Brown Slipper is a comfortable and stylish choice for casual wear. Featuring a blend of black and brown colors, it adds a touch of sophistication to your relaxation.', ],
+            ['nombre' => 'Calvin Klein Heel Shoes', 'categoria' => 'womens-shoes', 'precio_compra' => 439.95, 'precio_venta' => 599.93, 'stock_actual' => 93, 'codigo_barras' => 'CAL186', 'pasillo' => '4', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'calvin_klein', 'descripcion' => 'Calvin Klein Heel Shoes are elegant and sophisticated, designed for formal occasions. With a classic design and high-quality materials, they complement your stylish ensemble.', ],
+            ['nombre' => 'Golden Shoes Woman', 'categoria' => 'womens-shoes', 'precio_compra' => 274.95, 'precio_venta' => 374.93, 'stock_actual' => 88, 'codigo_barras' => 'GOL187', 'pasillo' => '4', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'fashion_diva', 'descripcion' => 'The Golden Shoes for Women are a glamorous choice for special occasions. Featuring a golden hue and stylish design, they add a touch of luxury to your outfit.', 'en_descuento' => true, 'precio_oferta' => 322.7, ],
+            ['nombre' => 'Pampi Shoes', 'categoria' => 'womens-shoes', 'precio_compra' => 164.95, 'precio_venta' => 224.93, 'stock_actual' => 49, 'codigo_barras' => 'PAM188', 'pasillo' => '2', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'pampi', 'descripcion' => 'Pampi Shoes offer a blend of comfort and style for everyday use. With a versatile design, they are suitable for various casual occasions, providing a trendy and relaxed look.', 'en_descuento' => true, 'precio_oferta' => 193.12, ],
+            ['nombre' => 'Red Shoes', 'categoria' => 'womens-shoes', 'precio_compra' => 192.45, 'precio_venta' => 262.43, 'stock_actual' => 7, 'codigo_barras' => 'RED189', 'pasillo' => '9', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'fashion_express', 'descripcion' => 'The Red Shoes make a bold statement with their vibrant red color. Whether for a party or a casual outing, these shoes add a pop of color and style to your wardrobe.', 'en_descuento' => true, 'precio_oferta' => 216.01, ],
+
+            // Relojes Mujer
+            ['nombre' => 'IWC Ingenieur Automatic Steel', 'categoria' => 'womens-watches', 'precio_compra' => 27499.95, 'precio_venta' => 37499.93, 'stock_actual' => 90, 'codigo_barras' => 'IWC190', 'pasillo' => '6', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'iwc', 'descripcion' => 'The IWC Ingenieur Automatic Steel watch is a durable and sophisticated timepiece. With a stainless steel case and automatic movement, it combines precision and style for watch enthusiasts.', 'en_descuento' => true, 'precio_oferta' => 33956.19, ],
+            ['nombre' => 'Rolex Cellini Moonphase', 'categoria' => 'womens-watches', 'precio_compra' => 87999.95, 'precio_venta' => 119999.93, 'stock_actual' => 52, 'codigo_barras' => 'ROL191', 'pasillo' => '9', 'nivel' => 'C', 'unidad_medida' => 'un', 'proveedor' => 'rolex', 'descripcion' => 'The Rolex Cellini Moonphase watch is a masterpiece of horology. Featuring a moon phase complication, it showcases the craftsmanship and elegance that Rolex is renowned for.', ],
+            ['nombre' => 'Rolex Datejust Women', 'categoria' => 'womens-watches', 'precio_compra' => 60499.95, 'precio_venta' => 82499.93, 'stock_actual' => 4, 'codigo_barras' => 'ROL192', 'pasillo' => '4', 'nivel' => 'B', 'unidad_medida' => 'un', 'proveedor' => 'rolex', 'descripcion' => 'The Rolex Datejust Women\'s watch is an iconic timepiece designed for women. With a timeless design and a date complication, it offers both elegance and functionality.', 'en_descuento' => true, 'precio_oferta' => 69349.44, ],
+            ['nombre' => 'Watch Gold for Women', 'categoria' => 'womens-watches', 'precio_compra' => 4399.95, 'precio_venta' => 5999.93, 'stock_actual' => 0, 'codigo_barras' => 'WAT193', 'pasillo' => '5', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'fashion_gold', 'descripcion' => 'The Gold Women\'s Watch is a stunning accessory that combines luxury and style. Featuring a gold-plated case and a chic design, it adds a touch of glamour to any outfit.', 'en_descuento' => true, 'precio_oferta' => 4899.54, ],
+            ['nombre' => 'Women\'s Wrist Watch', 'categoria' => 'womens-watches', 'precio_compra' => 714.95, 'precio_venta' => 974.93, 'stock_actual' => 12, 'codigo_barras' => 'WOM194', 'pasillo' => '3', 'nivel' => 'A', 'unidad_medida' => 'un', 'proveedor' => 'fashion_co', 'descripcion' => 'The Women\'s Wrist Watch is a versatile and fashionable timepiece for everyday wear. With a comfortable strap and a simple yet elegant design, it complements various styles.', 'en_descuento' => true, 'precio_oferta' => 852.09, ],
         ];
+
     }
 }
