@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { apiFetch } from '../composables/useApi'
 
 interface Categoria {
@@ -50,6 +50,12 @@ interface CategoriaConImagen extends Categoria {
 }
 
 const categorias = ref<CategoriaConImagen[]>([])
+const expandida = ref(false)
+const VISIBLES = 5
+
+const categoriasVisibles = computed(() =>
+  expandida.value ? categorias.value : categorias.value.slice(0, VISIBLES)
+)
 
 onMounted(async () => {
   try {
@@ -58,7 +64,7 @@ onMounted(async () => {
 
     const resultados = await Promise.allSettled(
       items.map(cat =>
-        apiFetch(`/productos?categoria=${cat.id}&per_page=1`, { skipAuth: true, silent: true })
+        apiFetch(`/productos?categoria=${cat.id}&per_page=1&random=1`, { skipAuth: true, silent: true })
           .then(r => {
             const prods: Producto[] = r.data ?? r
             return { id: cat.id, imagen: prods[0]?.imagen_url }
@@ -90,16 +96,28 @@ onMounted(async () => {
 <template>
   <section class="mb-8">
     <h2 class="text-lg font-semibold text-gray-800 mb-4">Categorías</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-      <RouterLink v-for="cat in categorias" :key="cat.id" :to="`/tienda?categoria=${cat.id}`"
-        class="relative flex flex-col items-center justify-end p-4 rounded-xl no-underline overflow-hidden group"
-        style="aspect-ratio: 4/3">
-        <img v-if="cat.imagen_url" :src="cat.imagen_url" :alt="cat.nombre"
-          class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" />
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      <RouterLink
+        v-for="cat in categoriasVisibles" :key="cat.id"
+        :to="`/tienda?categoria=${cat.id}`"
+        class="relative flex flex-col items-center justify-end p-4 rounded-xl no-underline overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+        style="aspect-ratio: 4/3"
+      >
+        <img
+          v-if="cat.imagen_url" :src="cat.imagen_url" :alt="cat.nombre"
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+        />
         <div class="absolute inset-0 bg-gradient-to-t transition-opacity duration-300" :class="cat.gradiente"></div>
         <span class="text-3xl relative z-10 mb-1 drop-shadow-sm">{{ cat.icono }}</span>
         <span class="font-semibold text-sm text-white text-center relative z-10 drop-shadow-sm">{{ cat.nombre }}</span>
       </RouterLink>
     </div>
+    <button
+      v-if="categorias.length > VISIBLES"
+      @click="expandida = !expandida"
+      class="mt-4 mx-auto block px-6 py-2 rounded-lg border border-gray-300 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-400 transition-colors cursor-pointer"
+    >
+      {{ expandida ? 'Ver menos' : `Ver más (${categorias.length - VISIBLES} más)` }}
+    </button>
   </section>
 </template>

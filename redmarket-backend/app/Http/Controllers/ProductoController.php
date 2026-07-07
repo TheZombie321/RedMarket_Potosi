@@ -28,6 +28,10 @@ class ProductoController extends Controller
             $query->where('categoria_id', $catId);
         }
 
+        if ($request->boolean('random')) {
+            $query->inRandomOrder();
+        }
+
         $perPage = min((int) $request->input('per_page', 20), 100);
 
         return ProductoResource::collection($query->paginate($perPage));
