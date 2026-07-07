@@ -205,8 +205,9 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
             <h3 class="text-sm font-semibold text-ink line-clamp-2 leading-snug">{{ p.nombre }}</h3>
             <span class="text-[11px] text-ink-muted uppercase tracking-wide">{{ p.categoria?.nombre }}</span>
             <div class="flex items-center gap-2 mt-1.5">
-              <p class="text-lg font-bold text-price">Bs. {{ p.precio_venta }}</p>
-              <span v-if="p.en_descuento && p.precio_oferta" class="text-sm text-rojo-mercado font-semibold">Bs. {{ p.precio_oferta }}</span>
+              <p v-if="p.en_descuento && p.precio_oferta" class="text-lg font-bold text-rojo-mercado">Bs. {{ p.precio_oferta }}</p>
+              <span v-if="p.en_descuento && p.precio_oferta" class="text-xs text-gray-400 line-through">Bs. {{ p.precio_venta }}</span>
+              <p v-else class="text-lg font-bold text-price">Bs. {{ p.precio_venta }}</p>
             </div>
           </div>
 

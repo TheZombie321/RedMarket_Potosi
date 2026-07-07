@@ -39,31 +39,32 @@ echo "Total: " . count($allProducts) . " productos\n";
 
 // ─── 2. MAP CATEGORIES ───
 
-$categoryTranslation = [
-    'beauty' => 'Belleza',
-    'fragrances' => 'Fragancias',
-    'furniture' => 'Muebles',
-    'groceries' => 'Despensa',
-    'home-decoration' => 'Decoración del Hogar',
-    'kitchen-accessories' => 'Accesorios de Cocina',
-    'laptops' => 'Laptops',
-    'mens-shirts' => 'Camisetas Hombre',
-    'mens-shoes' => 'Zapatos Hombre',
-    'mens-watches' => 'Relojes Hombre',
-    'mobile-accessories' => 'Accesorios Móviles',
-    'motorcycle' => 'Motocicletas',
-    'skin-care' => 'Cuidado de la Piel',
-    'smartphones' => 'Smartphones',
-    'sports-accessories' => 'Accesorios Deportivos',
-    'sunglasses' => 'Lentes de Sol',
-    'tablets' => 'Tablets',
-    'tops' => 'Blusas',
-    'vehicle' => 'Vehículos',
-    'womens-bags' => 'Carteras Mujer',
-    'womens-dresses' => 'Vestidos Mujer',
-    'womens-jewellery' => 'Joyería Mujer',
-    'womens-shoes' => 'Zapatos Mujer',
-    'womens-watches' => 'Relojes Mujer',
+// Mapeo de API categories a las 8 categorías originales de RedMarket
+$categoryMap = [
+    'beauty' => 'Limpieza',
+    'fragrances' => 'Limpieza',
+    'furniture' => 'Abarrotes',
+    'groceries' => null, // se maneja por tags abajo
+    'home-decoration' => 'Abarrotes',
+    'kitchen-accessories' => 'Abarrotes',
+    'laptops' => 'Abarrotes',
+    'mens-shirts' => 'Abarrotes',
+    'mens-shoes' => 'Abarrotes',
+    'mens-watches' => 'Abarrotes',
+    'mobile-accessories' => 'Abarrotes',
+    'motorcycle' => 'Abarrotes',
+    'skin-care' => 'Limpieza',
+    'smartphones' => 'Abarrotes',
+    'sports-accessories' => 'Abarrotes',
+    'sunglasses' => 'Abarrotes',
+    'tablets' => 'Abarrotes',
+    'tops' => 'Abarrotes',
+    'vehicle' => 'Abarrotes',
+    'womens-bags' => 'Abarrotes',
+    'womens-dresses' => 'Abarrotes',
+    'womens-jewellery' => 'Abarrotes',
+    'womens-shoes' => 'Abarrotes',
+    'womens-watches' => 'Abarrotes',
 ];
 
 // ─── 3. PROVEEDORES BOLIVIANOS POR MARCA ───
@@ -106,14 +107,29 @@ $bolivianProveedores = [
 
 // ─── 4. PROCESS EACH PRODUCT ───
 
+function mapGroceryTagCategory(array $tags): string {
+    $tagStr = implode(' ', $tags);
+    if (preg_match('/meat|seafood/', $tagStr)) return 'Carnes y Embutidos';
+    if (preg_match('/fruits|vegetables/', $tagStr)) return 'Frutas y Verduras';
+    if (preg_match('/dairy/', $tagStr)) return 'Lácteos';
+    if (preg_match('/beverages|coffee/', $tagStr)) return 'Bebidas';
+    if (preg_match('/snacks|desserts/', $tagStr)) return 'Snacks y Golosinas';
+    return 'Abarrotes';
+}
+
 $selected = [];
 $downloaded = 0;
 $usedCategories = [];
 
 foreach ($allProducts as $p) {
     $catSlug = $p['category'] ?? 'others';
-    $catName = $categoryTranslation[$catSlug] ?? ucfirst($catSlug);
-    $usedCategories[$catSlug] = $catName;
+    // Mapear groceries por tags
+    if ($catSlug === 'groceries') {
+        $catName = mapGroceryTagCategory($p['tags'] ?? []);
+    } else {
+        $catName = $categoryMap[$catSlug] ?? 'Abarrotes';
+    }
+    $usedCategories[$catName] = $catName;
 
     // Código único: 3 letras del nombre + ID
     $cleanName = preg_replace('/[^a-zA-Z0-9 ]/', '', $p['title']);
@@ -168,14 +184,13 @@ foreach ($allProducts as $p) {
     }
 
     // Categorías perecederas
-    $esPerecedero = in_array($catSlug, ['groceries']);
+    $esPerecedero = in_array($catName, ['Carnes y Embutidos', 'Frutas y Verduras', 'Lácteos']);
 
     $selected[] = [
         'codigo' => $code,
         'nombre' => $p['title'],
         'descripcion' => $p['description'] ?? '',
-        'categoria_slug' => $catSlug,
-        'categoria_nombre' => $catName,
+        'categoria' => $catName,
         'precio_compra' => $precioCompra,
         'precio_venta' => $precioVenta,
         'precio_oferta' => $precioOferta,
@@ -228,9 +243,9 @@ echo "\n=== DESCARGA COMPLETADA ===\n";
 echo "Productos: " . count($selected) . "\n";
 echo "Imágenes descargadas: $downloaded\n";
 echo "Categorías: " . count($usedCategories) . "\n";
-foreach ($usedCategories as $slug => $name) {
-    $count = count(array_filter($selected, fn($s) => $s['categoria_slug'] === $slug));
-    echo "  $slug ($name): $count\n";
+foreach ($usedCategories as $name) {
+    $count = count(array_filter($selected, fn($s) => $s['categoria'] === $name));
+    echo "  $name: $count\n";
 }
 echo "Proveedores: " . count($bolivianProveedores) . "\n";
 
@@ -243,8 +258,13 @@ if (strtolower($input) !== 's') {
 
 // ─── 5. GENERAR SEEDER ───
 
-// Ordenar categorías
-ksort($usedCategories);
+// Orden canónico de categorías
+$canonicalOrder = ['Abarrotes', 'Bebidas', 'Lácteos', 'Limpieza', 'Panadería', 'Carnes y Embutidos', 'Frutas y Verduras', 'Snacks y Golosinas'];
+$sortedCats = array_values(array_intersect($canonicalOrder, array_keys($usedCategories)));
+// Agregar cualquier categoría no prevista al final
+foreach ($usedCategories as $name) {
+    if (!in_array($name, $sortedCats)) $sortedCats[] = $name;
+}
 
 // Código de proveedores
 $provCode = "        \$proveedores = [\n";
@@ -262,8 +282,9 @@ $provCode .= "        return \$proveedores;\n";
 
 // Código de categorías
 $catCode = "        \$nombres = [\n";
-foreach ($usedCategories as $slug => $name) {
-    $catCode .= "            '$slug' => '$name',\n";
+foreach ($sortedCats as $name) {
+    $key = strtolower(str_replace([' ', 'í', 'é', 'á', 'ó', 'ú'], ['_', 'i', 'e', 'a', 'o', 'u'], $name));
+    $catCode .= "            '$key' => '$name',\n";
 }
 $catCode .= "        ];\n";
 
@@ -271,14 +292,16 @@ $catCode .= "        ];\n";
 $prodCode = "        return [\n";
 $currentCat = '';
 foreach ($selected as $p) {
-    if ($p['categoria_slug'] !== $currentCat) {
-        $currentCat = $p['categoria_slug'];
-        $prodCode .= "\n            // {$p['categoria_nombre']}\n";
+    if ($p['categoria'] !== $currentCat) {
+        $currentCat = $p['categoria'];
+        $prodCode .= "\n            // {$p['categoria']}\n";
     }
 
     $nombre = addslashes($p['nombre']);
     $desc = addslashes($p['descripcion']);
     $desc = str_replace(["\n", "\r", '  '], ' ', $desc);
+
+    $catKey = strtolower(str_replace([' ', 'í', 'é', 'á', 'ó', 'ú'], ['_', 'i', 'e', 'a', 'o', 'u'], $p['categoria']));
 
     $extra = '';
     if ($p['en_descuento']) {
@@ -288,7 +311,7 @@ foreach ($selected as $p) {
         $extra .= "'es_perecedero' => true, 'fecha_vencimiento' => '2026-08-15', ";
     }
 
-    $prodCode .= "            ['nombre' => '$nombre', 'categoria' => '{$p['categoria_slug']}', 'precio_compra' => {$p['precio_compra']}, 'precio_venta' => {$p['precio_venta']}, 'stock_actual' => {$p['stock_actual']}, 'codigo_barras' => '{$p['codigo']}', 'pasillo' => '{$p['pasillo']}', 'nivel' => '{$p['nivel']}', 'unidad_medida' => '{$p['unidad_medida']}', 'proveedor' => '{$p['proveedor_key']}', 'descripcion' => '$desc', {$extra}],\n";
+    $prodCode .= "            ['nombre' => '$nombre', 'categoria' => '$catKey', 'precio_compra' => {$p['precio_compra']}, 'precio_venta' => {$p['precio_venta']}, 'stock_actual' => {$p['stock_actual']}, 'codigo_barras' => '{$p['codigo']}', 'pasillo' => '{$p['pasillo']}', 'nivel' => '{$p['nivel']}', 'unidad_medida' => '{$p['unidad_medida']}', 'proveedor' => '{$p['proveedor_key']}', 'descripcion' => '$desc', {$extra}],\n";
 }
 $prodCode .= "        ];\n";
 
