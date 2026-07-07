@@ -39,32 +39,32 @@ echo "Total: " . count($allProducts) . " productos\n";
 
 // ─── 2. MAP CATEGORIES ───
 
-// Mapeo de API categories a las 8 categorías originales de RedMarket
-$categoryMap = [
-    'beauty' => 'Limpieza',
-    'fragrances' => 'Limpieza',
-    'furniture' => 'Abarrotes',
+// Traducción de categorías API a Español
+$categoryTranslation = [
+    'beauty' => 'Belleza',
+    'fragrances' => 'Fragancias',
+    'furniture' => 'Muebles',
     'groceries' => null, // se maneja por tags abajo
-    'home-decoration' => 'Abarrotes',
-    'kitchen-accessories' => 'Abarrotes',
-    'laptops' => 'Abarrotes',
-    'mens-shirts' => 'Abarrotes',
-    'mens-shoes' => 'Abarrotes',
-    'mens-watches' => 'Abarrotes',
-    'mobile-accessories' => 'Abarrotes',
-    'motorcycle' => 'Abarrotes',
-    'skin-care' => 'Limpieza',
-    'smartphones' => 'Abarrotes',
-    'sports-accessories' => 'Abarrotes',
-    'sunglasses' => 'Abarrotes',
-    'tablets' => 'Abarrotes',
-    'tops' => 'Abarrotes',
-    'vehicle' => 'Abarrotes',
-    'womens-bags' => 'Abarrotes',
-    'womens-dresses' => 'Abarrotes',
-    'womens-jewellery' => 'Abarrotes',
-    'womens-shoes' => 'Abarrotes',
-    'womens-watches' => 'Abarrotes',
+    'home-decoration' => 'Decoración del Hogar',
+    'kitchen-accessories' => 'Accesorios de Cocina',
+    'laptops' => 'Laptops',
+    'mens-shirts' => 'Camisetas Hombre',
+    'mens-shoes' => 'Zapatos Hombre',
+    'mens-watches' => 'Relojes Hombre',
+    'mobile-accessories' => 'Accesorios Móviles',
+    'motorcycle' => 'Motocicletas',
+    'skin-care' => 'Cuidado de la Piel',
+    'smartphones' => 'Smartphones',
+    'sports-accessories' => 'Accesorios Deportivos',
+    'sunglasses' => 'Lentes de Sol',
+    'tablets' => 'Tablets',
+    'tops' => 'Blusas',
+    'vehicle' => 'Vehículos',
+    'womens-bags' => 'Carteras Mujer',
+    'womens-dresses' => 'Vestidos Mujer',
+    'womens-jewellery' => 'Joyería Mujer',
+    'womens-shoes' => 'Zapatos Mujer',
+    'womens-watches' => 'Relojes Mujer',
 ];
 
 // ─── 3. PROVEEDORES BOLIVIANOS POR MARCA ───
@@ -123,11 +123,11 @@ $usedCategories = [];
 
 foreach ($allProducts as $p) {
     $catSlug = $p['category'] ?? 'others';
-    // Mapear groceries por tags
+    // Groceries se subdividen por tags
     if ($catSlug === 'groceries') {
         $catName = mapGroceryTagCategory($p['tags'] ?? []);
     } else {
-        $catName = $categoryMap[$catSlug] ?? 'Abarrotes';
+        $catName = $categoryTranslation[$catSlug] ?? $catSlug;
     }
     $usedCategories[$catName] = $catName;
 
@@ -184,7 +184,7 @@ foreach ($allProducts as $p) {
     }
 
     // Categorías perecederas
-    $esPerecedero = in_array($catName, ['Carnes y Embutidos', 'Frutas y Verduras', 'Lácteos']);
+    $esPerecedero = in_array($catName, ['Carnes y Embutidos', 'Frutas y Verduras', 'Lácteos', 'Despensa']);
 
     $selected[] = [
         'codigo' => $code,
@@ -258,13 +258,9 @@ if (strtolower($input) !== 's') {
 
 // ─── 5. GENERAR SEEDER ───
 
-// Orden canónico de categorías
-$canonicalOrder = ['Abarrotes', 'Bebidas', 'Lácteos', 'Limpieza', 'Panadería', 'Carnes y Embutidos', 'Frutas y Verduras', 'Snacks y Golosinas'];
-$sortedCats = array_values(array_intersect($canonicalOrder, array_keys($usedCategories)));
-// Agregar cualquier categoría no prevista al final
-foreach ($usedCategories as $name) {
-    if (!in_array($name, $sortedCats)) $sortedCats[] = $name;
-}
+// Orden alfabético de categorías
+$sortedCats = array_keys($usedCategories);
+sort($sortedCats);
 
 // Código de proveedores
 $provCode = "        \$proveedores = [\n";
