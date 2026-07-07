@@ -22,6 +22,7 @@ const iconMap: Record<string, { icono: string; gradiente: string }> = {
   'Carteras Mujer': { icono: '👛', gradiente: 'from-purple-900/70 to-purple-700/30' },
   'Cuidado de la Piel': { icono: '🧴', gradiente: 'from-orange-900/70 to-orange-700/30' },
   'Decoración del Hogar': { icono: '🖼️', gradiente: 'from-teal-900/70 to-teal-700/30' },
+  'Despensa': { icono: '🛒️', gradiente: 'from-orange-900/70 to-orange-700/30' },
   'Fragancias': { icono: '🧴', gradiente: 'from-violet-900/70 to-violet-700/30' },
   'Joyería Mujer': { icono: '💍', gradiente: 'from-yellow-900/70 to-yellow-700/30' },
   'Laptops': { icono: '💻', gradiente: 'from-gray-900/70 to-gray-700/30' },
@@ -36,11 +37,6 @@ const iconMap: Record<string, { icono: string; gradiente: string }> = {
   'Vestidos Mujer': { icono: '👗', gradiente: 'from-fuchsia-900/70 to-fuchsia-700/30' },
   'Zapatos Hombre': { icono: '👞', gradiente: 'from-blue-900/70 to-blue-700/30' },
   'Zapatos Mujer': { icono: '👠', gradiente: 'from-pink-900/70 to-pink-700/30' },
-  'Bebidas': { icono: '🥤', gradiente: 'from-sky-900/70 to-sky-700/30' },
-  'Lácteos': { icono: '🥛', gradiente: 'from-green-900/70 to-green-700/30' },
-  'Carnes y Embutidos': { icono: '🥩', gradiente: 'from-red-900/70 to-red-700/30' },
-  'Frutas y Verduras': { icono: '🥦', gradiente: 'from-lime-900/70 to-lime-700/30' },
-  'Snacks y Golosinas': { icono: '🍪', gradiente: 'from-pink-900/70 to-pink-700/30' },
 }
 
 interface CategoriaConImagen extends Categoria {

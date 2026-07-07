@@ -1,6 +1,13 @@
 # Ignorar carpetas ocultas de herramientas externas
 .impeccable/
 .opencode/
+.agents/
+.superpowers/
+skills-lock.json
+
+# Ignorar archivos generados
+redmarket-backend/product_images.json
+docs/superpowers/
 
 # Ignorar archivos sueltos de documentación y notas en la raíz
 /*.md

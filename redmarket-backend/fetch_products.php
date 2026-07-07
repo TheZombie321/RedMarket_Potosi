@@ -107,28 +107,16 @@ $bolivianProveedores = [
 
 // ─── 4. PROCESS EACH PRODUCT ───
 
-function mapGroceryTagCategory(array $tags): string {
-    $tagStr = implode(' ', $tags);
-    if (preg_match('/meat|seafood/', $tagStr)) return 'Carnes y Embutidos';
-    if (preg_match('/fruits|vegetables/', $tagStr)) return 'Frutas y Verduras';
-    if (preg_match('/dairy/', $tagStr)) return 'Lácteos';
-    if (preg_match('/beverages|coffee/', $tagStr)) return 'Bebidas';
-    if (preg_match('/snacks|desserts/', $tagStr)) return 'Snacks y Golosinas';
-    return 'Abarrotes';
-}
-
 $selected = [];
 $downloaded = 0;
 $usedCategories = [];
 
 foreach ($allProducts as $p) {
     $catSlug = $p['category'] ?? 'others';
-    // Groceries se subdividen por tags
-    if ($catSlug === 'groceries') {
-        $catName = mapGroceryTagCategory($p['tags'] ?? []);
-    } else {
-        $catName = $categoryTranslation[$catSlug] ?? $catSlug;
-    }
+    // Groceries van todas a "Despensa"
+    $catName = ($catSlug === 'groceries')
+        ? 'Despensa'
+        : ($categoryTranslation[$catSlug] ?? $catSlug);
     $usedCategories[$catName] = $catName;
 
     // Código único: 3 letras del nombre + ID
@@ -183,8 +171,8 @@ foreach ($allProducts as $p) {
         ];
     }
 
-    // Categorías perecederas
-    $esPerecedero = in_array($catName, ['Carnes y Embutidos', 'Frutas y Verduras', 'Lácteos', 'Despensa']);
+    // Perecedero: solo Despensa (alimentos)
+    $esPerecedero = $catName === 'Despensa';
 
     $selected[] = [
         'codigo' => $code,
