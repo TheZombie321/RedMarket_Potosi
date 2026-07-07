@@ -68,11 +68,13 @@ const misHistorial = computed(() =>
 )
 
 function obtenerLatCliente(p: any): number | null {
-  return p.user?.latitud ?? p.latitud ?? null
+  const v = p.user?.latitud ?? p.latitud
+  return v != null ? Number(v) : null
 }
 
 function obtenerLngCliente(p: any): number | null {
-  return p.user?.longitud ?? p.longitud ?? null
+  const v = p.user?.longitud ?? p.longitud
+  return v != null ? Number(v) : null
 }
 
 const fetchPedidos = async () => {
@@ -430,8 +432,8 @@ onUnmounted(() => {
 
       <!-- Route info when previewing -->
       <div v-if="routeInfo && !pedidoActivo" class="bg-blue-50 border border-blue-200 rounded-lg px-4 py-2 mb-3 text-sm flex items-center gap-4">
-        <span class="text-blue-700">📏 <strong>{{ routeInfo.distance.toFixed(1) }} km</strong></span>
-        <span class="text-blue-700">⏱ ~{{ Math.round(routeInfo.duration) }} min</span>
+        <span class="text-blue-700">📏 <strong>{{ (routeInfo.distance ?? 0).toFixed(1) }} km</strong></span>
+        <span class="text-blue-700">⏱ ~{{ Math.round(routeInfo.duration ?? 0) }} min</span>
         <button @click="cerrarRuta"
           class="ml-auto text-xs text-blue-600 hover:underline cursor-pointer bg-transparent border-none">Cerrar ruta</button>
       </div>
@@ -514,8 +516,8 @@ onUnmounted(() => {
       <!-- Route info -->
       <div v-if="routeInfo" class="bg-green-50 border border-green-200 rounded-lg px-4 py-3 mb-3 flex flex-wrap items-center gap-4 text-sm">
         <span class="text-green-700 font-medium">🚚 En ruta</span>
-        <span class="text-green-700">📏 <strong>{{ routeInfo.distance.toFixed(1) }} km</strong></span>
-        <span class="text-green-700">⏱ ~{{ Math.round(routeInfo.duration) }} min restantes</span>
+        <span class="text-green-700">📏 <strong>{{ (routeInfo.distance ?? 0).toFixed(1) }} km</strong></span>
+        <span class="text-green-700">⏱ ~{{ Math.round(routeInfo.duration ?? 0) }} min restantes</span>
         <span class="text-green-700">🕐 Llegada aprox. ≈ {{ new Date(Date.now() + routeInfo.duration * 60000).toLocaleTimeString('es-BO', { hour: '2-digit', minute: '2-digit' }) }}</span>
       </div>
 
@@ -523,8 +525,8 @@ onUnmounted(() => {
 
       <div ref="mapContainer" class="w-full h-96 rounded-lg border-2 border-platform-edge mb-4 overflow-hidden bg-gray-100" />
       <p class="text-xs text-ink-muted mb-4 text-center">
-        🏍️ {{ lat.toFixed(4) }}, {{ lng.toFixed(4) }}
-        <span v-if="pedidoActivo && obtenerLatCliente(pedidoActivo)">— 🏠 {{ obtenerLatCliente(pedidoActivo)?.toFixed(4) }}, {{ obtenerLngCliente(pedidoActivo)?.toFixed(4) }}</span>
+        🏍️ {{ (lat ?? 0).toFixed(4) }}, {{ (lng ?? 0).toFixed(4) }}
+        <span v-if="pedidoActivo && obtenerLatCliente(pedidoActivo) != null">— 🏠 {{ obtenerLatCliente(pedidoActivo)?.toFixed(4) }}, {{ obtenerLngCliente(pedidoActivo)?.toFixed(4) }}</span>
       </p>
 
       <!-- Test panel -->
