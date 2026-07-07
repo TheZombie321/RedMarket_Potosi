@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class ProductoResource extends JsonResource
 {
@@ -28,7 +29,14 @@ class ProductoResource extends JsonResource
         ];
 
         // Staff (Admin/Encargado) pueden ver campos internos
-        if ($request->user()?->hasAnyRole(['Administrador', 'Encargado'])) {
+        // Resuelve usuario desde Bearer token incluso en rutas públicas (sin auth:sanctum middleware)
+        $user = null;
+        if ($bearer = $request->bearerToken()) {
+            $token = PersonalAccessToken::findToken($bearer);
+            $user = $token?->tokenable;
+        }
+        $user ??= $request->user();
+        if ($user?->hasAnyRole(['Administrador', 'Encargado'])) {
             $data['codigo_barras'] = $this->codigo_barras;
             $data['precio_compra'] = $this->precio_compra;
             $data['pasillo'] = $this->pasillo;
