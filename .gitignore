@@ -24,6 +24,16 @@ node_modules/
 test-report/
 screenshots/
 playwright-report/
+e2e/
+run-e2e.sh
+
+# Generados (sesión)
+evidencia/
+instalador-redmarket/
+instalador-redmarket-v1.0.*
+manuales/
+act8.docx
+*.log
 
 # Nota: Git entrará a 'RedMarket' y 'redmarket-backend' 
 # y respetará los .gitignore internos que ya tienen Laravel y Vue 

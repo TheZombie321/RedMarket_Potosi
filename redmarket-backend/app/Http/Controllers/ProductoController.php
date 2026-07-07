@@ -32,6 +32,14 @@ class ProductoController extends Controller
             $query->inRandomOrder();
         }
 
+        if ($ids = $request->input('ids')) {
+            $idsArray = explode(',', $ids);
+            $idsArray = array_filter($idsArray, 'is_numeric');
+            if (!empty($idsArray)) {
+                $query->whereIn('id', $idsArray);
+            }
+        }
+
         $perPage = min((int) $request->input('per_page', 20), 100);
 
         return ProductoResource::collection($query->paginate($perPage));
