@@ -65,6 +65,7 @@ function avanzaRotacion() {
 }
 
 onMounted(async () => {
+  timer = setInterval(avanzaRotacion, 3500)
   try {
     const resp = await apiFetch('/categorias', { skipAuth: true })
     const items: Categoria[] = resp.data ?? resp
@@ -93,8 +94,6 @@ onMounted(async () => {
       imagenes: imagenMap[c.id] ?? [],
       currentIdx: 0,
     }))
-
-    timer = setInterval(avanzaRotacion, 3500)
   } catch {
     categorias.value = Object.entries(iconMap).map(([nombre, val], i) => ({
       id: i + 1, nombre: nombre, ...val,
