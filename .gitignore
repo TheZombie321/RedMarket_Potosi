@@ -19,6 +19,12 @@ docs/superpowers/
 /Archivos leidos/
 /*.txt
 
+# Playwright
+node_modules/
+test-report/
+screenshots/
+playwright-report/
+
 # Nota: Git entrará a 'RedMarket' y 'redmarket-backend' 
 # y respetará los .gitignore internos que ya tienen Laravel y Vue 
 # (evitando que se suban las carpetas pesadas 'node_modules' o 'vendor').
